@@ -10,6 +10,6 @@ art=/restricted/projectnb/challenge2025/software/ART/art_src_MountRainier_Linux/
 counter = 0
 
 #for fast in /restricted/projectnb/challenge2025/sgRNAtor/ardenix/syn_sgRNAs/fastas/*; do
-$art -ss HSXt -i /restricted/projectnb/challenge2025/sgRNAtor/ardenix/syn_sgRNAs/sGENERATE_files/sgRNAs_only_uniform30x.faa -o /restricted/projectnb/challenge2025/Data/apl_simdata/ART_sGENERATE_nc_sgRNAs/sGEN_nc_sgRNAs -l 150 -f 100 -p -m 500 -s 10 -sam 
+$art -ss HSXt -i /restricted/projectnb/challenge2025/sgRNAtor/ardenix/syn_sgRNAs/sGENERATE_files/COV_multifastq_nc_uniform10x.faa -o /restricted/projectnb/challenge2025/Data/apl_simdata/ART_sGENERATE_nc_sgRNAs/sGEN_nc_sgRNAs -l 150 -f 100 -p -m 500 -s 10 -sam 
 #counter=$((counter + 1))
 #../../software/ART/art_src_MountRainier_Linux/aln2bed.pl syn_sgRNAs-paired_end_com1.aln.bed syn_sgRNAs-paired_end_com1.aln syn_sgRNAs-paired_end_com2.aln

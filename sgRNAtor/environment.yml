@@ -2,6 +2,7 @@ name: sgRNAtor
 channels:
   - defaults
   - bioconda
+  - conda-forge
 dependencies:
   - bbmap=38.84
   - biopython=1.85
@@ -9,5 +10,5 @@ dependencies:
   - editdistance=0.8.1
   - numpy=2.2.5
   - pip=25.3
-  - samtools=1.5=1
+  - samtools=1.23
   - setuptools=80.10.2

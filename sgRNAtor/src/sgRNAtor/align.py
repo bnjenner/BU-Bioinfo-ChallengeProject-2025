@@ -29,25 +29,41 @@ class alignBWA:
 		if not self.__index_exists():
 			raise RuntimeError(f"// ERROR: Index for {self.reference} does not exist.")
 
-		# Account for Paired End Reads
-		bwa_command = ["bwa", "mem", "-C", "-t", str(self.threads), self.reference, input_fastq[0]]
+		# BWA MEM command
+		bwa_command = ["bwa", "mem", "-t", str(self.threads), self.reference, input_fastq[0]]
 		if len(input_fastq) == 2:
 			bwa_command.append(input_fastq[1])
 
-		# Alignment and Bam Compression
-		bwa = subprocess.Popen(bwa_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		samtools = subprocess.Popen(
-		    ["samtools", "view", "-bSh", "-"],
-		    stdin=bwa.stdout,
-		    stdout=open(output_bam, "wb"),
-		    stderr=subprocess.PIPE
-		)
+		# Open BAM file for writing
+		with open(output_bam, "wb") as bam_out:
+			try:
+				# Start BWA process
+				bwa_proc = subprocess.Popen(
+										bwa_command,
+										stdout=subprocess.PIPE,
+										stderr=subprocess.PIPE
+										)
 
-		bwa.stdout.close()
-		samtools_stderr = samtools.communicate()[1]
-		bwa_stderr = bwa.communicate()[1]
+				# Start samtools process, reading from bwa stdout
+				samtools_proc = subprocess.Popen(
+											["samtools", "view", "-b", "-h", "-"],
+											stdin=bwa_proc.stdout,
+											stdout=bam_out,
+											stderr=subprocess.PIPE
+											)
 
-		if bwa.returncode != 0:
-			raise RuntimeError(f"// ERROR: BWA Failed:\n{bwa_stderr.decode()}")
-		if samtools.returncode != 0:
-			raise RuntimeError(f"// ERROR: Samtools Failed:\n{samtools_stderr.decode()}")
+				# Close BWA stdout in parent to avoid hanging
+				bwa_proc.stdout.close()
+
+				# Wait for samtools to finish, capture stderr
+				samtools_stderr = samtools_proc.communicate()[1]
+				bwa_stderr = bwa_proc.communicate()[1]
+
+				# Check return codes
+				if bwa_proc.returncode != 0:
+					raise RuntimeError(f"// ERROR: BWA Failed:\n{bwa_stderr.decode()}")
+				if samtools_proc.returncode != 0:
+					raise RuntimeError(f"// ERROR: Samtools Failed:\n{samtools_stderr.decode()}")
+
+			except Exception as e:
+				raise RuntimeError(f"Alignment failed: {str(e)}")

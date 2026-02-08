@@ -1,8 +1,9 @@
-name: sgRNAQuant2
+name: sgRNAtor
 channels:
   - defaults
   - bioconda
 dependencies:
+  - bbmap=38.84
   - biopython=1.85
   - bwa=0.7.19
   - editdistance=0.8.1

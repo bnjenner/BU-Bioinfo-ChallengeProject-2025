@@ -28,5 +28,7 @@
 *.o[0-9][0-9][0-9][0-9]*
 [0-9][0-9]-*/
 */*.sublime-project
-sgRNAQuant/build/
-sgRNAQuant/sgRNAQuant/__pycache__
+sgRNAtor/build/
+sgRNAtor/sgRNAQuant/__pycache__/
+sgRNAtor/build/
+sgRNAtor/sgRNAtor.egg-info/

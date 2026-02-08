@@ -96,7 +96,7 @@ class sgRNAsearch:
 
 	#################################
 	# Find sgRNA main function
-	def find_sgRNAs(self, output_files, threads=1, min_match=8, max_edit=0, chunk_size=1000):
+	def find_sgRNAs(self, output_files, threads=1, min_match=8, max_edit=0, chunk_size=100000):
 
 		print(f"// Trimming FASTQ Files {self.fastq_files}")
 

@@ -1,0 +1,12 @@
+name: sgRNAQuant2
+channels:
+  - defaults
+  - bioconda
+dependencies:
+  - biopython=1.85
+  - bwa=0.7.19
+  - editdistance=0.8.1
+  - numpy=2.2.5
+  - pip=25.3
+  - samtools=1.5=1
+  - setuptools=80.10.2

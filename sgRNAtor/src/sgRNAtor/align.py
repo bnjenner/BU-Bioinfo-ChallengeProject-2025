@@ -9,9 +9,8 @@ from sgRNAtor import utils
 # sgRNAs Class
 class alignBWA:
 
-	def __init__(self, reference, threads=1):
+	def __init__(self, reference):
 		self.reference = reference
-		self.threads = threads
 
 
 	#################################
@@ -23,14 +22,14 @@ class alignBWA:
 
 	#################################
 	# Align Sequences
-	def align(self, input_fastq, output_bam):
+	def align(self, input_fastq, output_bam, threads=1):
 		
 		# Check Reference Index
 		if not self.__index_exists():
 			raise RuntimeError(f"// ERROR: Index for {self.reference} does not exist.")
 
 		# BWA MEM command
-		bwa_command = ["bwa", "mem", "-t", str(self.threads), self.reference, input_fastq[0]]
+		bwa_command = ["bwa", "mem", "-t", str(threads), self.reference, input_fastq[0]]
 		if len(input_fastq) == 2:
 			bwa_command.append(input_fastq[1])
 

@@ -3,6 +3,7 @@ import sys
 import argparse
 from sgRNAtor import search
 from sgRNAtor import align
+from sgRNAtor import quantify
 from sgRNAtor import utils
 
 #################################################
@@ -60,7 +61,7 @@ def main():
 	# Specify Input and Output files
 	fastq_files = [args.fastq, args.fastq2]
 	trimmed_files = []
-	aligned_files = f"{args.output_prefix}.aligned.bam"
+	aligned_file = f"{args.output_prefix}_aligned_sgRNA.bam"
 	for i in range(len(fastq_files)):
 		if fastq_files[i] is None:
 			continue
@@ -75,9 +76,9 @@ def main():
 	# Create sgRNAsearch Object
 	print(f"// sgRNAtor")
 	print("// Initializing sgRNAsearch Object")
-	sgRNAs = search.sgRNAsearch(fastq_files=fastq_files,
-								leader=args.leader_fasta,
-								PE=is_PairedEnd)
+	sgRNAs = search.sgRNAsearch(fastq_files = fastq_files,
+								leader = args.leader_fasta,
+								PE = is_PairedEnd)
 
 
 	# Find leader sequence
@@ -92,14 +93,18 @@ def main():
 
 
 	# Align Trimmed Sequences
-	if args.force_overwrite or not utils.files_exist(aligned_files):
+	if args.force_overwrite or not utils.files_exist(aligned_file):
 		print("// Beginning BWA Alignment")
-		bwa = align.alignBWA(args.reference, args.threads)
-		bwa.align(input_fastq = trimmed_files, output_bam =aligned_files)
+		bwa = align.alignBWA(args.reference)
+		bwa.align(input_fastq = trimmed_files, 
+				  output_bam = aligned_file,
+				  threads = args.threads)
 	else:
 		print(f"// NOTICE: Aligned BAM File Found {aligned_files}. Skipping alignment.")
 
-
+	print("// Beginning sgRNA Quantification")
+	quant = quantify.sgRNAquantify(bam = aligned_file)
+	quant.find_template_switches(read_length = sgRNAs.read_length)
 	print(f"// sgRNAtor Pipeline Complete.")
 
 

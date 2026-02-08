@@ -17,6 +17,7 @@ class sgRNAsearch:
 		self.leader = utils.read_fasta(leader)
 		self.matches = 0
 		self.PE = PE
+		self.read_length = None
 
 
 	#################################
@@ -89,6 +90,9 @@ class sgRNAsearch:
 				_qual = _record["qual"]
 				_desc = _record["id"]
 
+				if self.read_length is None:
+					self.read_length = len(_read)
+
 				# PE and R2
 				if PE and (i+1)%2 == 0:
 					_read = utils.revcomp(_read)
@@ -98,7 +102,6 @@ class sgRNAsearch:
 
 				if result["Match"]:
 					trim_pos = result["Pos"]
-					_desc = f"{_desc} sgRNA"
 					_read = _read[trim_pos:]
 					_qual = _qual[trim_pos:]
 					sgRNA_found = True

@@ -3,6 +3,7 @@ setup.py
 src/sgRNAtor/__init__.py
 src/sgRNAtor/align.py
 src/sgRNAtor/main.py
+src/sgRNAtor/quantify.py
 src/sgRNAtor/search.py
 src/sgRNAtor/utils.py
 src/sgRNAtor.egg-info/PKG-INFO

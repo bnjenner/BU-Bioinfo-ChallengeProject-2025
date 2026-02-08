@@ -11,24 +11,46 @@ class sgRNAquantify:
 		self.bam = bam
 		self.reads = {}
 		self.sgRNA_counts = {}
+		self.tss_dict = None
 
-		'''
-		sgRNA Locations
-		genomic = 67
-		      S = 21553
-		   orf3 = 25382
-		      E = 26237
-		      M = 26470
-		   orf6 = 27041
-		   orf7 = 27385
-		   orf8 = 27885
-		      N = 28257
-		  orf9b = 28280
-		     N* = 28878).
-		'''
 
 	#################################
-	# Align Sequences
+	# Read in TSS ORFs from bed
+	def read_TSS_bed(self, tss_bed, window=10):
+		self.tss_dict = {}
+		with open(tss_bed, "r") as bed:
+			for line in bed:
+				if line.startswith("#"):
+					continue
+				cols = line.strip().split("\t")
+				
+				orf, pos = str(cols[3]), int(cols[1]) - 1
+				if pos in self.tss_dict:
+					raise RuntimeError(f"// ERROR: TSS bed file has duplicate start positions.")
+				
+				self.tss_dict[pos] = {"ORF": orf,
+									  "Window": (pos-window, pos+window+1),
+									  "Counts": 0}
+
+
+	#################################
+	# Find template switching sites
+	def assign_TSS_to_orfs(self, tss_bed=None, window=None):
+
+		# TSS not read yet but specified bed and window
+		if self.tss_dict is None and tss_bed is not None and window is not None:
+			self.read_TSS_bed(tss_bed, window)
+
+		# Assign sgRNAs to ORFs
+		for pos, count in self.sgRNA_counts.items():
+			for orf, info in self.tss_dict.items():
+				if utils.overlap(pos, info["Window"]):
+					self.tss_dict[orf]["Counts"] += count
+					break
+
+
+	#################################
+	# Find template switching sites
 	def find_template_switches(self, read_length, threads=1):
 		
 		bamfile = pysam.AlignmentFile(self.bam, "rb")
@@ -36,9 +58,8 @@ class sgRNAquantify:
 		for read in bamfile:
 			if not read.is_unmapped:
 
-				pair = "R1"
-				if read.is_read2:
-					pair = "R2"
+				# Determine R1 or R2
+				pair = "R1" if not read.is_read2 else "R2"
 
 				if read.query_name not in self.reads:
 					self.reads[f"{read.query_name}"] = {}
@@ -58,11 +79,11 @@ class sgRNAquantify:
 					self.sgRNA_counts[template_switch] = 0
 				self.sgRNA_counts[template_switch] += 1
 
-		output = []
-		for k,v in self.sgRNA_counts.items():
-			output.append((k,v))
 
-		
-		sorted_output = sorted(output, key=lambda output: output[0])
-		for s in sorted_output:
-			print(s)
+	def output_sgRNAs(self, output_file):
+		with open(output_file, "w") as fo:
+			fo.write("ORF\tStart\tStop\tCounts\n")
+			for pos, orf in self.tss_dict.items():
+				fo.write(f"{orf["ORF"]}\t{orf["Window"][0]}\t{orf["Window"][1]}\t{orf["Counts"]}\n")
+
+

@@ -40,6 +40,14 @@ def edit_distance(seq1, seq2):
 
 #################################################
 # Reverse Compliment sequence
-def revcomp(seq: str) -> str:
+def revcomp(seq: str):
 	complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
 	return "".join(complement.get(base, base) for base in reversed(seq))
+
+
+#################################################
+# Reverse Compliment sequence
+def overlap(pos: int, window: tuple):
+	if pos >= window[1] or pos < window[0]:
+		return False
+	return True

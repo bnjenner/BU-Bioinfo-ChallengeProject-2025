@@ -12,12 +12,13 @@ def argparser():
 	parser = argparse.ArgumentParser(description="Identification and Quantification pipeline for sgRNA. Performs leader sequence matching and trimming, alignment with BWA, and generates sgRNA counts tables.")
 	parser.add_argument("fastq", help="Path to the input fastq file (R1 or SE)")
 	parser.add_argument("fastq2", help="Path to optional Read 2 fastq file", nargs="?")  # optional positional
-	parser.add_argument("--reference", "-R", type=str, default=None, help="Path to optional genome reference fasta file.")
-	parser.add_argument("--leader-fasta", "-L", type=str, default=None, help="Path to optional leader sequence multi fasta file.")
-	parser.add_argument("--tss-bed", "-b", type=str, default=None, help="Path to optional sgRNA template switching sites bed file.")
+	parser.add_argument("--reference", "-R", type=str, default=None, required=True, help="Path to genome reference fasta file.")
+	parser.add_argument("--leader-fasta", "-L", type=str, default=None, required=True, help="Path to leader sequence multi fasta file.")
+	parser.add_argument("--tss-bed", "-b", type=str, default=None, required=True, help="Path to sgRNA template switching sites bed file.")
 	parser.add_argument("--threads", "-t", type=int, default=1, help="Number of threads to use (default: 1)")
 	parser.add_argument("--min-match", "-m", type=int, default=8, help="Minimum length of substring to match (default: 8)")
 	parser.add_argument("--max-edit", "-e", type=int, default=0, help="Maximum edit distance for a leader sequence match (default: 0)")
+	parser.add_argument("--tss-window", "-w", type=int, default=10, help="Window size for template switching sites (+/- specified number). (default: 10)")
 	parser.add_argument("--output-prefix", "-o", type=str, default="sgRNAtor_result", help="Prefix for output files.")
 	parser.add_argument("--force-overwrite", "-f", action='store_true', help="Force overwrite of intermediate files.")
 	args = parser.parse_args()
@@ -52,12 +53,12 @@ def argparser():
 	# Check Parameters
 	if args.min_match < 0:
 		raise RuntimeError(f"// ERROR: Please use a valid minimum substring match length.")
-
 	if args.max_edit < 0:
 		raise RuntimeError(f"// ERROR: Please use a valid maximum edit distance.")
-
-	if args.max_edit < 0:
-		raise RuntimeError(f"// ERROR: Please use a valid maximum edit distance.")
+	if args.threads < 0:
+		raise RuntimeError(f"// ERROR: Please use a valid number of threads.")
+	if args.tss_window < 0:
+		raise RuntimeError(f"// ERROR: Please use a valid window size.")
 
 	return args
 	
@@ -72,6 +73,7 @@ def main():
 	fastq_files = [args.fastq, args.fastq2]
 	trimmed_files = []
 	aligned_file = f"{args.output_prefix}_aligned_sgRNA.bam"
+	output_tsv = f"{args.output_prefix}_sgRNA_counts.txt"
 	for i in range(len(fastq_files)):
 		if fastq_files[i] is None:
 			continue
@@ -115,6 +117,10 @@ def main():
 	print("// Beginning sgRNA Quantification")
 	quant = quantify.sgRNAquantify(bam = aligned_file)
 	quant.find_template_switches(read_length = sgRNAs.read_length)
+	quant.assign_TSS_to_orfs(tss_bed = args.tss_bed, window = args.tss_window)
+	
+	print("// Writing sgRNA Counts")
+	quant.output_sgRNAs(output_file = output_tsv)
 	print(f"// sgRNAtor Pipeline Complete.")
 
 

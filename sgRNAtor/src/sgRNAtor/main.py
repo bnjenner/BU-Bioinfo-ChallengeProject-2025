@@ -14,6 +14,7 @@ def argparser():
 	parser.add_argument("fastq2", help="Path to optional Read 2 fastq file", nargs="?")  # optional positional
 	parser.add_argument("--reference", "-R", type=str, default=None, help="Path to optional genome reference fasta file.")
 	parser.add_argument("--leader-fasta", "-L", type=str, default=None, help="Path to optional leader sequence multi fasta file.")
+	parser.add_argument("--tss-bed", "-b", type=str, default=None, help="Path to optional sgRNA template switching sites bed file.")
 	parser.add_argument("--threads", "-t", type=int, default=1, help="Number of threads to use (default: 1)")
 	parser.add_argument("--min-match", "-m", type=int, default=8, help="Minimum length of substring to match (default: 8)")
 	parser.add_argument("--max-edit", "-e", type=int, default=0, help="Maximum edit distance for a leader sequence match (default: 0)")
@@ -29,15 +30,24 @@ def argparser():
 
 	# Check Reference Files
 	curr_path = os.path.dirname(os.path.abspath(__file__))
+
+	# Reference Genome
+	if args.reference is None:
+		args.reference = os.path.join(curr_path, "../data/nCoV-2019.reference.fasta")
+	elif not os.path.isfile(args.reference):
+		raise RuntimeError(f"// ERROR: Fasta ({args.reference}) does not exist")
+
+	# Leader Sequence
 	if args.leader_fasta is None:
 		args.leader_fasta = os.path.join(curr_path, "../data/leader_seq.fasta")
 	elif not os.path.isfile(args.leader_fasta):
 		raise RuntimeError(f"// ERROR: Fasta ({args.leader_fasta}) does not exist")
 
-	if args.reference is None:
-		args.reference = os.path.join(curr_path, "../data/nCoV-2019.reference.fasta")
-	elif not os.path.isfile(args.reference):
-		raise RuntimeError(f"// ERROR: Fasta ({args.reference}) does not exist")
+	# TSS BedFile
+	if args.tss_bed is None:
+		args.tss_bed = os.path.join(curr_path, "../data/sgRNA_template_switch_sites.bed")
+	elif not os.path.isfile(args.tss_bed):
+		raise RuntimeError(f"// ERROR: Fasta ({args.tss_bed}) does not exist")
 
 	# Check Parameters
 	if args.min_match < 0:

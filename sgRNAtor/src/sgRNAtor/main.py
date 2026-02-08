@@ -120,7 +120,7 @@ def main():
 	quant.assign_TSS_to_orfs(tss_bed = args.tss_bed, window = args.tss_window)
 	
 	print("// Writing sgRNA Counts")
-	quant.output_sgRNAs(output_file = output_tsv)
+	quant.write_counts(output_file = output_tsv)
 	print(f"// sgRNAtor Pipeline Complete.")
 
 

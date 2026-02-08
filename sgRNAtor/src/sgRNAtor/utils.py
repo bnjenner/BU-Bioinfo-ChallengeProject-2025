@@ -44,7 +44,6 @@ def revcomp(seq: str):
 	complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
 	return "".join(complement.get(base, base) for base in reversed(seq))
 
-
 #################################################
 # Reverse Compliment sequence
 def overlap(pos: int, window: tuple):

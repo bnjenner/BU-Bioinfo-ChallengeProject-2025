@@ -53,9 +53,8 @@ class sgRNAquantify:
 	# Find template switching sites
 	def find_template_switches(self, read_length, threads=1):
 		
-		bamfile = pysam.AlignmentFile(self.bam, "rb")
-	
-		for read in bamfile:
+		# Read in Bam file
+		for read in pysam.AlignmentFile(self.bam, "rb"):
 			if not read.is_unmapped:
 
 				# Determine R1 or R2
@@ -66,8 +65,10 @@ class sgRNAquantify:
 				self.reads[f"{read.query_name}"][pair] = {"Pos": read.reference_start,
 														  "Length": read.query_length}
 
-
+		# Reduce fragments to their TSS sites
 		for fragment, reads in self.reads.items():
+			
+			# Determine if R1 or R2 was trimmed to get TSS site
 			template_switch = None
 			if "R1" in reads and reads["R1"]["Length"] != read_length:
 				template_switch = int(reads["R1"]["Pos"])
@@ -79,8 +80,9 @@ class sgRNAquantify:
 					self.sgRNA_counts[template_switch] = 0
 				self.sgRNA_counts[template_switch] += 1
 
-
-	def output_sgRNAs(self, output_file):
+	#################################
+	# Output sgRNAs TSV
+	def write_counts(self, output_file):
 		with open(output_file, "w") as fo:
 			fo.write("ORF\tStart\tStop\tCounts\n")
 			for pos, orf in self.tss_dict.items():

@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/sgRNAtor/__init__.py
+src/sgRNAtor/align.py
+src/sgRNAtor/main.py
+src/sgRNAtor/search.py
+src/sgRNAtor/utils.py
+src/sgRNAtor.egg-info/PKG-INFO
+src/sgRNAtor.egg-info/SOURCES.txt
+src/sgRNAtor.egg-info/dependency_links.txt
+src/sgRNAtor.egg-info/entry_points.txt
+src/sgRNAtor.egg-info/top_level.txt

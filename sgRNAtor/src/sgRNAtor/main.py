@@ -67,11 +67,17 @@ def main():
 		read = f"R{i+1}"
 		trimmed_files.append(f"{args.output_prefix}_trimmed_{read}.fastq.gz")
 
+	# Specify PE
+	is_PairedEnd = False
+	if len(trimmed_files) == 2:
+		is_PairedEnd = True
+
 	# Create sgRNAsearch Object
 	print(f"// sgRNAtor")
 	print("// Initializing sgRNAsearch Object")
 	sgRNAs = search.sgRNAsearch(fastq_files=fastq_files,
-								leader=args.leader_fasta)
+								leader=args.leader_fasta,
+								PE=is_PairedEnd)
 
 
 	# Find leader sequence

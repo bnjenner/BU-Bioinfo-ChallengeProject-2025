@@ -1,0 +1,7 @@
+README.md
+setup.py
+sgRNAtor.egg-info/PKG-INFO
+sgRNAtor.egg-info/SOURCES.txt
+sgRNAtor.egg-info/dependency_links.txt
+sgRNAtor.egg-info/entry_points.txt
+sgRNAtor.egg-info/top_level.txt

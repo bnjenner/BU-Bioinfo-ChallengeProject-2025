@@ -1,0 +1,2 @@
+[console_scripts]
+sgRNAtor = src.sgRNAtor.sgRNAtor:main

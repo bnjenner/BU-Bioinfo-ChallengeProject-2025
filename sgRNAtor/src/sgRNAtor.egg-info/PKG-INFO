@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: sgRNAtor
+Version: 0.0.1
+Summary: Implements an sgRNA quantification pipeline
+Author: B. N. Jenner
+Requires-Python: >=3.10
+Dynamic: author
+Dynamic: requires-python
+Dynamic: summary

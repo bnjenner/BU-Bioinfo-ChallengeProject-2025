@@ -6,10 +6,11 @@ setup(
     description="Implements an sgRNA quantification pipeline",
     author="B. N. Jenner",
     python_requires=">=3.10",
-    packages=find_packages(include=["sgRNAtor", "sgRNAtor.*"]),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     entry_points={
-        "console_scripts": [
-            "sgRNAtor = sgRNAtor.sgRNAtor:main",
-        ],
-    },
+    "console_scripts": [
+        "sgRNAtor=sgRNAtor.main:main",
+    ]
+}
 )

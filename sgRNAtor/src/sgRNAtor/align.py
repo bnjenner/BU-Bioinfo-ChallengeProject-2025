@@ -37,7 +37,7 @@ class alignBWA:
 		# Alignment and Bam Compression
 		bwa = subprocess.Popen(bwa_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		samtools = subprocess.Popen(
-		    ["samtools", "view", "-bS", "-"],
+		    ["samtools", "view", "-bSh", "-"],
 		    stdin=bwa.stdout,
 		    stdout=open(output_bam, "wb"),
 		    stderr=subprocess.PIPE

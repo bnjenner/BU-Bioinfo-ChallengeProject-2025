@@ -37,3 +37,9 @@ def files_exist(files):
 # Edit Distance
 def edit_distance(seq1, seq2):
 	return editdistance.eval(seq1, seq2)
+
+#################################################
+# Reverse Compliment sequence
+def revcomp(seq: str) -> str:
+	complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
+	return "".join(complement.get(base, base) for base in reversed(seq))

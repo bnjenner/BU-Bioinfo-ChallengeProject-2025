@@ -1632,3 +1632,77 @@ Analysis complete for SRR31567440_R2.fastq.gz
 multiqc -i multiqc_PRJNA1193019 -o /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC -f /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/PRJNA1193019
 /var/spool/sge/scc-go1/job_scripts/1100560: /restricted/projectnb/challenge2025/software/conda_envs/HTStream_v1.4.1/bin/multiqc: /usr3/graduate/bnjenner/.conda/envs/HTStream_v1.4.1/bin/python3.10: bad interpreter: Permission denied
 362
+scc-go4
+My SGE_TASK_ID:  1
+SAMPLE: 
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+hts_Stats -L /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/AY.103/AY.103-r1.fq.gz -2 /restricted/projectnb/challenge2025/Data/AY.103/AY.103-r2.fq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103.json -N 'final stats' -f /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103
+fastqc /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103_*fq.gz --outdir /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103 --dir /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103
+Skipping '/restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103/AY.103_*fq.gz' which didn't exist, or couldn't be read
+multiqc -i multiqc_AY.103 -o /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC -f /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103
+
+/// MultiQC v1.33.dev0
+
+     update_config | Report title: multiqc_AY.103
+       file_search | Search path: /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/AY.103
+          htstream | Found 1 reports.
+     write_results | Data        : /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC/multiqc_AY.103_multiqc_report_data
+     write_results | Report      : /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC/multiqc_AY.103_multiqc_report.html
+           multiqc | MultiQC complete
+50
+scc-vf2
+My SGE_TASK_ID:  1
+SAMPLE: 
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+hts_Stats -L /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/B.1.617.2/B.1.617.2-r1.fq.gz -2 /restricted/projectnb/challenge2025/Data/B.1.617.2/B.1.617.2-r2.fq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2.json -N 'final stats' -f /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2
+fastqc /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2_*fq.gz --outdir /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2 --dir /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2
+Skipping '/restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2/B.1.617.2_*fq.gz' which didn't exist, or couldn't be read
+multiqc -i multiqc_B.1.617.2 -o /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC -f /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2
+
+/// MultiQC v1.33.dev0
+
+     update_config | Report title: multiqc_B.1.617.2
+       file_search | Search path: /restricted/projectnb/challenge2025/sgRNAtor/Elm/01-HTStream_prepro/B.1.617.2
+          htstream | Found 1 reports.
+     write_results | Data        : /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC/multiqc_B.1.617.2_multiqc_report_data
+     write_results | Report      : /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC/multiqc_B.1.617.2_multiqc_report.html
+           multiqc | MultiQC complete
+50

@@ -18,6 +18,15 @@
 *.tab
 *.bed
 *.tmp
+*.zip
+*.amb
+*.ann
+*.bwt
+*.pac
+*.sa
 *.e[0-9][0-9][0-9][0-9]*
 *.o[0-9][0-9][0-9][0-9]*
 [0-9][0-9]-*/
+sgRNAtor/*.sublime-project
+sgRNAtor/sgRNAtor
+sgRNAtor/build

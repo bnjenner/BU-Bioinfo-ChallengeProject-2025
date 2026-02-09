@@ -1,0 +1,14 @@
+strain,sample,source_path,Accession,NT.ID,NT.position,Frequency,InDel,NT.ref,NT.alt
+alpha,AA0000144,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/alpha/AA0000144/snvs.csv,MN908947.3,28270-TA-T,28270,0.976794,True,TA,T
+deltaA,AY.103,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/deltaA/AY.103/snvs.csv,MN908947.3,28270-TA-T,28270,0.98704,True,TA,T
+deltaB,B.1.617.2,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/deltaB/B.1.617.2/snvs.csv,MN908947.3,28270-TA-T,28270,0.987618,True,TA,T
+gamma,gamma,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/gamma/gamma/snvs.csv,MN908947.3,28270-T-A,28270,0.024339,False,T,A
+persistent,SRR31567433,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567433/snvs.csv,MN908947.3,28270-TAA-T,28270,0.917362,True,TAA,T
+persistent,SRR31567434,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567434/snvs.csv,MN908947.3,28270-TAA-T,28270,0.912736,True,TAA,T
+persistent,SRR31567435,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567435/snvs.csv,MN908947.3,28270-TAA-T,28270,0.276173,True,TAA,T
+persistent,SRR31567436,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567436/snvs.csv,MN908947.3,28270-TAA-T,28270,0.945334,True,TAA,T
+persistent,SRR31567437,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567437/snvs.csv,MN908947.3,28270-TAA-T,28270,0.950346,True,TAA,T
+persistent,SRR31567438,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567438/snvs.csv,MN908947.3,28270-TAA-T,28270,0.883592,True,TAA,T
+persistent,SRR31567439,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567439/snvs.csv,MN908947.3,28270-TAA-T,28270,0.91989,True,TAA,T
+persistent,SRR31567440,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567440/snvs.csv,MN908947.3,28270-TA-T,28270,0.157154,True,TA,T
+persistent,SRR31567440,/restricted/projectnb/challenge2025/sgRNAtor/jsprince/virus-amplicon/output/persistent/SRR31567440/snvs.csv,MN908947.3,28270-TAA-T,28270,0.718766,True,TAA,T

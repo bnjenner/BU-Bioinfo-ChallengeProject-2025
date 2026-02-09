@@ -1,0 +1,48 @@
+/bin/bash: -: invalid option
+Usage:	/bin/bash [GNU long option] [option] ...
+	/bin/bash [GNU long option] [option] script-file ...
+GNU long options:
+	--debug
+	--debugger
+	--dump-po-strings
+	--dump-strings
+	--help
+	--init-file
+	--login
+	--noediting
+	--noprofile
+	--norc
+	--posix
+	--rcfile
+	--rpm-requires
+	--restricted
+	--verbose
+	--version
+Shell options:
+	-ilrsD or -c command or -O shopt_option		(invocation only)
+	-abefhkmnptuvxBCHP or -o option
+/bin/bash: -: invalid option
+Usage:	/bin/bash [GNU long option] [option] ...
+	/bin/bash [GNU long option] [option] script-file ...
+GNU long options:
+	--debug
+	--debugger
+	--dump-po-strings
+	--dump-strings
+	--help
+	--init-file
+	--login
+	--noediting
+	--noprofile
+	--norc
+	--posix
+	--rcfile
+	--rpm-requires
+	--restricted
+	--verbose
+	--version
+Shell options:
+	-ilrsD or -c command or -O shopt_option		(invocation only)
+	-abefhkmnptuvxBCHP or -o option
+/restricted/projectnb/challenge2025/sgRNAtor/Elm/Scripts/combine_LeTRS_output.py:38: SyntaxWarning: invalid escape sequence '\.'
+  file_name = re.search('(?<=\.\/).+(?=\/results)', file_list[f]).group(0).replace(r'/', '_').replace('.', '_')

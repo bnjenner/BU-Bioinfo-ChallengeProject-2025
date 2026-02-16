@@ -73,7 +73,8 @@ def main():
 	fastq_files = [args.fastq, args.fastq2]
 	trimmed_files = []
 	aligned_file = f"{args.output_prefix}_aligned_sgRNA.bam"
-	output_tsv = f"{args.output_prefix}_sgRNA_counts.txt"
+	orfs_tsv = f"{args.output_prefix}_ORF_counts.txt"
+	sgrnas_tsv = f"{args.output_prefix}_sgRNA_counts.txt"
 	for i in range(len(fastq_files)):
 		if fastq_files[i] is None:
 			continue
@@ -116,11 +117,13 @@ def main():
 
 	print("// Beginning sgRNA Quantification")
 	quant = quantify.sgRNAquantify(bam = aligned_file)
-	quant.find_template_switches(read_length = sgRNAs.read_length)
+	quant.find_template_switches()
 	quant.assign_TSS_to_orfs(tss_bed = args.tss_bed, window = args.tss_window)
 	
+	print("// Writing ORF Counts")
+	quant.write_ORF_counts(output_file = orfs_tsv)
 	print("// Writing sgRNA Counts")
-	quant.write_counts(output_file = output_tsv)
+	quant.write_sgRNA_counts(output_file = sgrnas_tsv)
 	print(f"// sgRNAtor Pipeline Complete.")
 
 

@@ -17,8 +17,6 @@ class sgRNAsearch:
 		self.leader = utils.read_fasta(leader)
 		self.matches = 0
 		self.PE = PE
-		self.read_length = None
-
 
 	#################################
 	# Iterate through fastq files
@@ -64,9 +62,12 @@ class sgRNAsearch:
 			else:
 				_read = read[i-l_end:i]
 				_lead = lead
-			dist = utils.edit_distance(_lead, _read)
-			if dist <= max_edit:
-				return {"Match": True, "Pos": i}
+			if _lead == _read:
+					return {"Match": True, "Pos": i}
+			elif max_edit != 0:
+				dist = utils.edit_distance(_lead, _read)
+				if dist <= max_edit:
+					return {"Match": True, "Pos": i}
 		return {"Match": False, "Pos": None}
 
 
@@ -90,9 +91,6 @@ class sgRNAsearch:
 				_qual = _record["qual"]
 				_desc = _record["id"]
 
-				if self.read_length is None:
-					self.read_length = len(_read)
-
 				# PE and R2
 				if PE and (i+1)%2 == 0:
 					_read = utils.revcomp(_read)
@@ -104,6 +102,7 @@ class sgRNAsearch:
 					trim_pos = result["Pos"]
 					_read = _read[trim_pos:]
 					_qual = _qual[trim_pos:]
+					_desc = f"{_record["id"]} LS:i:{i}"
 					sgRNA_found = True
 
 				# PE and R2, undo compliment
@@ -242,4 +241,4 @@ class sgRNAsearch:
 			print(f"// Output written to {output_files[i]}")
 
 
-		print(f"sgRNAs found: {self.matches}")
+		print(f"// sgRNAs found: {self.matches}")

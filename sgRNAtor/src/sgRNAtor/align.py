@@ -29,7 +29,7 @@ class alignBWA:
 			raise RuntimeError(f"// ERROR: Index for {self.reference} does not exist.")
 
 		# BWA MEM command
-		bwa_command = ["bwa", "mem", "-t", str(threads), self.reference, input_fastq[0]]
+		bwa_command = ["bwa", "mem", "-C", "-t", str(threads), self.reference, input_fastq[0]]
 		if len(input_fastq) == 2:
 			bwa_command.append(input_fastq[1])
 

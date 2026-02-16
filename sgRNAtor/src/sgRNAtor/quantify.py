@@ -51,7 +51,7 @@ class sgRNAquantify:
 
 	#################################
 	# Find template switching sites
-	def find_template_switches(self, read_length, threads=1):
+	def find_template_switches(self, threads=1):
 		
 		# Read in Bam file
 		for read in pysam.AlignmentFile(self.bam, "rb"):
@@ -63,17 +63,19 @@ class sgRNAquantify:
 				if read.query_name not in self.reads:
 					self.reads[f"{read.query_name}"] = {}
 				self.reads[f"{read.query_name}"][pair] = {"Pos": read.reference_start,
-														  "Length": read.query_length}
+														  "Length": read.query_length,
+														  "Leader": read.has_tag("LS")}
 
 		# Reduce fragments to their TSS sites
 		for fragment, reads in self.reads.items():
 			
 			# Determine if R1 or R2 was trimmed to get TSS site
+			#   1-based conversion
 			template_switch = None
-			if "R1" in reads and reads["R1"]["Length"] != read_length:
-				template_switch = int(reads["R1"]["Pos"])
-			elif "R2" in reads and reads["R2"]["Length"] != read_length:
-				template_switch = int(reads["R2"]["Pos"])
+			if "R1" in reads and reads["R1"]["Leader"]:
+				template_switch = int(reads["R1"]["Pos"] + 1)
+			elif "R2" in reads and reads["R2"]["Leader"]:
+				template_switch = int(reads["R2"]["Pos"] + 1)
 
 			if template_switch is not None:
 				if template_switch not in self.sgRNA_counts:
@@ -81,11 +83,20 @@ class sgRNAquantify:
 				self.sgRNA_counts[template_switch] += 1
 
 	#################################
-	# Output sgRNAs TSV
-	def write_counts(self, output_file):
+	# Output ORF TSV
+	def write_ORF_counts(self, output_file):
 		with open(output_file, "w") as fo:
 			fo.write("ORF\tStart\tStop\tCounts\n")
 			for pos, orf in self.tss_dict.items():
 				fo.write(f"{orf["ORF"]}\t{orf["Window"][0]}\t{orf["Window"][1]}\t{orf["Counts"]}\n")
 
+
+	#################################
+	# Output sgRNAs TSV
+	def write_sgRNA_counts(self, output_file):
+		self.sgRNA_counts = dict(sorted(self.sgRNA_counts.items()))
+		with open(output_file, "w") as fo:
+			fo.write("Pos\tCounts\n")
+			for pos, count in self.sgRNA_counts.items():
+				fo.write(f"{pos}\t{count}\n")
 

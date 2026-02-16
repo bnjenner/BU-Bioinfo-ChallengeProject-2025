@@ -63,6 +63,7 @@ fi
 
 # Align sgRNA sequences
 call="bbmap.sh ref=targets.fasta \
+        maxindel=100, strictmaxindel=t local=t \
 	in1=${trimmed_R1} in2=${trimmed_R2} \
 	threads=${threads} out=${outbam}"
 echo $call
@@ -71,3 +72,4 @@ eval $call
 end=`date +%s`
 runtime=$((end-start))
 echo $runtime
+

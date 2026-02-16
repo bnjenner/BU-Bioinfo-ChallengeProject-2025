@@ -35,7 +35,7 @@ class sgRNAquantify:
 
 	#################################
 	# Find template switching sites
-	def assign_TSS_to_orfs(self, tss_bed=None, window=None):
+	def assign_TSS_to_orfs(self, tss_bed=None, window=10):
 
 		# TSS not read yet but specified bed and window
 		if self.tss_dict is None and tss_bed is not None and window is not None:
@@ -51,7 +51,7 @@ class sgRNAquantify:
 
 	#################################
 	# Find template switching sites
-	def find_template_switches(self, threads=1):
+	def find_template_switches(self, threads=1, as_fragments=True):
 		
 		# Read in Bam file
 		for read in pysam.AlignmentFile(self.bam, "rb"):
@@ -72,15 +72,19 @@ class sgRNAquantify:
 			# Determine if R1 or R2 was trimmed to get TSS site
 			#   1-based conversion
 			template_switch = None
-			if "R1" in reads and reads["R1"]["Leader"]:
-				template_switch = int(reads["R1"]["Pos"] + 1)
-			elif "R2" in reads and reads["R2"]["Leader"]:
-				template_switch = int(reads["R2"]["Pos"] + 1)
 
-			if template_switch is not None:
-				if template_switch not in self.sgRNA_counts:
-					self.sgRNA_counts[template_switch] = 0
-				self.sgRNA_counts[template_switch] += 1
+			for r, attr in reads.items():
+				if attr["Leader"]:
+					template_switch = int(attr["Pos"] + 1)
+
+				if template_switch is not None:
+					if template_switch not in self.sgRNA_counts:
+						self.sgRNA_counts[template_switch] = 0
+					self.sgRNA_counts[template_switch] += 1
+
+					# Break if treating reads like paired ends
+					if as_fragments:
+						break
 
 	#################################
 	# Output ORF TSV

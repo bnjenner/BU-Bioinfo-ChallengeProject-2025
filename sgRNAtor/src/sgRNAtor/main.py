@@ -117,7 +117,7 @@ def main():
 
 	print("// Beginning sgRNA Quantification")
 	quant = quantify.sgRNAquantify(bam = aligned_file)
-	quant.find_template_switches()
+	quant.find_template_switches(as_fragments=True)
 	quant.assign_TSS_to_orfs(tss_bed = args.tss_bed, window = args.tss_window)
 	
 	print("// Writing ORF Counts")

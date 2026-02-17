@@ -12,6 +12,7 @@ class sgRNAquantify:
 		self.reads = {}
 		self.sgRNA_counts = {}
 		self.tss_dict = None
+		self.ambiguous = 0
 
 
 	#################################
@@ -46,12 +47,13 @@ class sgRNAquantify:
 			for orf, info in self.tss_dict.items():
 				if utils.overlap(pos, info["Window"]):
 					self.tss_dict[orf]["Counts"] += count
+					self.sgRNA_counts[pos]["Assigned"] = orf
 					break
 
 
 	#################################
 	# Find template switching sites
-	def find_template_switches(self, threads=1, as_fragments=True):
+	def find_template_switches(self, threads=1):
 		
 		# Read in Bam file
 		for read in pysam.AlignmentFile(self.bam, "rb"):
@@ -67,24 +69,23 @@ class sgRNAquantify:
 														  "Leader": read.has_tag("LS")}
 
 		# Reduce fragments to their TSS sites
-		for fragment, reads in self.reads.items():
-			
-			# Determine if R1 or R2 was trimmed to get TSS site
-			#   1-based conversion
-			template_switch = None
+		for fragment, reads in self.reads.items():	
 
+			template_switch = 0
 			for r, attr in reads.items():
-				if attr["Leader"]:
-					template_switch = int(attr["Pos"] + 1)
 
-				if template_switch is not None:
-					if template_switch not in self.sgRNA_counts:
-						self.sgRNA_counts[template_switch] = 0
-					self.sgRNA_counts[template_switch] += 1
+				# 1-based conversion 
+				tss = int(attr["Pos"] + 1)
 
-					# Break if treating reads like paired ends
-					if as_fragments:
-						break
+				# Grab 3' most TSS site
+				if attr["Leader"] and tss > template_switch:
+					template_switch = tss
+
+			if template_switch != 0:
+				if template_switch not in self.sgRNA_counts:
+					self.sgRNA_counts[template_switch] = 0
+				self.sgRNA_counts[template_switch] += 1
+
 
 	#################################
 	# Output ORF TSV
@@ -93,6 +94,7 @@ class sgRNAquantify:
 			fo.write("ORF\tStart\tStop\tCounts\n")
 			for pos, orf in self.tss_dict.items():
 				fo.write(f"{orf["ORF"]}\t{orf["Window"][0]}\t{orf["Window"][1]}\t{orf["Counts"]}\n")
+		print(f"// Output written to {output_file}")
 
 
 	#################################
@@ -100,7 +102,8 @@ class sgRNAquantify:
 	def write_sgRNA_counts(self, output_file):
 		self.sgRNA_counts = dict(sorted(self.sgRNA_counts.items()))
 		with open(output_file, "w") as fo:
-			fo.write("Pos\tCounts\n")
+			fo.write("Pos\tCounts\tAssigned\n")
 			for pos, count in self.sgRNA_counts.items():
 				fo.write(f"{pos}\t{count}\n")
+		print(f"// Output written to {output_file}")
 

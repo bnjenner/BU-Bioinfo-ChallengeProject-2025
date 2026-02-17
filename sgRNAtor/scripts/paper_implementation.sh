@@ -31,6 +31,7 @@ conda activate /restricted/projectnb/challenge2025/sgRNAtor/sgRNAtor
 # Reference Sequences
 reference="${refP}/nCoV-2019.reference.fasta"
 leader="${refP}/leader_seq.fasta"
+trs_bed="${refP}/sgRNA_template_switch_sites.bed"
 leader_len=$(echo -n $(sed "2q;d" ${leader}) | wc -c)
 
 # Input and Output Files
@@ -66,6 +67,16 @@ call="bbmap.sh ref=targets.fasta \
         maxindel=100, strictmaxindel=t local=t \
 	in1=${trimmed_R1} in2=${trimmed_R2} \
 	threads=${threads} out=${outbam}"
+echo $call
+eval $call
+
+
+
+call="python3 sgRNAQuant.py \
+	--tss-bed ${trs_bed} \
+	--tss-window 5 \
+	--output-prefix ${outP}/${sample}\
+	${outbam}"
 echo $call
 eval $call
 

@@ -66,3 +66,5 @@ class alignBWA:
 
 			except Exception as e:
 				raise RuntimeError(f"Alignment failed: {str(e)}")
+
+		print(f"// Output written to {output_bam}")

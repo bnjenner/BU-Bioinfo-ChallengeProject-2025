@@ -31,6 +31,7 @@ conda activate /restricted/projectnb/challenge2025/sgRNAtor/sgRNAtor
 # Reference Sequences
 reference="${refP}/nCoV-2019.reference.fasta"
 leader="${refP}/leader_seq.fasta"
+trs_bed="${refP}/sgRNA_template_switch_sites.bed"
 leader_len=$(echo -n $(sed "2q;d" ${leader}) | wc -c)
 
 # Input and Output Files
@@ -79,9 +80,7 @@ eval $call
 # Convert to BAM file
 samtools view -S -b ${outsam} > ${outbam}
 
-
-
-
 end=`date +%s`
 runtime=$((end-start))
 echo $runtime
+

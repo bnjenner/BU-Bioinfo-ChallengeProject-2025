@@ -2,7 +2,7 @@
 #$ -l h_rt=24:00:00
 #$ -P challenge2025
 #$ -N sgrnaquant
-#$ -t 1-11
+#$ -t 1-17
 #$ -o logs/sgRNAQuant
 #$ -e logs/sgRNAQuant
 #$ -m bea
@@ -14,14 +14,14 @@ echo "My SGE_TASK_ID: " $SGE_TASK_ID
 threads=${NSLOTS}
 echo "THREADS: ${threads}"
 
-sample=`sed "${SGE_TASK_ID}q;d" samples_PRJNA726840.txt`
+sample=`sed "${SGE_TASK_ID}q;d" samples_Elm.txt`
 echo "SAMPLE: ${sample}"
 
 # Set / Create Directories
 export baseP=/restricted/projectnb/challenge2025/bnjenner/sgRNAtor/bnjenner
 export cwd=${baseP}/scripts
-export seqP=${baseP}/00-RawData
-export outP=${baseP}/01-sgRNAQuant_PRJNA726840/${sample}
+export seqP=${baseP}/00-RawData_Elm
+export outP=${baseP}/01-sgRNAQuant_Elm/${sample}
 export refP=${cwd}/References
 
 # References
@@ -34,8 +34,8 @@ orf=${refP}/sgRNA_template_switch_sites.bed
 module load miniconda/24.5.0
 conda activate /restricted/projectnb/challenge2025/bnjenner/sgRNAtor/sgRNAtor/build
 
-fastq_R1="${seqP}/${sample}_1.fastq.gz"
-fastq_R2="${seqP}/${sample}_2.fastq.gz"
+fastq_R1="${seqP}/${sample}-r1.fq.gz"
+fastq_R2="${seqP}/${sample}-r2.fq.gz"
 
 # Run sgRNAQuant
 call="sgRNAtor -R ${reference} -L ${leader} -b ${orf} \

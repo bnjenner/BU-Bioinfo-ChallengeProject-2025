@@ -40,6 +40,7 @@ trimmed_R1="${outP}/${sample}_trimmed_R1.fastq.gz"
 trimmed_R2="${outP}/${sample}_trimmed_R2.fastq.gz"
 untrimmed_R1="${outP}/${sample}_unmatched_R1.fastq.gz"
 untrimmed_R2="${outP}/${sample}_unmatched_R2.fastq.gz"
+outsam="${outP}/${sample}_sgRNA_aligned.sam"
 outbam="${outP}/${sample}_sgRNA_aligned.bam"
 
 
@@ -49,8 +50,10 @@ call="bbduk.sh \
         in1=${R1} in2=${R2} \
         outm=${trimmed_R1} outm2=${trimmed_R2} \
 	out=${untrimmed_R1} out2=${untrimmed_R2} \
-        ref=${leader} k=${leader_len} \
-        hdist=0 mincovfraction=1 ordered=t \
+        ref=${leader} \
+	k=${leader_len} \
+        maskmiddle=f \
+	ordered=t \
         threads=${threads}"
 echo $call
 eval $call
@@ -63,10 +66,21 @@ fi
 
 # Align sgRNA sequences
 call="bbmap.sh ref=targets.fasta \
+	maxindel=100 \
+	32bit=t \
+	mappedonly=t \
+	strandedcov=t \
+	strictmaxindel=t \
 	in1=${trimmed_R1} in2=${trimmed_R2} \
-	threads=${threads} out=${outbam}"
+	threads=${threads} out=${outsam}"
 echo $call
 eval $call
+
+# Convert to BAM file
+samtools view -S -b ${outsam} > ${outbam}
+
+
+
 
 end=`date +%s`
 runtime=$((end-start))

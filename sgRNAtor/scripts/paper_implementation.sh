@@ -11,7 +11,7 @@ start=`date +%s`
 echo $HOSTNAME
 echo "My SGE_TASK_ID: " $SGE_TASK_ID
 
-threads=${NSLOTS}
+threads=${NSLOTS:-1}
 echo "THREADS: ${threads}"
 
 sample=`sed "${SGE_TASK_ID}q;d" samples_PRJNA726840.txt`
@@ -23,6 +23,7 @@ export cwd=${baseP}/scripts
 export seqP=${baseP}/00-RawData
 export outP=${baseP}/01-sgRNAQuant/${sample}
 export refP=${cwd}/References
+export sgRNAtorP=${baseP}/sgRNAtor
 
 [[ -d ${outP} ]] || mkdir -p ${outP}
 
@@ -43,18 +44,20 @@ untrimmed_R1="${outP}/${sample}_unmatched_R1.fastq.gz"
 untrimmed_R2="${outP}/${sample}_unmatched_R2.fastq.gz"
 outsam="${outP}/${sample}_sgRNA_aligned.sam"
 outbam="${outP}/${sample}_sgRNA_aligned.bam"
-
+outcsv="${outP}/${sample}_sgRNA_ORFs.csv"
 
 # Identify sgRNA leader sequence
 #	Assumes all leader sequences are the same length
+echo "// Trimming sgRNA Leader Sequences"
 call="bbduk.sh \
         in1=${R1} in2=${R2} \
         outm=${trimmed_R1} outm2=${trimmed_R2} \
-	out=${untrimmed_R1} out2=${untrimmed_R2} \
+		out=${untrimmed_R1} out2=${untrimmed_R2} \
         ref=${leader} \
-	k=${leader_len} \
+		k=${leader_len} \
         maskmiddle=f \
-	ordered=t \
+        ktrim=l \
+		ordered=t \
         threads=${threads}"
 echo $call
 eval $call
@@ -66,6 +69,7 @@ if [[ ! -f "$trimmed_R1" || ! -f "$trimmed_R2" ]]; then
 fi
 
 # Align sgRNA sequences
+echo "// Aligned sgRNA Reads"
 call="bbmap.sh ref=targets.fasta \
 	maxindel=100 \
 	32bit=t \
@@ -78,7 +82,19 @@ echo $call
 eval $call
 
 # Convert to BAM file
-samtools view -S -b ${outsam} > ${outbam}
+samtools sort ${outsam} | samtools view -Sb > ${outbam}
+rm ${outsam}
+
+
+# Assign sgRNAs to ORFs
+echo "// Assigning sgRNAs to ORFs"
+call="python3 ${sgRNAtorP}/scripts/ProcessBams.py \
+			--bed ${trs_bed} --window 10 \
+			--output ${outcsv} \
+			${outbam}"
+echo $call
+eval $call
+
 
 end=`date +%s`
 runtime=$((end-start))

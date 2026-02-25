@@ -31,20 +31,21 @@ do
 echo "DATA: ${data}"
 
 # Set / Create Directories for each dataset
-export data_path=/restricted/projectnb/challenge2025/Data/${data}
+export data_path=/restricted/projectnb/challenge2025/Data/new_data_4_elm/${data}
 export outP=${baseP}/LeTRS_Output/${data}_alpha_ref
 
 [[ -d ${outP} ]] || mkdir -p ${outP}
 
 
 # Running LeTRS on each data and primer combination
-for sample in ${data_path}/*_1.fastq.gz
+for sample in ${data_path}*-r1.fq.gz
 do
 s=${sample##*/}
-s=${s%_1.fastq.gz}
+s=${s%-r1.fq.gz}
 echo "SAMPLE: ${s}"
 outP_sample=${outP}/${s}
-call="perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq ${data_path}/${s}_1.fastq.gz:${data_path}/${s}_2.fastq.gz -primer_bed ${primer_path} -pool ${pool} -extractfasta -TRSLindependent -o ${outP_sample}" -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+# call="perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq ${data_path}/${s}-r1.fq.gz:${data_path}/${s}-r2.fq.gz -primer_bed ${primer_path} -pool ${pool} -extractfasta -TRSLindependent -o ${outP_sample} -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref"
+call="perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq ${data_path}-r1.fq.gz:${data_path}-r2.fq.gz -primer_bed ${primer_path} -pool ${pool} -extractfasta -TRSLindependent -o ${outP_sample} -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref"
 
 echo $call
 eval $call

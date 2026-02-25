@@ -5364,3 +5364,1244 @@ extracting fasta with leader-TRS
 please find the leader-TRSs at results folder
 
 369
+scc-vf3
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: alpha-00148
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/alpha-00148/*_1.fastq.gz:/restricted/projectnb/challenge2025/Data/alpha-00148/*_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*
+please add ployA sequences in your reference genomeDATA: alpha-00149
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/alpha-00149/*_1.fastq.gz:/restricted/projectnb/challenge2025/Data/alpha-00149/*_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*
+please add ployA sequences in your reference genomeDATA: alpha-00157
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/alpha-00157/*_1.fastq.gz:/restricted/projectnb/challenge2025/Data/alpha-00157/*_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*
+please add ployA sequences in your reference genome7
+scc-tm3
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: alpha-00148
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*
+please add ployA sequences in your reference genomeDATA: alpha-00149
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*
+please add ployA sequences in your reference genomeDATA: alpha-00157
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*
+please add ployA sequences in your reference genome9
+scc-tk3
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: alpha-00148
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r1.fq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r2.fq.gz
+Settings:
+  Output files: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.*.ht2"
+  Line rate: 6 (line is 64 bytes)
+  Lines per side: 1 (side is 64 bytes)
+  Offset rate: 4 (one in 16)
+  FTable chars: 10
+  Strings: unpacked
+  Local offset rate: 3 (one in 8)
+  Local fTable chars: 6
+  Local sequence length: 57344
+  Local sequence overlap between two consecutive indexes: 1024
+  Endianness: little
+  Actual local endianness: little
+  Sanity checking: disabled
+  Assertions: disabled
+  Random seed: 0
+  Sizeofs: void*:8, int:4, long:8, size_t:8
+Input files DNA, FASTA:
+  /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta
+Reading reference sizes
+  Time reading reference sizes: 00:00:00
+Calculating joined length
+Writing header
+Reserving space for joined string
+Joining reference sequences
+  Time to join reference sequences: 00:00:00
+  Time to read SNPs and splice sites: 00:00:00
+Using parameters --bmax 5553 --dcv 1024
+  Doing ahead-of-time memory usage test
+  Passed!  Constructing with these parameters: --bmax 5553 --dcv 1024
+Constructing suffix-array element generator
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:00
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:00
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:00
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 1, merged 6; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 1, merged 1; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 3701.5 (target: 5552)
+Converting suffix-array elements to index image
+Allocating ftab, absorbFtab
+Entering GFM loop
+Getting block 1 of 8
+  Reserving size (5553) for bucket 1
+  Calculating Z arrays for bucket 1
+  Entering block accumulator loop for bucket 1:
+  bucket 1: 10%
+  bucket 1: 20%
+  bucket 1: 30%
+  bucket 1: 40%
+  bucket 1: 50%
+  bucket 1: 60%
+  bucket 1: 70%
+  bucket 1: 80%
+  bucket 1: 90%
+  bucket 1: 100%
+  Sorting block of length 2336 for bucket 1
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 2337 for bucket 1
+Getting block 2 of 8
+  Reserving size (5553) for bucket 2
+  Calculating Z arrays for bucket 2
+  Entering block accumulator loop for bucket 2:
+  bucket 2: 10%
+  bucket 2: 20%
+  bucket 2: 30%
+  bucket 2: 40%
+  bucket 2: 50%
+  bucket 2: 60%
+  bucket 2: 70%
+  bucket 2: 80%
+  bucket 2: 90%
+  bucket 2: 100%
+  Sorting block of length 5073 for bucket 2
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 5074 for bucket 2
+Getting block 3 of 8
+  Reserving size (5553) for bucket 3
+  Calculating Z arrays for bucket 3
+  Entering block accumulator loop for bucket 3:
+  bucket 3: 10%
+  bucket 3: 20%
+  bucket 3: 30%
+  bucket 3: 40%
+  bucket 3: 50%
+  bucket 3: 60%
+  bucket 3: 70%
+  bucket 3: 80%
+  bucket 3: 90%
+  bucket 3: 100%
+  Sorting block of length 5280 for bucket 3
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 5281 for bucket 3
+Getting block 4 of 8
+  Reserving size (5553) for bucket 4
+  Calculating Z arrays for bucket 4
+  Entering block accumulator loop for bucket 4:
+  bucket 4: 10%
+  bucket 4: 20%
+  bucket 4: 30%
+  bucket 4: 40%
+  bucket 4: 50%
+  bucket 4: 60%
+  bucket 4: 70%
+  bucket 4: 80%
+  bucket 4: 90%
+  bucket 4: 100%
+  Sorting block of length 4069 for bucket 4
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 4070 for bucket 4
+Getting block 5 of 8
+  Reserving size (5553) for bucket 5
+  Calculating Z arrays for bucket 5
+  Entering block accumulator loop for bucket 5:
+  bucket 5: 10%
+  bucket 5: 20%
+  bucket 5: 30%
+  bucket 5: 40%
+  bucket 5: 50%
+  bucket 5: 60%
+  bucket 5: 70%
+  bucket 5: 80%
+  bucket 5: 90%
+  bucket 5: 100%
+  Sorting block of length 4543 for bucket 5
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 4544 for bucket 5
+Getting block 6 of 8
+  Reserving size (5553) for bucket 6
+  Calculating Z arrays for bucket 6
+  Entering block accumulator loop for bucket 6:
+  bucket 6: 10%
+  bucket 6: 20%
+  bucket 6: 30%
+  bucket 6: 40%
+  bucket 6: 50%
+  bucket 6: 60%
+  bucket 6: 70%
+  bucket 6: 80%
+  bucket 6: 90%
+  bucket 6: 100%
+  Sorting block of length 1934 for bucket 6
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 1935 for bucket 6
+Getting block 7 of 8
+  Reserving size (5553) for bucket 7
+  Calculating Z arrays for bucket 7
+  Entering block accumulator loop for bucket 7:
+  bucket 7: 10%
+  bucket 7: 20%
+  bucket 7: 30%
+  bucket 7: 40%
+  bucket 7: 50%
+  bucket 7: 60%
+  bucket 7: 70%
+  bucket 7: 80%
+  bucket 7: 90%
+  bucket 7: 100%
+  Sorting block of length 4154 for bucket 7
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 4155 for bucket 7
+Getting block 8 of 8
+  Reserving size (5553) for bucket 8
+  Calculating Z arrays for bucket 8
+  Entering block accumulator loop for bucket 8:
+  bucket 8: 10%
+  bucket 8: 20%
+  bucket 8: 30%
+  bucket 8: 40%
+  bucket 8: 50%
+  bucket 8: 60%
+  bucket 8: 70%
+  bucket 8: 80%
+  bucket 8: 90%
+  bucket 8: 100%
+  Sorting block of length 2223 for bucket 8
+  (Using difference cover)
+  Sorting block time: 00:00:00
+Returning block of 2224 for bucket 8
+Exited GFM loop
+fchr[A]: 0
+fchr[C]: 8901
+fchr[G]: 14328
+fchr[T]: 20139
+fchr[$]: 29619
+Exiting GFM::buildToDisk()
+Returning from initFromVector
+Wrote 4204522 bytes to primary GFM file: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.1.ht2
+Wrote 7412 bytes to secondary GFM file: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.2.ht2
+Re-opening _in1 and _in2 as input streams
+Returning from GFM constructor
+Returning from initFromVector
+Wrote 16811 bytes to primary GFM file: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.5.ht2
+Wrote 7410 bytes to secondary GFM file: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.6.ht2
+Re-opening _in5 and _in5 as input streams
+Returning from HierEbwt constructor
+Headers:
+    len: 29619
+    gbwtLen: 29620
+    nodes: 29620
+    sz: 7405
+    gbwtSz: 7406
+    lineRate: 6
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 0
+    eftabSz: 0
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 1852
+    offsSz: 7408
+    lineSz: 64
+    sideSz: 64
+    sideGbwtSz: 48
+    sideGbwtLen: 192
+    numSides: 155
+    numLines: 155
+    gbwtTotLen: 9920
+    gbwtTotSz: 9920
+    reverse: 0
+    linearFM: Yes
+Total time for call to driver() for forward index: 00:00:00
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r2.fq.gz: No such file or directory
+Time loading forward index: 00:00:00
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/*-r1.fq.gz: No such file or directory
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment.mapping.summary -1 /tmp/3597215.inpipe1 -2 /tmp/3597215.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+DATA: alpha-00149
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r1.fq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r2.fq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r2.fq.gz: No such file or directory
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/*-r1.fq.gz: No such file or directory
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment.mapping.summary -1 /tmp/3597234.inpipe1 -2 /tmp/3597234.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+DATA: alpha-00157
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/* -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r1.fq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r2.fq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r1.fq.gz: No such file or directory
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/*-r2.fq.gz: No such file or directory
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment.mapping.summary -1 /tmp/3597252.inpipe1 -2 /tmp/3597252.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/*/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+22
+scc-519
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: alpha-00148
+SAMPLE: alpha-00148
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/alpha-00148-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/alpha-00148-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148 -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/alpha-00148-r1.fq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/alpha-00148-r2.fq.gz
+the hisat2-build has done
+gzip: gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/alpha-00148-r1.fq.gz: No such file or directory
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148/alpha-00148-r2.fq.gz: No such file or directory
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment.mapping.summary -1 /tmp/3125080.inpipe1 -2 /tmp/3125080.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+DATA: alpha-00149
+SAMPLE: alpha-00149
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/alpha-00149-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/alpha-00149-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149 -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/alpha-00149-r1.fq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/alpha-00149-r2.fq.gz
+the hisat2-build has done
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/alpha-00149-r2.fq.gz: No such file or directory
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00149/alpha-00149-r1.fq.gz: No such file or directory
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment.mapping.summary -1 /tmp/3125101.inpipe1 -2 /tmp/3125101.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00149_alpha_ref/alpha-00149/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+DATA: alpha-00157
+SAMPLE: alpha-00157
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/alpha-00157-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/alpha-00157-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157 -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/alpha-00157-r1.fq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/alpha-00157-r2.fq.gz
+the hisat2-build has done
+gzip: gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/alpha-00157-r2.fq.gz: No such file or directory
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00157/alpha-00157-r1.fq.gz: No such file or directory
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment.mapping.summary -1 /tmp/3125119.inpipe1 -2 /tmp/3125119.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00157_alpha_ref/alpha-00157/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+4
+scc-519
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: alpha-00148
+SAMPLE: alpha-00148
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148-r1.fq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148-r2.fq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148 -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/alpha-00148_alpha_ref/alpha-00148
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148-r1.fq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148-r2.fq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00

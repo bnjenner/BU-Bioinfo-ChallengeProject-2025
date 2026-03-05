@@ -12,7 +12,6 @@ class alignBWA:
 	def __init__(self, reference):
 		self.reference = reference
 
-
 	#################################
 	# Check Reference Index Exists
 	def __index_exists(self):

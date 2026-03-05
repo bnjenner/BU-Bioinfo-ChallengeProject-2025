@@ -58,7 +58,7 @@ class sgRNAsearch:
 		for i in range(r_end, min_match-1, -1):
 			if i < l_end:
 				_read = read[:i]
-				_lead = lead[:i]
+				_lead = lead[l_end-i:]
 			else:
 				_read = read[i-l_end:i]
 				_lead = lead
@@ -79,50 +79,57 @@ class sgRNAsearch:
 		if PE is None:
 			PE = self.PE
 
+		# Iterate through available leader sequences
 		for lead_id, seq in self.leader.items():
-			new_records = []
-			sgRNA_found = False
 
-			# Iterate through R1 and R2 (or just R1 for SE)
-			for i in range(len(records)):
-				_record = records[i]
-				_id =  _record["id"]
-				_read = _record["seq"]
-				_qual = _record["qual"]
-				_desc = _record["id"]
+			results = {"Forward": {"sgRNA_found": False, "new_records": []},
+					   "Reverse": {"sgRNA_found": False, "new_records": []}}
 
-				# PE and R2
-				if PE and (i+1)%2 == 0:
-					_read = utils.revcomp(_read)
-					_qual = _qual[::-1]
+			# Libraries are unstranded, try both oreintations
+			for strand in results.keys():
+				
+				# Iterate through R1 and R2 (or just R1 for SE)
+				for i in range(len(records)):
+					_record = records[i]
+					_id =  _record["id"]
+					_read = _record["seq"]
+					_qual = _record["qual"]
+					_desc = _record["id"]
 
-				result = self.__seq_search(seq, _read, min_match, max_edit)
+					# Revcomp if PE and Forward & R2 or Reverse & R1
+					rev = 0
+					if PE and (((i+1)%2 == 0 and strand == "Forward") or ((i+1)%2 == 1 and strand == "Reverse")):
+						_read = utils.revcomp(_read)
+						_qual = _qual[::-1]
+						rev = 1
 
-				if result["Match"]:
-					trim_pos = result["Pos"]
-					_read = _read[trim_pos:]
-					_qual = _qual[trim_pos:]
-					_desc = f"{_record["id"]} LS:i:{i}"
-					sgRNA_found = True
+					result = self.__seq_search(seq, _read, min_match, max_edit)
 
-				# PE and R2, undo compliment
-				if PE and (i+1)%2 == 0:
-					_read = utils.revcomp(_read)
-					_qual = _qual[::-1]
+					if result["Match"]:
+						trim_pos = result["Pos"]
+						_read = _read[trim_pos:]
+						_qual = _qual[trim_pos:]
+						_desc = f"{_record["id"]} LS:i:{rev}"
+						results[strand]["sgRNA_found"] = True
 
-				# New Seq Record
-				new_record = SeqRecord(
-				    Seq(_read),
-				    id=_id,
-				    description=_desc,
-				    letter_annotations={"phred_quality": _qual}
-				)
-				new_records.append(new_record)
+					# Undo Revcomp if PE and Forward & R2 or Reverse & R1
+					if PE and (((i+1)%2 == 0 and strand == "Forward") or ((i+1)%2 == 1 and strand == "Reverse")):
+						_read = utils.revcomp(_read)
+						_qual = _qual[::-1]
 
-			if sgRNA_found:
-				break
+					# New Seq Record
+					new_record = SeqRecord(
+					    Seq(_read),
+					    id=_id,
+					    description=_desc,
+					    letter_annotations={"phred_quality": _qual}
+					)
+					results[strand]["new_records"].append(new_record)
 
-		return {"sgRNA_found": sgRNA_found, "new_records": new_records}
+				if results[strand]["sgRNA_found"]:
+					return results[strand]
+
+		return {"sgRNA_found": False, "new_records":	 []}
 
 
 	#################################

@@ -27,6 +27,6 @@
 *.e[0-9][0-9][0-9][0-9]*
 *.o[0-9][0-9][0-9][0-9]*
 [0-9][0-9]-*/
-sgRNAtor/*.sublime-project
+*.sublime-*
 sgRNAtor/sgRNAtor
 sgRNAtor/build

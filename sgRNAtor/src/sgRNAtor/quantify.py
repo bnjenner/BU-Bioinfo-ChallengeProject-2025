@@ -43,17 +43,22 @@ class sgRNAquantify:
 			self.read_TSS_bed(tss_bed, window)
 
 		# Assign sgRNAs to ORFs
-		for pos, count in self.sgRNA_counts.items():
+		for pos, counts in self.sgRNA_counts.items():
 			for orf, info in self.tss_dict.items():
 				if utils.overlap(pos, info["Window"]):
-					self.tss_dict[orf]["Counts"] += count
+					self.tss_dict[orf]["Counts"] += counts["Counts"]
 					self.sgRNA_counts[pos]["Assigned"] = orf
 					break
 
 
 	#################################
 	# Find template switching sites
-	def find_template_switches(self, threads=1):
+	def find_template_switches(self, threads=1, has_tag=False):
+		'''
+		Parses aligned reads and identifies which read was trimmed and also where the 
+		junction site occured. This identifies all junction sites and generates counts
+		for them. This will be used later for sgRNA ORF assignment.
+		'''
 		
 		# Read in Bam file
 		for read in pysam.AlignmentFile(self.bam, "rb"):
@@ -83,8 +88,8 @@ class sgRNAquantify:
 
 			if template_switch != 0:
 				if template_switch not in self.sgRNA_counts:
-					self.sgRNA_counts[template_switch] = 0
-				self.sgRNA_counts[template_switch] += 1
+					self.sgRNA_counts[template_switch] = {"Counts": 0, "Assigned": None}
+				self.sgRNA_counts[template_switch]["Counts"] += 1
 
 
 	#################################

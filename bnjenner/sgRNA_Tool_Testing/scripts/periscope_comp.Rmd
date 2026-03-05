@@ -1,0 +1,174 @@
+---
+title: "Periscope Comparisons"
+author: "B. N. Jenner"
+date: "2025-09-15"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r load_packages, echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager")
+}
+ 
+list.of.packages <- c("ggplot2", "dplyr", "ggVennDiagram", "ggfortify", "ggforce", "gridExtra", "kableExtra", "gtools", "knitr", "dplyr", "purrr", "tidyr")
+
+if (!all(list.of.packages %in% rownames(installed.packages()))) {
+  BiocManager::install(list.of.packages)
+}
+
+lapply(list.of.packages, require, character.only = TRUE)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Units:
+sgRPHT: sub-genomic RNA reads per 100,000 mapped reads
+sgRPTg: sub-genomic RNA reads per 1,000 genomic RNA reads
+gRPHT: genomic RNA reads per 100,000 mapped reads
+
+
+
+```{r functions, include=TRUE}
+###############################################################
+# Make Barplot
+rna_plot <- function(data, sample, dir_name) {
+  
+  # Select and Pivot Data
+  if (grepl("Oxford", dir_name)) {
+    data2 <- data %>%
+                select("orf", "gRNA_count", "sgRNA_HQ_count") %>%
+                pivot_longer(
+                  cols = c("gRNA_count", "sgRNA_HQ_count"),
+                  names_to = "RNA_Type",
+                  values_to = "Counts"
+                )
+  } else {
+    data2 <- data %>%
+                select("orf", "gRNA_count", "sgRNA_count") %>%
+                pivot_longer(
+                  cols = c("gRNA_count", "sgRNA_count"),
+                  names_to = "RNA_Type",
+                  values_to = "Counts"
+                )
+  }
+  
+  # Plot Data
+  p <- ggplot(data2, aes(x = orf, y = Counts, fill = RNA_Type)) +
+          geom_bar(stat = "identity", position = "dodge") +
+          labs(title = paste0(dir_name, " - ", sample), x = "ORF", y = "Counts") +
+          theme(axis.text.x = element_text(angle = 45, hjust = 1),
+                plot.title = element_text(hjust = 0.5))
+  return(p)
+}
+
+
+###############################################################
+# Plot Grid
+plot_list_grid <- function(list_left, list_right) {
+  
+  stopifnot(is.list(list_left), is.list(list_right))
+  n_rows <- max(length(list_left), length(list_right))
+
+  gridExtra::grid.arrange(
+    grobs = c(rbind(list_left, list_right)),
+    ncol = 2
+  )
+}
+
+###############################################################
+# Process Each Dataset by sample
+process_run <- function(files, dir_name) {
+  
+  # Iterate through CSV files
+  result <- list()
+  for (f in files) {
+    sample <- gsub("_periscope_counts.csv", "", sapply(strsplit(f, split = "/"), tail, 1))
+    df <- read.delim(f, sep = ",")
+    result[[sample]] <- rna_plot(df, sample, dir_name)
+  }
+  return(result)
+}
+```
+
+
+```{r data, include=TRUE}
+# List Data Directories
+base_dir <- "data"
+prefix <- "01"
+data_dirs <- list.dirs(path = base_dir,
+                       full.names = TRUE,
+                       recursive = FALSE)
+data_dirs <- data_dirs[grepl(paste0("^",base_dir,"/",prefix), data_dirs)]
+
+# List and process CSV files in data directories
+data_list <- list()
+for (dir in data_dirs) {
+  
+  dir_name <- basename(dir)
+  csv_files <- list.files(
+                  path = dir,
+                  pattern = "periscope_counts.csv$",
+                  full.names = TRUE
+               )
+  
+  print(paste0("Processing: ", dir_name))
+  data_list[[basename(dir)]] <- process_run(csv_files, dir_name)
+}
+```
+
+## Real Illumina
+```{r plots1, fig.width=11, fig.height=33, echo=FALSE, warning=FALSE, message=FALSE}
+plot_list_grid(data_list$`01-Periscope_RealIllumina`,
+               data_list$`01-PeriscopeMulti_RealIllumina`)
+```
+
+## Real Oxford Nanopore
+```{r plots2, fig.width=11, fig.height=45, echo=FALSE, warning=FALSE, message=FALSE}
+plot_list_grid(data_list$`01-Periscope_RealOxford`,
+               data_list$`01-PeriscopeMulti_RealOxford`)
+```
+
+## Synth Illumina
+```{r plots3, fig.width=11, fig.height=9, echo=FALSE, warning=FALSE, message=FALSE}
+plot_list_grid(data_list$`01-Periscope_SynthIllumina`,
+               data_list$`01-PeriscopeMulti_SynthIllumina`)
+```
+
+
+## Synth Oxford Nanopore
+```{r plots4, fig.width=11, fig.height=3, echo=FALSE, warning=FALSE, message=FALSE}
+plot_list_grid(data_list$`01-Periscope_SynthOxford`,
+               data_list$`01-PeriscopeMulti_SynthOxford`)
+```
+
+
+
+
+```{r table, include=TRUE}
+# peri_sim_nov <- read.delim("data/01-Periscope_Sim/final_COV_agregate_periscope_novel_counts.csv", sep = ",")
+# perimulti_sim_nov <- read.delim("data/01-PeriscopeMulti_Sim/final_COV_agregate_periscope_novel_counts.csv", sep = ",")
+# 
+# novel_sgRNAs <- data.frame("nsgRNAs" = c(peri_sim_nov$orf, perimulti_sim_nov$orf),
+#                            "Tool" = c(rep("Periscope", nrow(peri_sim_nov)), rep("Periscope_Multi", nrow(perimulti_sim_nov))),
+#                            "amplicon" = c(peri_sim_nov$amplicons, perimulti_sim_nov$amplicons),
+#                            "HQ_Count" = c(peri_sim_nov$nsgRNA_HQ_count, perimulti_sim_nov$nsgRNA_HQ_count),
+#                            "LQ_Counts" = c(peri_sim_nov$nsgRNA_LQ_count, perimulti_sim_nov$nsgRNA_LQ_count))
+# 
+# novel_sgRNAs %>%
+#       kable() %>%
+#       kable_styling(bootstrap_options = c("striped", "hover"), font_size = 15)
+```
+
+
+```{r sessioninfo, include=TRUE}
+sessionInfo()
+```
+
+
+

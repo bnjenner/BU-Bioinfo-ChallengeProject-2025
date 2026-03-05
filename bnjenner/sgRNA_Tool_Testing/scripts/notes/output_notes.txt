@@ -1,0 +1,16 @@
+Abbreviations
+
+TRS
+    Transcription regulation sequence (ACGAAC)
+ORF
+    Open reading frame
+sgRNA
+    sub-genomic RNA
+gRNA
+    genomic RNA
+sgRPHT
+    sub-genomic RNA reads per 100,000 mapped reads
+sgRPTg
+    sub-genomic RNA reads per 1,000 genomic RNA reads
+gRPHT
+    genomic RNA reads per 100,000 mapped reads

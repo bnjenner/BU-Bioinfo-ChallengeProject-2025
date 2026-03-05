@@ -1,0 +1,1 @@
+It wants meto specify the fastqdir as input and have files labeled with R1 and R2.

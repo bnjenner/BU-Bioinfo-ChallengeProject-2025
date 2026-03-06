@@ -108,7 +108,7 @@ class sgRNAquantify:
 		self.sgRNA_counts = dict(sorted(self.sgRNA_counts.items()))
 		with open(output_file, "w") as fo:
 			fo.write("Pos\tCounts\tAssigned\n")
-			for pos, count in self.sgRNA_counts.items():
-				fo.write(f"{pos}\t{count}\n")
+			for pos, info in self.sgRNA_counts.items():
+				fo.write(f"{pos}\t{info["Counts"]}\t{info["Assigned"]}\n")
 		print(f"// Output written to {output_file}")
 

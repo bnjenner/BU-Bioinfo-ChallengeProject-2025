@@ -5,6 +5,7 @@ from sgRNAtor import search
 from sgRNAtor import align
 from sgRNAtor import quantify
 from sgRNAtor import utils
+from sgRNAtor import stats
 
 #################################################
 # Argparser
@@ -20,7 +21,6 @@ def argparser():
 	parser.add_argument("--max-edit", "-e", type=int, default=0, help="Maximum edit distance for a leader sequence match (default: 0)")
 	parser.add_argument("--tss-window", "-w", type=int, default=10, help="Window size for template switching sites (+/- specified number). (default: 10)")
 	parser.add_argument("--output-prefix", "-o", type=str, default="sgRNAtor_result", help="Prefix for output files.")
-	parser.add_argument("--force-overwrite", "-f", action='store_true', help="Force overwrite of intermediate files.")
 	args = parser.parse_args()
 
 	# Check Input Files
@@ -75,6 +75,7 @@ def main():
 	aligned_file = f"{args.output_prefix}_aligned_sgRNA.bam"
 	orfs_tsv = f"{args.output_prefix}_ORF_counts.txt"
 	sgrnas_tsv = f"{args.output_prefix}_sgRNA_counts.txt"
+	summary_tsv = f"{args.output_prefix}_summary.txt"
 	for i in range(len(fastq_files)):
 		if fastq_files[i] is None:
 			continue
@@ -86,6 +87,10 @@ def main():
 	if len(trimmed_files) == 2:
 		is_PairedEnd = True
 
+
+	# Initialize Stat Collector
+	summary = stats.sgRNAstats(sample = args.output_prefix)
+
 	# Create sgRNAsearch Object
 	print(f"// sgRNAtor")
 	print("// Initializing sgRNAsearch Object")
@@ -93,37 +98,44 @@ def main():
 								leader = args.leader_fasta,
 								PE = is_PairedEnd)
 
-
 	# Find leader sequence
-	if args.force_overwrite or not utils.files_exist(trimmed_files):
-		print("// Beginning sgRNA search")
-		sgRNAs.find_sgRNAs(output_files = trimmed_files,
-						   threads = args.threads,
-						   min_match = args.min_match,
-						   max_edit = args.max_edit)
-	else:
-		print(f"// NOTICE: Trimmed FASTQ Files Found {trimmed_files}. Skipping sgRNA Search.")
+	print("// Beginning sgRNA search")
+	sgRNAs.find_sgRNAs(output_files = trimmed_files,
+					   threads = args.threads,
+					   min_match = args.min_match,
+					   max_edit = args.max_edit)
+	# Add Stats
+	summary.library_size = sgRNAs.library_size
+	summary.trs_found    = sgRNAs.matches
 
 
 	# Align Trimmed Sequences
-	if args.force_overwrite or not utils.files_exist(aligned_file):
-		print("// Beginning BWA Alignment")
-		bwa = align.alignBWA(args.reference)
-		bwa.align(input_fastq = trimmed_files, 
-				  output_bam = aligned_file,
-				  threads = args.threads)
-	else:
-		print(f"// NOTICE: Aligned BAM File Found {aligned_files}. Skipping alignment.")
+	print("// Beginning BWA Alignment")
+	bwa = align.alignBWA(args.reference)
+	bwa.align(input_fastq = trimmed_files, 
+			  output_bam = aligned_file,
+			  threads = args.threads)
 
+
+	# Identify sgRNA Positions and ORFs
 	print("// Beginning sgRNA Quantification")
 	quant = quantify.sgRNAquantify(bam = aligned_file)
 	quant.find_template_switches()
 	quant.assign_TSS_to_orfs(tss_bed = args.tss_bed, window = args.tss_window)
-	
+
+	# Add Stats
+	summary.aligned_fragments = quant.aligned_fragments 
+	summary.tss_dict          = quant.tss_dict
+	summary.sgRNA_counts      = quant.sgRNA_counts
+
+
+	# Write output Files
 	print("// Writing ORF Counts")
-	quant.write_ORF_counts(output_file = orfs_tsv)
+	summary.write_ORF_counts(output_file = orfs_tsv)
 	print("// Writing sgRNA Counts")
-	quant.write_sgRNA_counts(output_file = sgrnas_tsv)
+	summary.write_sgRNA_counts(output_file = sgrnas_tsv)
+	print("// Writing Pipeline Summary")
+	summary.write_summary(output_file = summary_tsv)
 	print(f"// sgRNAtor Pipeline Complete.")
 
 

@@ -16,6 +16,7 @@ class sgRNAsearch:
 		self.fastq_files = fastq_files
 		self.leader = utils.read_fasta(leader)
 		self.matches = 0
+		self.library_size = 0
 		self.PE = PE
 
 	#################################
@@ -183,6 +184,7 @@ class sgRNAsearch:
 			# Iterate over FASTQ records
 			for record in self.__iterate_reads(self.fastq_files):
 				chunk.append(self.__serialize_reads(record))
+				self.library_size += 1
 
 				# If desired chunk size reached, execute sgRNA search
 				if len(chunk) >= chunk_size:

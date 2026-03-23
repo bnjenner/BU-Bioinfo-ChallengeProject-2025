@@ -9,9 +9,10 @@ class sgRNAquantify:
 
 	def __init__(self, bam):
 		self.bam = bam
+		self.aligned_fragments = 0
 		self.reads = {}
 		self.sgRNA_counts = {}
-		self.tss_dict = None
+		self.tss_dict = {}
 		self.ambiguous = 0
 
 
@@ -39,7 +40,7 @@ class sgRNAquantify:
 	def assign_TSS_to_orfs(self, tss_bed=None, window=10):
 
 		# TSS not read yet but specified bed and window
-		if self.tss_dict is None and tss_bed is not None and window is not None:
+		if not self.tss_dict and tss_bed is not None and window is not None:
 			self.read_TSS_bed(tss_bed, window)
 
 		# Assign sgRNAs to ORFs
@@ -62,7 +63,7 @@ class sgRNAquantify:
 		
 		# Read in Bam file
 		for read in pysam.AlignmentFile(self.bam, "rb"):
-			if not read.is_unmapped:
+			if not read.is_unmapped and not read.is_supplementary:
 
 				# Determine R1 or R2
 				pair = "R1" if not read.is_read2 else "R2"
@@ -76,7 +77,10 @@ class sgRNAquantify:
 		# Reduce fragments to their TSS sites
 		for fragment, reads in self.reads.items():	
 
-			template_switch = 0
+			# Add to stats
+			self.aligned_fragments += 1
+
+			template_switch = 0			
 			for r, attr in reads.items():
 
 				# 1-based conversion 
@@ -90,25 +94,4 @@ class sgRNAquantify:
 				if template_switch not in self.sgRNA_counts:
 					self.sgRNA_counts[template_switch] = {"Counts": 0, "Assigned": None}
 				self.sgRNA_counts[template_switch]["Counts"] += 1
-
-
-	#################################
-	# Output ORF TSV
-	def write_ORF_counts(self, output_file):
-		with open(output_file, "w") as fo:
-			fo.write("ORF\tStart\tStop\tCounts\n")
-			for pos, orf in self.tss_dict.items():
-				fo.write(f"{orf["ORF"]}\t{orf["Window"][0]}\t{orf["Window"][1]}\t{orf["Counts"]}\n")
-		print(f"// Output written to {output_file}")
-
-
-	#################################
-	# Output sgRNAs TSV
-	def write_sgRNA_counts(self, output_file):
-		self.sgRNA_counts = dict(sorted(self.sgRNA_counts.items()))
-		with open(output_file, "w") as fo:
-			fo.write("Pos\tCounts\tAssigned\n")
-			for pos, info in self.sgRNA_counts.items():
-				fo.write(f"{pos}\t{info["Counts"]}\t{info["Assigned"]}\n")
-		print(f"// Output written to {output_file}")
 

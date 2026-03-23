@@ -1706,3 +1706,635 @@ multiqc -i multiqc_B.1.617.2 -o /restricted/projectnb/challenge2025/sgRNAtor/Elm
      write_results | Report      : /restricted/projectnb/challenge2025/sgRNAtor/Elm/02-MultiQC/multiqc_B.1.617.2_multiqc_report.html
            multiqc | MultiQC complete
 50
+scc-tm3
+My SGE_TASK_ID:  1
+SAMPLE: 
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/*_1.fq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/*_2.fq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*.json
+ERROR: File /restricted/projectnb/challenge2025/Data/PRJNA726840/*_1.fq.gz was not found.
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*_*fq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+Skipping '/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/*_*fq.gz' which didn't exist, or couldn't be read
+multiqc -i multiqc_PRJNA726840 -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/02-MultiQC -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+
+/// MultiQC v1.33.dev0
+
+     update_config | Report title: multiqc_PRJNA726840
+       file_search | Search path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+          htstream | Found 1 reports.
+       SeqScreener | HTStream: Zero Reads or Basepairs Reported for *.
+       SeqScreener | HTStream: Zero Reads or Basepairs Reported for *.
+    AdapterTrimmer | HTStream: Zero Reads or Basepairs Reported for *.
+       QWindowTrim | HTStream: Zero Reads or Basepairs Reported for *.
+          NTrimmer | HTStream: Zero Reads or Basepairs Reported for *.
+      LengthFilter | HTStream: Zero Reads or Basepairs Reported for *.
+             Stats | HTStream: Zero Reads or Basepairs Reported for *.
+       SeqScreener | HTStream: Zero Reads or Basepairs Reported for *.
+       SeqScreener | HTStream: Zero Reads or Basepairs Reported for *.
+    AdapterTrimmer | HTStream: Zero Reads or Basepairs Reported for *.
+       QWindowTrim | HTStream: Zero Reads or Basepairs Reported for *.
+          NTrimmer | HTStream: Zero Reads or Basepairs Reported for *.
+      LengthFilter | HTStream: Zero Reads or Basepairs Reported for *.
+             Stats | HTStream: Zero Reads or Basepairs Reported for *.
+          htstream | HTStream: Excluding * from General Table.
+     write_results | Data        : /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/02-MultiQC/multiqc_PRJNA726840_multiqc_report_data
+     write_results | Report      : /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/02-MultiQC/multiqc_PRJNA726840_multiqc_report.html
+           multiqc | MultiQC complete
+25
+scc-520
+My SGE_TASK_ID:  1
+SAMPLE: 
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460618_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460618_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460618_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460618_R1.fastq.gz
+Approx 5% complete for SRR14460618_R1.fastq.gz
+Approx 10% complete for SRR14460618_R1.fastq.gz
+Approx 15% complete for SRR14460618_R1.fastq.gz
+Approx 20% complete for SRR14460618_R1.fastq.gz
+Approx 25% complete for SRR14460618_R1.fastq.gz
+Approx 30% complete for SRR14460618_R1.fastq.gz
+Approx 35% complete for SRR14460618_R1.fastq.gz
+Approx 40% complete for SRR14460618_R1.fastq.gz
+Approx 45% complete for SRR14460618_R1.fastq.gz
+Approx 50% complete for SRR14460618_R1.fastq.gz
+Approx 55% complete for SRR14460618_R1.fastq.gz
+Approx 60% complete for SRR14460618_R1.fastq.gz
+Approx 65% complete for SRR14460618_R1.fastq.gz
+Approx 70% complete for SRR14460618_R1.fastq.gz
+Approx 75% complete for SRR14460618_R1.fastq.gz
+Approx 80% complete for SRR14460618_R1.fastq.gz
+Approx 85% complete for SRR14460618_R1.fastq.gz
+Approx 90% complete for SRR14460618_R1.fastq.gz
+Approx 95% complete for SRR14460618_R1.fastq.gz
+Analysis complete for SRR14460618_R1.fastq.gz
+Started analysis of SRR14460618_R2.fastq.gz
+Approx 5% complete for SRR14460618_R2.fastq.gz
+Approx 10% complete for SRR14460618_R2.fastq.gz
+Approx 15% complete for SRR14460618_R2.fastq.gz
+Approx 20% complete for SRR14460618_R2.fastq.gz
+Approx 25% complete for SRR14460618_R2.fastq.gz
+Approx 30% complete for SRR14460618_R2.fastq.gz
+Approx 35% complete for SRR14460618_R2.fastq.gz
+Approx 40% complete for SRR14460618_R2.fastq.gz
+Approx 45% complete for SRR14460618_R2.fastq.gz
+Approx 50% complete for SRR14460618_R2.fastq.gz
+Approx 55% complete for SRR14460618_R2.fastq.gz
+Approx 60% complete for SRR14460618_R2.fastq.gz
+Approx 65% complete for SRR14460618_R2.fastq.gz
+Approx 70% complete for SRR14460618_R2.fastq.gz
+Approx 75% complete for SRR14460618_R2.fastq.gz
+Approx 80% complete for SRR14460618_R2.fastq.gz
+Approx 85% complete for SRR14460618_R2.fastq.gz
+Approx 90% complete for SRR14460618_R2.fastq.gz
+Approx 95% complete for SRR14460618_R2.fastq.gz
+Analysis complete for SRR14460618_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460619_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460619_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460619_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460619_R1.fastq.gz
+Approx 5% complete for SRR14460619_R1.fastq.gz
+Approx 10% complete for SRR14460619_R1.fastq.gz
+Approx 15% complete for SRR14460619_R1.fastq.gz
+Approx 20% complete for SRR14460619_R1.fastq.gz
+Approx 25% complete for SRR14460619_R1.fastq.gz
+Approx 30% complete for SRR14460619_R1.fastq.gz
+Approx 35% complete for SRR14460619_R1.fastq.gz
+Approx 40% complete for SRR14460619_R1.fastq.gz
+Approx 45% complete for SRR14460619_R1.fastq.gz
+Approx 50% complete for SRR14460619_R1.fastq.gz
+Approx 55% complete for SRR14460619_R1.fastq.gz
+Approx 60% complete for SRR14460619_R1.fastq.gz
+Approx 65% complete for SRR14460619_R1.fastq.gz
+Approx 70% complete for SRR14460619_R1.fastq.gz
+Approx 75% complete for SRR14460619_R1.fastq.gz
+Approx 80% complete for SRR14460619_R1.fastq.gz
+Approx 85% complete for SRR14460619_R1.fastq.gz
+Approx 90% complete for SRR14460619_R1.fastq.gz
+Approx 95% complete for SRR14460619_R1.fastq.gz
+Analysis complete for SRR14460619_R1.fastq.gz
+Started analysis of SRR14460619_R2.fastq.gz
+Approx 5% complete for SRR14460619_R2.fastq.gz
+Approx 10% complete for SRR14460619_R2.fastq.gz
+Approx 15% complete for SRR14460619_R2.fastq.gz
+Approx 20% complete for SRR14460619_R2.fastq.gz
+Approx 25% complete for SRR14460619_R2.fastq.gz
+Approx 30% complete for SRR14460619_R2.fastq.gz
+Approx 35% complete for SRR14460619_R2.fastq.gz
+Approx 40% complete for SRR14460619_R2.fastq.gz
+Approx 45% complete for SRR14460619_R2.fastq.gz
+Approx 50% complete for SRR14460619_R2.fastq.gz
+Approx 55% complete for SRR14460619_R2.fastq.gz
+Approx 60% complete for SRR14460619_R2.fastq.gz
+Approx 65% complete for SRR14460619_R2.fastq.gz
+Approx 70% complete for SRR14460619_R2.fastq.gz
+Approx 75% complete for SRR14460619_R2.fastq.gz
+Approx 80% complete for SRR14460619_R2.fastq.gz
+Approx 85% complete for SRR14460619_R2.fastq.gz
+Approx 90% complete for SRR14460619_R2.fastq.gz
+Approx 95% complete for SRR14460619_R2.fastq.gz
+Analysis complete for SRR14460619_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460620_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460620_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460620_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460620_R1.fastq.gz
+Approx 5% complete for SRR14460620_R1.fastq.gz
+Approx 10% complete for SRR14460620_R1.fastq.gz
+Approx 15% complete for SRR14460620_R1.fastq.gz
+Approx 20% complete for SRR14460620_R1.fastq.gz
+Approx 25% complete for SRR14460620_R1.fastq.gz
+Approx 30% complete for SRR14460620_R1.fastq.gz
+Approx 35% complete for SRR14460620_R1.fastq.gz
+Approx 40% complete for SRR14460620_R1.fastq.gz
+Approx 45% complete for SRR14460620_R1.fastq.gz
+Approx 50% complete for SRR14460620_R1.fastq.gz
+Approx 55% complete for SRR14460620_R1.fastq.gz
+Approx 60% complete for SRR14460620_R1.fastq.gz
+Approx 65% complete for SRR14460620_R1.fastq.gz
+Approx 70% complete for SRR14460620_R1.fastq.gz
+Approx 75% complete for SRR14460620_R1.fastq.gz
+Approx 80% complete for SRR14460620_R1.fastq.gz
+Approx 85% complete for SRR14460620_R1.fastq.gz
+Approx 90% complete for SRR14460620_R1.fastq.gz
+Approx 95% complete for SRR14460620_R1.fastq.gz
+Analysis complete for SRR14460620_R1.fastq.gz
+Started analysis of SRR14460620_R2.fastq.gz
+Approx 5% complete for SRR14460620_R2.fastq.gz
+Approx 10% complete for SRR14460620_R2.fastq.gz
+Approx 15% complete for SRR14460620_R2.fastq.gz
+Approx 20% complete for SRR14460620_R2.fastq.gz
+Approx 25% complete for SRR14460620_R2.fastq.gz
+Approx 30% complete for SRR14460620_R2.fastq.gz
+Approx 35% complete for SRR14460620_R2.fastq.gz
+Approx 40% complete for SRR14460620_R2.fastq.gz
+Approx 45% complete for SRR14460620_R2.fastq.gz
+Approx 50% complete for SRR14460620_R2.fastq.gz
+Approx 55% complete for SRR14460620_R2.fastq.gz
+Approx 60% complete for SRR14460620_R2.fastq.gz
+Approx 65% complete for SRR14460620_R2.fastq.gz
+Approx 70% complete for SRR14460620_R2.fastq.gz
+Approx 75% complete for SRR14460620_R2.fastq.gz
+Approx 80% complete for SRR14460620_R2.fastq.gz
+Approx 85% complete for SRR14460620_R2.fastq.gz
+Approx 90% complete for SRR14460620_R2.fastq.gz
+Approx 95% complete for SRR14460620_R2.fastq.gz
+Analysis complete for SRR14460620_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460621_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460621_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460621_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460621_R1.fastq.gz
+Approx 5% complete for SRR14460621_R1.fastq.gz
+Approx 10% complete for SRR14460621_R1.fastq.gz
+Approx 15% complete for SRR14460621_R1.fastq.gz
+Approx 20% complete for SRR14460621_R1.fastq.gz
+Approx 25% complete for SRR14460621_R1.fastq.gz
+Approx 30% complete for SRR14460621_R1.fastq.gz
+Approx 35% complete for SRR14460621_R1.fastq.gz
+Approx 40% complete for SRR14460621_R1.fastq.gz
+Approx 45% complete for SRR14460621_R1.fastq.gz
+Approx 50% complete for SRR14460621_R1.fastq.gz
+Approx 55% complete for SRR14460621_R1.fastq.gz
+Approx 60% complete for SRR14460621_R1.fastq.gz
+Approx 65% complete for SRR14460621_R1.fastq.gz
+Approx 70% complete for SRR14460621_R1.fastq.gz
+Approx 75% complete for SRR14460621_R1.fastq.gz
+Approx 80% complete for SRR14460621_R1.fastq.gz
+Approx 85% complete for SRR14460621_R1.fastq.gz
+Approx 90% complete for SRR14460621_R1.fastq.gz
+Approx 95% complete for SRR14460621_R1.fastq.gz
+Analysis complete for SRR14460621_R1.fastq.gz
+Started analysis of SRR14460621_R2.fastq.gz
+Approx 5% complete for SRR14460621_R2.fastq.gz
+Approx 10% complete for SRR14460621_R2.fastq.gz
+Approx 15% complete for SRR14460621_R2.fastq.gz
+Approx 20% complete for SRR14460621_R2.fastq.gz
+Approx 25% complete for SRR14460621_R2.fastq.gz
+Approx 30% complete for SRR14460621_R2.fastq.gz
+Approx 35% complete for SRR14460621_R2.fastq.gz
+Approx 40% complete for SRR14460621_R2.fastq.gz
+Approx 45% complete for SRR14460621_R2.fastq.gz
+Approx 50% complete for SRR14460621_R2.fastq.gz
+Approx 55% complete for SRR14460621_R2.fastq.gz
+Approx 60% complete for SRR14460621_R2.fastq.gz
+Approx 65% complete for SRR14460621_R2.fastq.gz
+Approx 70% complete for SRR14460621_R2.fastq.gz
+Approx 75% complete for SRR14460621_R2.fastq.gz
+Approx 80% complete for SRR14460621_R2.fastq.gz
+Approx 85% complete for SRR14460621_R2.fastq.gz
+Approx 90% complete for SRR14460621_R2.fastq.gz
+Approx 95% complete for SRR14460621_R2.fastq.gz
+Analysis complete for SRR14460621_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460622_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460622_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460622_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460622_R1.fastq.gz
+Approx 5% complete for SRR14460622_R1.fastq.gz
+Approx 10% complete for SRR14460622_R1.fastq.gz
+Approx 15% complete for SRR14460622_R1.fastq.gz
+Approx 20% complete for SRR14460622_R1.fastq.gz
+Approx 25% complete for SRR14460622_R1.fastq.gz
+Approx 30% complete for SRR14460622_R1.fastq.gz
+Approx 35% complete for SRR14460622_R1.fastq.gz
+Approx 40% complete for SRR14460622_R1.fastq.gz
+Approx 45% complete for SRR14460622_R1.fastq.gz
+Approx 50% complete for SRR14460622_R1.fastq.gz
+Approx 55% complete for SRR14460622_R1.fastq.gz
+Approx 60% complete for SRR14460622_R1.fastq.gz
+Approx 65% complete for SRR14460622_R1.fastq.gz
+Approx 70% complete for SRR14460622_R1.fastq.gz
+Approx 75% complete for SRR14460622_R1.fastq.gz
+Approx 80% complete for SRR14460622_R1.fastq.gz
+Approx 85% complete for SRR14460622_R1.fastq.gz
+Approx 90% complete for SRR14460622_R1.fastq.gz
+Approx 95% complete for SRR14460622_R1.fastq.gz
+Analysis complete for SRR14460622_R1.fastq.gz
+Started analysis of SRR14460622_R2.fastq.gz
+Approx 5% complete for SRR14460622_R2.fastq.gz
+Approx 10% complete for SRR14460622_R2.fastq.gz
+Approx 15% complete for SRR14460622_R2.fastq.gz
+Approx 20% complete for SRR14460622_R2.fastq.gz
+Approx 25% complete for SRR14460622_R2.fastq.gz
+Approx 30% complete for SRR14460622_R2.fastq.gz
+Approx 35% complete for SRR14460622_R2.fastq.gz
+Approx 40% complete for SRR14460622_R2.fastq.gz
+Approx 45% complete for SRR14460622_R2.fastq.gz
+Approx 50% complete for SRR14460622_R2.fastq.gz
+Approx 55% complete for SRR14460622_R2.fastq.gz
+Approx 60% complete for SRR14460622_R2.fastq.gz
+Approx 65% complete for SRR14460622_R2.fastq.gz
+Approx 70% complete for SRR14460622_R2.fastq.gz
+Approx 75% complete for SRR14460622_R2.fastq.gz
+Approx 80% complete for SRR14460622_R2.fastq.gz
+Approx 85% complete for SRR14460622_R2.fastq.gz
+Approx 90% complete for SRR14460622_R2.fastq.gz
+Approx 95% complete for SRR14460622_R2.fastq.gz
+Analysis complete for SRR14460622_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460623_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460623_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460623_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460623_R1.fastq.gz
+Approx 5% complete for SRR14460623_R1.fastq.gz
+Approx 10% complete for SRR14460623_R1.fastq.gz
+Approx 15% complete for SRR14460623_R1.fastq.gz
+Approx 20% complete for SRR14460623_R1.fastq.gz
+Approx 25% complete for SRR14460623_R1.fastq.gz
+Approx 30% complete for SRR14460623_R1.fastq.gz
+Approx 35% complete for SRR14460623_R1.fastq.gz
+Approx 40% complete for SRR14460623_R1.fastq.gz
+Approx 45% complete for SRR14460623_R1.fastq.gz
+Approx 50% complete for SRR14460623_R1.fastq.gz
+Approx 55% complete for SRR14460623_R1.fastq.gz
+Approx 60% complete for SRR14460623_R1.fastq.gz
+Approx 65% complete for SRR14460623_R1.fastq.gz
+Approx 70% complete for SRR14460623_R1.fastq.gz
+Approx 75% complete for SRR14460623_R1.fastq.gz
+Approx 80% complete for SRR14460623_R1.fastq.gz
+Approx 85% complete for SRR14460623_R1.fastq.gz
+Approx 90% complete for SRR14460623_R1.fastq.gz
+Approx 95% complete for SRR14460623_R1.fastq.gz
+Analysis complete for SRR14460623_R1.fastq.gz
+Started analysis of SRR14460623_R2.fastq.gz
+Approx 5% complete for SRR14460623_R2.fastq.gz
+Approx 10% complete for SRR14460623_R2.fastq.gz
+Approx 15% complete for SRR14460623_R2.fastq.gz
+Approx 20% complete for SRR14460623_R2.fastq.gz
+Approx 25% complete for SRR14460623_R2.fastq.gz
+Approx 30% complete for SRR14460623_R2.fastq.gz
+Approx 35% complete for SRR14460623_R2.fastq.gz
+Approx 40% complete for SRR14460623_R2.fastq.gz
+Approx 45% complete for SRR14460623_R2.fastq.gz
+Approx 50% complete for SRR14460623_R2.fastq.gz
+Approx 55% complete for SRR14460623_R2.fastq.gz
+Approx 60% complete for SRR14460623_R2.fastq.gz
+Approx 65% complete for SRR14460623_R2.fastq.gz
+Approx 70% complete for SRR14460623_R2.fastq.gz
+Approx 75% complete for SRR14460623_R2.fastq.gz
+Approx 80% complete for SRR14460623_R2.fastq.gz
+Approx 85% complete for SRR14460623_R2.fastq.gz
+Approx 90% complete for SRR14460623_R2.fastq.gz
+Approx 95% complete for SRR14460623_R2.fastq.gz
+Analysis complete for SRR14460623_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460624_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460624_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460624_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460624_R1.fastq.gz
+Approx 5% complete for SRR14460624_R1.fastq.gz
+Approx 10% complete for SRR14460624_R1.fastq.gz
+Approx 15% complete for SRR14460624_R1.fastq.gz
+Approx 20% complete for SRR14460624_R1.fastq.gz
+Approx 25% complete for SRR14460624_R1.fastq.gz
+Approx 30% complete for SRR14460624_R1.fastq.gz
+Approx 35% complete for SRR14460624_R1.fastq.gz
+Approx 40% complete for SRR14460624_R1.fastq.gz
+Approx 45% complete for SRR14460624_R1.fastq.gz
+Approx 50% complete for SRR14460624_R1.fastq.gz
+Approx 55% complete for SRR14460624_R1.fastq.gz
+Approx 60% complete for SRR14460624_R1.fastq.gz
+Approx 65% complete for SRR14460624_R1.fastq.gz
+Approx 70% complete for SRR14460624_R1.fastq.gz
+Approx 75% complete for SRR14460624_R1.fastq.gz
+Approx 80% complete for SRR14460624_R1.fastq.gz
+Approx 85% complete for SRR14460624_R1.fastq.gz
+Approx 90% complete for SRR14460624_R1.fastq.gz
+Approx 95% complete for SRR14460624_R1.fastq.gz
+Analysis complete for SRR14460624_R1.fastq.gz
+Started analysis of SRR14460624_R2.fastq.gz
+Approx 5% complete for SRR14460624_R2.fastq.gz
+Approx 10% complete for SRR14460624_R2.fastq.gz
+Approx 15% complete for SRR14460624_R2.fastq.gz
+Approx 20% complete for SRR14460624_R2.fastq.gz
+Approx 25% complete for SRR14460624_R2.fastq.gz
+Approx 30% complete for SRR14460624_R2.fastq.gz
+Approx 35% complete for SRR14460624_R2.fastq.gz
+Approx 40% complete for SRR14460624_R2.fastq.gz
+Approx 45% complete for SRR14460624_R2.fastq.gz
+Approx 50% complete for SRR14460624_R2.fastq.gz
+Approx 55% complete for SRR14460624_R2.fastq.gz
+Approx 60% complete for SRR14460624_R2.fastq.gz
+Approx 65% complete for SRR14460624_R2.fastq.gz
+Approx 70% complete for SRR14460624_R2.fastq.gz
+Approx 75% complete for SRR14460624_R2.fastq.gz
+Approx 80% complete for SRR14460624_R2.fastq.gz
+Approx 85% complete for SRR14460624_R2.fastq.gz
+Approx 90% complete for SRR14460624_R2.fastq.gz
+Approx 95% complete for SRR14460624_R2.fastq.gz
+Analysis complete for SRR14460624_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460625_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460625_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460625_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460625_R1.fastq.gz
+Approx 5% complete for SRR14460625_R1.fastq.gz
+Approx 10% complete for SRR14460625_R1.fastq.gz
+Approx 15% complete for SRR14460625_R1.fastq.gz
+Approx 20% complete for SRR14460625_R1.fastq.gz
+Approx 25% complete for SRR14460625_R1.fastq.gz
+Approx 30% complete for SRR14460625_R1.fastq.gz
+Approx 35% complete for SRR14460625_R1.fastq.gz
+Approx 40% complete for SRR14460625_R1.fastq.gz
+Approx 45% complete for SRR14460625_R1.fastq.gz
+Approx 50% complete for SRR14460625_R1.fastq.gz
+Approx 55% complete for SRR14460625_R1.fastq.gz
+Approx 60% complete for SRR14460625_R1.fastq.gz
+Approx 65% complete for SRR14460625_R1.fastq.gz
+Approx 70% complete for SRR14460625_R1.fastq.gz
+Approx 75% complete for SRR14460625_R1.fastq.gz
+Approx 80% complete for SRR14460625_R1.fastq.gz
+Approx 85% complete for SRR14460625_R1.fastq.gz
+Approx 90% complete for SRR14460625_R1.fastq.gz
+Approx 95% complete for SRR14460625_R1.fastq.gz
+Analysis complete for SRR14460625_R1.fastq.gz
+Started analysis of SRR14460625_R2.fastq.gz
+Approx 5% complete for SRR14460625_R2.fastq.gz
+Approx 10% complete for SRR14460625_R2.fastq.gz
+Approx 15% complete for SRR14460625_R2.fastq.gz
+Approx 20% complete for SRR14460625_R2.fastq.gz
+Approx 25% complete for SRR14460625_R2.fastq.gz
+Approx 30% complete for SRR14460625_R2.fastq.gz
+Approx 35% complete for SRR14460625_R2.fastq.gz
+Approx 40% complete for SRR14460625_R2.fastq.gz
+Approx 45% complete for SRR14460625_R2.fastq.gz
+Approx 50% complete for SRR14460625_R2.fastq.gz
+Approx 55% complete for SRR14460625_R2.fastq.gz
+Approx 60% complete for SRR14460625_R2.fastq.gz
+Approx 65% complete for SRR14460625_R2.fastq.gz
+Approx 70% complete for SRR14460625_R2.fastq.gz
+Approx 75% complete for SRR14460625_R2.fastq.gz
+Approx 80% complete for SRR14460625_R2.fastq.gz
+Approx 85% complete for SRR14460625_R2.fastq.gz
+Approx 90% complete for SRR14460625_R2.fastq.gz
+Approx 95% complete for SRR14460625_R2.fastq.gz
+Analysis complete for SRR14460625_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460626_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460626_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460626_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460626_R1.fastq.gz
+Approx 5% complete for SRR14460626_R1.fastq.gz
+Approx 10% complete for SRR14460626_R1.fastq.gz
+Approx 15% complete for SRR14460626_R1.fastq.gz
+Approx 20% complete for SRR14460626_R1.fastq.gz
+Approx 25% complete for SRR14460626_R1.fastq.gz
+Approx 30% complete for SRR14460626_R1.fastq.gz
+Approx 35% complete for SRR14460626_R1.fastq.gz
+Approx 40% complete for SRR14460626_R1.fastq.gz
+Approx 45% complete for SRR14460626_R1.fastq.gz
+Approx 50% complete for SRR14460626_R1.fastq.gz
+Approx 55% complete for SRR14460626_R1.fastq.gz
+Approx 60% complete for SRR14460626_R1.fastq.gz
+Approx 65% complete for SRR14460626_R1.fastq.gz
+Approx 70% complete for SRR14460626_R1.fastq.gz
+Approx 75% complete for SRR14460626_R1.fastq.gz
+Approx 80% complete for SRR14460626_R1.fastq.gz
+Approx 85% complete for SRR14460626_R1.fastq.gz
+Approx 90% complete for SRR14460626_R1.fastq.gz
+Approx 95% complete for SRR14460626_R1.fastq.gz
+Analysis complete for SRR14460626_R1.fastq.gz
+Started analysis of SRR14460626_R2.fastq.gz
+Approx 5% complete for SRR14460626_R2.fastq.gz
+Approx 10% complete for SRR14460626_R2.fastq.gz
+Approx 15% complete for SRR14460626_R2.fastq.gz
+Approx 20% complete for SRR14460626_R2.fastq.gz
+Approx 25% complete for SRR14460626_R2.fastq.gz
+Approx 30% complete for SRR14460626_R2.fastq.gz
+Approx 35% complete for SRR14460626_R2.fastq.gz
+Approx 40% complete for SRR14460626_R2.fastq.gz
+Approx 45% complete for SRR14460626_R2.fastq.gz
+Approx 50% complete for SRR14460626_R2.fastq.gz
+Approx 55% complete for SRR14460626_R2.fastq.gz
+Approx 60% complete for SRR14460626_R2.fastq.gz
+Approx 65% complete for SRR14460626_R2.fastq.gz
+Approx 70% complete for SRR14460626_R2.fastq.gz
+Approx 75% complete for SRR14460626_R2.fastq.gz
+Approx 80% complete for SRR14460626_R2.fastq.gz
+Approx 85% complete for SRR14460626_R2.fastq.gz
+Approx 90% complete for SRR14460626_R2.fastq.gz
+Approx 95% complete for SRR14460626_R2.fastq.gz
+Analysis complete for SRR14460626_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460627_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460627_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460627_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460627_R1.fastq.gz
+Approx 5% complete for SRR14460627_R1.fastq.gz
+Approx 10% complete for SRR14460627_R1.fastq.gz
+Approx 15% complete for SRR14460627_R1.fastq.gz
+Approx 20% complete for SRR14460627_R1.fastq.gz
+Approx 25% complete for SRR14460627_R1.fastq.gz
+Approx 30% complete for SRR14460627_R1.fastq.gz
+Approx 35% complete for SRR14460627_R1.fastq.gz
+Approx 40% complete for SRR14460627_R1.fastq.gz
+Approx 45% complete for SRR14460627_R1.fastq.gz
+Approx 50% complete for SRR14460627_R1.fastq.gz
+Approx 55% complete for SRR14460627_R1.fastq.gz
+Approx 60% complete for SRR14460627_R1.fastq.gz
+Approx 65% complete for SRR14460627_R1.fastq.gz
+Approx 70% complete for SRR14460627_R1.fastq.gz
+Approx 75% complete for SRR14460627_R1.fastq.gz
+Approx 80% complete for SRR14460627_R1.fastq.gz
+Approx 85% complete for SRR14460627_R1.fastq.gz
+Approx 90% complete for SRR14460627_R1.fastq.gz
+Approx 95% complete for SRR14460627_R1.fastq.gz
+Analysis complete for SRR14460627_R1.fastq.gz
+Started analysis of SRR14460627_R2.fastq.gz
+Approx 5% complete for SRR14460627_R2.fastq.gz
+Approx 10% complete for SRR14460627_R2.fastq.gz
+Approx 15% complete for SRR14460627_R2.fastq.gz
+Approx 20% complete for SRR14460627_R2.fastq.gz
+Approx 25% complete for SRR14460627_R2.fastq.gz
+Approx 30% complete for SRR14460627_R2.fastq.gz
+Approx 35% complete for SRR14460627_R2.fastq.gz
+Approx 40% complete for SRR14460627_R2.fastq.gz
+Approx 45% complete for SRR14460627_R2.fastq.gz
+Approx 50% complete for SRR14460627_R2.fastq.gz
+Approx 55% complete for SRR14460627_R2.fastq.gz
+Approx 60% complete for SRR14460627_R2.fastq.gz
+Approx 65% complete for SRR14460627_R2.fastq.gz
+Approx 70% complete for SRR14460627_R2.fastq.gz
+Approx 75% complete for SRR14460627_R2.fastq.gz
+Approx 80% complete for SRR14460627_R2.fastq.gz
+Approx 85% complete for SRR14460627_R2.fastq.gz
+Approx 90% complete for SRR14460627_R2.fastq.gz
+Approx 95% complete for SRR14460627_R2.fastq.gz
+Analysis complete for SRR14460627_R2.fastq.gz
+hts_Stats -L /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'initial stats' -1 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460628_1.fastq.gz -2 /restricted/projectnb/challenge2025/Data/PRJNA726840/SRR14460628_2.fastq.gz | hts_SeqScreener -r -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'screen phix' | hts_SeqScreener -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'count the number of rRNA reads' -r -s /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/human_rRNA.fasta | hts_AdapterTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'trim adapters' | hts_QWindowTrim -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'quality trim the ends of reads' | hts_NTrimmer -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'remove any remaining N bases' | hts_LengthFilter -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'remove reads < 30 bp' -n -m 30 | hts_Stats -A /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628.json -N 'final stats' -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628
+fastqc /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628_R1.fastq.gz /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840/SRR14460628_R2.fastq.gz --outdir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840 --dir /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+application/gzip
+application/gzip
+Started analysis of SRR14460628_R1.fastq.gz
+Approx 5% complete for SRR14460628_R1.fastq.gz
+Approx 10% complete for SRR14460628_R1.fastq.gz
+Approx 15% complete for SRR14460628_R1.fastq.gz
+Approx 20% complete for SRR14460628_R1.fastq.gz
+Approx 25% complete for SRR14460628_R1.fastq.gz
+Approx 30% complete for SRR14460628_R1.fastq.gz
+Approx 35% complete for SRR14460628_R1.fastq.gz
+Approx 40% complete for SRR14460628_R1.fastq.gz
+Approx 45% complete for SRR14460628_R1.fastq.gz
+Approx 50% complete for SRR14460628_R1.fastq.gz
+Approx 55% complete for SRR14460628_R1.fastq.gz
+Approx 60% complete for SRR14460628_R1.fastq.gz
+Approx 65% complete for SRR14460628_R1.fastq.gz
+Approx 70% complete for SRR14460628_R1.fastq.gz
+Approx 75% complete for SRR14460628_R1.fastq.gz
+Approx 80% complete for SRR14460628_R1.fastq.gz
+Approx 85% complete for SRR14460628_R1.fastq.gz
+Approx 90% complete for SRR14460628_R1.fastq.gz
+Approx 95% complete for SRR14460628_R1.fastq.gz
+Analysis complete for SRR14460628_R1.fastq.gz
+Started analysis of SRR14460628_R2.fastq.gz
+Approx 5% complete for SRR14460628_R2.fastq.gz
+Approx 10% complete for SRR14460628_R2.fastq.gz
+Approx 15% complete for SRR14460628_R2.fastq.gz
+Approx 20% complete for SRR14460628_R2.fastq.gz
+Approx 25% complete for SRR14460628_R2.fastq.gz
+Approx 30% complete for SRR14460628_R2.fastq.gz
+Approx 35% complete for SRR14460628_R2.fastq.gz
+Approx 40% complete for SRR14460628_R2.fastq.gz
+Approx 45% complete for SRR14460628_R2.fastq.gz
+Approx 50% complete for SRR14460628_R2.fastq.gz
+Approx 55% complete for SRR14460628_R2.fastq.gz
+Approx 60% complete for SRR14460628_R2.fastq.gz
+Approx 65% complete for SRR14460628_R2.fastq.gz
+Approx 70% complete for SRR14460628_R2.fastq.gz
+Approx 75% complete for SRR14460628_R2.fastq.gz
+Approx 80% complete for SRR14460628_R2.fastq.gz
+Approx 85% complete for SRR14460628_R2.fastq.gz
+Approx 90% complete for SRR14460628_R2.fastq.gz
+Approx 95% complete for SRR14460628_R2.fastq.gz
+Analysis complete for SRR14460628_R2.fastq.gz
+multiqc -i multiqc_PRJNA726840 -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/02-MultiQC -f /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+
+/// MultiQC v1.33.dev0
+
+     update_config | Report title: multiqc_PRJNA726840
+       file_search | Search path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro/PRJNA726840
+          htstream | Found 12 reports.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+          htstream | Inconsistent order of HTStream applications.
+       SeqScreener | HTStream: Zero Reads or Basepairs Reported for *.
+       SeqScreener | HTStream: Zero Reads or Basepairs Reported for *.
+    AdapterTrimmer | HTStream: Zero Reads or Basepairs Reported for *.
+       QWindowTrim | HTStream: Zero Reads or Basepairs Reported for *.
+          NTrimmer | HTStream: Zero Reads or Basepairs Reported for *.
+      LengthFilter | HTStream: Zero Reads or Basepairs Reported for *.
+             Stats | HTStream: Zero Reads or Basepairs Reported for *.
+╭──────────────── Oops! The 'htstream' MultiQC module broke... ────────────────╮
+│ Please copy this log and report it at                                        │
+│ https://github.com/MultiQC/MultiQC/issues                                    │
+│ Please attach a file that triggers the error. The last file found was:       │
+│ /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/01-HTStream_prepro │
+│ /PRJNA726840/SRR14460628.json                                                │
+│                                                                              │
+│ Traceback (most recent call last):                                           │
+│   File "/restricted/projectnb/challenge2025/software/conda_envs/HTStream_v1. │
+│     these_modules: Union[BaseMultiqcModule, List[BaseMultiqcModule]] = modul │
+│                                                                        ~~~~~ │
+│   File "/restricted/projectnb/challenge2025/software/conda_envs/HTStream_v1. │
+│     self.process_data(self.htstream_data)                                    │
+│     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^                                    │
+│   File "/restricted/projectnb/challenge2025/software/conda_envs/HTStream_v1. │
+│     stats_dict[key] = json[key][app]                                         │
+│                       ~~~~~~~~~^^^^^                                         │
+│ KeyError: 'hts_SeqScreener_3'                                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+            fastqc | Found 22 reports
+     write_results | Data        : /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/02-MultiQC/multiqc_PRJNA726840_multiqc_report_data   (overwritten)
+     write_results | Report      : /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/02-MultiQC/multiqc_PRJNA726840_multiqc_report.html   (overwritten)
+           multiqc | MultiQC complete
+159

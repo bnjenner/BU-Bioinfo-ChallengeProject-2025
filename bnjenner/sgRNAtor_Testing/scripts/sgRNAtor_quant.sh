@@ -3,6 +3,8 @@
 #$ -P challenge2025
 #$ -N sgrnaquant
 #$ -t 1-11
+#$ -pe omp 4
+#$ -l mem_per_core=2G
 #$ -o logs/sgRNAQuant
 #$ -e logs/sgRNAQuant
 #$ -m bea
@@ -11,7 +13,7 @@ start=`date +%s`
 echo $HOSTNAME
 echo "My SGE_TASK_ID: " $SGE_TASK_ID
 
-threads=${NSLOTS}
+threads=4
 echo "THREADS: ${threads}"
 
 sample=`sed "${SGE_TASK_ID}q;d" samples_PRJNA726840.txt`

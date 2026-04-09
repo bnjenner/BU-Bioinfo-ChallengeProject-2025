@@ -1,6 +1,7 @@
 import os
 import sys
 import argparse
+from sgRNAtor import prepro
 from sgRNAtor import search
 from sgRNAtor import align
 from sgRNAtor import quantify
@@ -71,41 +72,41 @@ def main():
 
 	# Specify Input and Output files
 	fastq_files = [args.fastq, args.fastq2]
-	trimmed_files = []
-	aligned_file = f"{args.output_prefix}_aligned_sgRNA.bam"
 	orfs_tsv = f"{args.output_prefix}_ORF_counts.txt"
 	sgrnas_tsv = f"{args.output_prefix}_sgRNA_counts.txt"
 	summary_tsv = f"{args.output_prefix}_summary.txt"
-	for i in range(len(fastq_files)):
-		if fastq_files[i] is None:
-			continue
-		read = f"R{i+1}"
-		trimmed_files.append(f"{args.output_prefix}_trimmed_{read}.fastq.gz")
-
+	
 	# Specify PE
 	is_PairedEnd = False
-	if len(trimmed_files) == 2:
+	if fastq_files[1] is not None:
 		is_PairedEnd = True
 	else:
 		 fastq_files = fastq_files[:-1]
 
 
 	# Initialize Stat Collector
+	print(f"// sgRNAtor")
 	summary = stats.sgRNAstats(sample = args.output_prefix)
 
 	# Create sgRNAsearch Object
-	print(f"// sgRNAtor")
+	print("// Trimming Sequencing Adapters")
+	hts = prepro.preproHTStream()
+	hts.trimadapaters(input_fastq = fastq_files,
+					  output_prefix = args.output_prefix,
+					  threads=1)
+
+	# Create sgRNAsearch Object
 	print("// Initializing sgRNAsearch Object")
-	sgRNAs = search.sgRNAsearch(fastq_files = fastq_files,
+	sgRNAs = search.sgRNAsearch(fastq_files = hts.output_files,
 								leader = args.leader_fasta,
 								PE = is_PairedEnd)
 
 	# Find leader sequence
 	print("// Beginning sgRNA search")
-	sgRNAs.find_sgRNAs(output_files = trimmed_files,
-					   threads = args.threads,
+	sgRNAs.find_sgRNAs(output_prefix = args.output_prefix,
 					   min_match = args.min_match,
-					   max_edit = args.max_edit)
+					   max_edit = args.max_edit,
+					   threads = args.threads)
 	# Add Stats
 	summary.library_size = sgRNAs.library_size
 	summary.trs_found    = sgRNAs.matches
@@ -114,14 +115,14 @@ def main():
 	# Align Trimmed Sequences
 	print("// Beginning BWA Alignment")
 	bwa = align.alignBWA(args.reference)
-	bwa.align(input_fastq = trimmed_files, 
-			  output_bam = aligned_file,
+	bwa.align(input_fastq = sgRNAs.output_files, 
+			  output_prefix = args.output_prefix,
 			  threads = args.threads)
 
 
 	# Identify sgRNA Positions and ORFs
 	print("// Beginning sgRNA Quantification")
-	quant = quantify.sgRNAquantify(bam = aligned_file)
+	quant = quantify.sgRNAquantify(bam = bwa.output_file)
 	quant.find_template_switches()
 	quant.assign_TSS_to_orfs(tss_bed = args.tss_bed, window = args.tss_window)
 

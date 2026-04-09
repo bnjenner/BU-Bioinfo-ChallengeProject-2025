@@ -10,7 +10,7 @@ from sgRNAtor import utils
 class alignBWA:
 
 	def __init__(self, reference):
-		self.reference = reference
+		self.output_file = None
 
 	#################################
 	# Check Reference Index Exists
@@ -21,8 +21,11 @@ class alignBWA:
 
 	#################################
 	# Align Sequences
-	def align(self, input_fastq, output_bam, threads=1):
+	def align(self, input_fastq, output_prefix, threads=1):
 		
+		# Set Output File 
+		self.output_file = f"{output_prefix}_aligned_sgRNA.bam"
+
 		# Check Reference Index
 		if not self.__index_exists():
 			raise RuntimeError(f"// ERROR: Index for {self.reference} does not exist.")
@@ -33,7 +36,7 @@ class alignBWA:
 			bwa_command.append(input_fastq[1])
 
 		# Open BAM file for writing
-		with open(output_bam, "wb") as bam_out:
+		with open(self.output_file, "wb") as bam_out:
 			try:
 				# Start BWA process
 				bwa_proc = subprocess.Popen(
@@ -66,4 +69,4 @@ class alignBWA:
 			except Exception as e:
 				raise RuntimeError(f"Alignment failed: {str(e)}")
 
-		print(f"// Output written to {output_bam}")
+		print(f"// Output written to {self.output_file}")

@@ -18,12 +18,13 @@ class sgRNAsearch:
 		self.matches = 0
 		self.library_size = 0
 		self.PE = PE
+		self.output_files = None
 
 	#################################
 	# Iterate through fastq files
 	def __iterate_reads(self, fastq_files):
 		'''
-		Arbitrary handle for SE or PE reads and handles file closing after iterations
+		Arbitrary handle for SE or 1682652 / 4PE reads and handles file closing after iterations
 		'''
 		with ExitStack() as stack:
 			handles = [
@@ -147,7 +148,7 @@ class sgRNAsearch:
 
 	#################################
 	# Find sgRNA main function
-	def find_sgRNAs(self, output_files, threads=1, min_match=8, max_edit=0, chunk_size=10000):
+	def find_sgRNAs(self, output_prefix, threads=1, min_match=8, max_edit=0, chunk_size=10000):
 		'''
 		This one's a bit of a beast but essentially it handles SE and PE reads without needing separte
 		functions, processes them in chunks in a multithreaded fashion, and writes the output in a
@@ -157,19 +158,16 @@ class sgRNAsearch:
 		'''
 
 		print(f"// Trimming FASTQ Files {self.fastq_files}")
-
-		# Check Inputs Match Outputs
-		if len(output_files) != len(self.fastq_files):
-			msg = (f"// ERROR: Number of input and output files do not match." +
-				   f"//     Input:  {self.fastq_files}" +
-				   f"//     Output: {output_files}")
-			raise RuntimeError(msg)
-
 		
 		# Create GZIP out file handles	
 		out_handles = []
 		for i in range(len(self.fastq_files)):
-			out_handles.append(gzip.open(output_files[i], "wt"))
+			
+			if self.output_files is None:
+				self.output_files = []
+			
+			self.output_files.append(f"{output_prefix}_sgRNA_R{i}.fastq.gz")
+			out_handles.append(gzip.open(self.output_files[i], "wt"))
 
 
 		next_seq = 0         # Allows for seq iteration
@@ -247,7 +245,7 @@ class sgRNAsearch:
 		# Close all opened GZIP output files
 		for i in range(len(out_handles)):
 			out_handles[i].close
-			print(f"// Output written to {output_files[i]}")
+			print(f"// Output written to {self.output_files[i]}")
 
 
 		print(f"// sgRNAs found: {self.matches}")

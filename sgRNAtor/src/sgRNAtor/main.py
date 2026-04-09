@@ -86,6 +86,8 @@ def main():
 	is_PairedEnd = False
 	if len(trimmed_files) == 2:
 		is_PairedEnd = True
+	else:
+		 fastq_files = fastq_files[:-1]
 
 
 	# Initialize Stat Collector

@@ -23,8 +23,8 @@ def gzip_handler(file):
         with gzip.open(file, 'rb') as f:
             f.read(1) 
         return gzip.open(file, "rt")
-    except (gzip.BadGzipFile): # zlib must be imported for zlib.error
-        return file
+    except (gzip.BadGzipFile):
+        return open(file, "r")
     except (EOFError, zlib.error, OSError):
         raise RuntimeError(f"// ERROR: Error checking gzip status on {file}")
 

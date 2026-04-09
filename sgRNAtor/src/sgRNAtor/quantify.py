@@ -10,10 +10,10 @@ class sgRNAquantify:
 	def __init__(self, bam):
 		self.bam = bam
 		self.aligned_fragments = 0
+		self.gRNA_counts = 0
 		self.reads = {}
 		self.sgRNA_counts = {}
 		self.tss_dict = {}
-		self.ambiguous = 0
 
 
 	#################################

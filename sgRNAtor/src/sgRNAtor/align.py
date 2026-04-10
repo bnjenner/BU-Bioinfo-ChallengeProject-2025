@@ -10,6 +10,7 @@ from sgRNAtor import utils
 class alignBWA:
 
 	def __init__(self, reference):
+		self.reference = reference
 		self.output_file = None
 
 	#################################

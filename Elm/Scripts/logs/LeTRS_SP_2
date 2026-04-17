@@ -1,0 +1,1994 @@
+scc-gk1
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: PRJNA934289
+SAMPLE: SRR23438390
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:20
+566728 reads; of these:
+  566728 (100.00%) were paired; of these:
+    16548 (2.92%) aligned concordantly 0 times
+    550150 (97.07%) aligned concordantly exactly 1 time
+    30 (0.01%) aligned concordantly >1 times
+    ----
+    16548 pairs aligned concordantly 0 times; of these:
+      2984 (18.03%) aligned discordantly 1 time
+    ----
+    13564 pairs aligned 0 times concordantly or discordantly; of these:
+      27128 mates make up the pairs; of these:
+        20019 (73.79%) aligned 0 times
+        7089 (26.13%) aligned exactly 1 time
+        20 (0.07%) aligned >1 times
+98.23% overall alignment rate
+Time searching: 00:00:21
+Overall time: 00:00:21
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Prepped genome file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Prepped genome index file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+Prepped BAM file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Prepped BAM index file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Prepped sorted BAM detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment.mapping.summary -1 /tmp/448501.inpipe1 -2 /tmp/448501.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+[fai_fetch_seq] The sequence "NC_045512.2" not found
+[fai_fetch_seq] The sequence "NC_045512.2" not found
+terminate called after throwing an instance of 'boost::exception_detail::clone_impl<portcullis::JunctionException>'
+  what():  std::exception
+looking for the leader-TRS
+scc-ya4
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: PRJNA934289
+SAMPLE: SRR23438390
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438390_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:22
+566728 reads; of these:
+  566728 (100.00%) were paired; of these:
+    16548 (2.92%) aligned concordantly 0 times
+    550150 (97.07%) aligned concordantly exactly 1 time
+    30 (0.01%) aligned concordantly >1 times
+    ----
+    16548 pairs aligned concordantly 0 times; of these:
+      2984 (18.03%) aligned discordantly 1 time
+    ----
+    13564 pairs aligned 0 times concordantly or discordantly; of these:
+      27128 mates make up the pairs; of these:
+        20019 (73.79%) aligned 0 times
+        7089 (26.13%) aligned exactly 1 time
+        20 (0.07%) aligned >1 times
+98.23% overall alignment rate
+Time searching: 00:00:22
+Overall time: 00:00:22
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment.mapping.summary -1 /tmp/3444786.inpipe1 -2 /tmp/3444786.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	     1091159	       17523	     1108682
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 1108682 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 565 junctions from 17523 spliced alignments.
+ - Found 1091159 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.5s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438390/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:1495
+ - R2:1557
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 70
+ - R1-: 165
+ - R2+: 79
+ - R2-: 203
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 74
+ - R1-: 1186
+ - R2+: 108
+ - R2-: 1167
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -0.404255
+ - R1-: 0.88254
+ - R2+: -0.439716
+ - R2-: 0.830588
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 1.6s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 554332
+Total reads/read pairs with left primer only in both pools: 28693
+Total reads/read pairs with right primer only in both pools: 26639
+Total reads/read pairs with both primers in both pools: 498460
+Total reads/read pairs with at least one primer in both pools: 553792
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438391
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438391_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438391_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438391_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438391_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:19
+495827 reads; of these:
+  495827 (100.00%) were paired; of these:
+    17115 (3.45%) aligned concordantly 0 times
+    478705 (96.55%) aligned concordantly exactly 1 time
+    7 (0.00%) aligned concordantly >1 times
+    ----
+    17115 pairs aligned concordantly 0 times; of these:
+      2449 (14.31%) aligned discordantly 1 time
+    ----
+    14666 pairs aligned 0 times concordantly or discordantly; of these:
+      29332 mates make up the pairs; of these:
+        22867 (77.96%) aligned 0 times
+        6465 (22.04%) aligned exactly 1 time
+        0 (0.00%) aligned >1 times
+97.69% overall alignment rate
+Time searching: 00:00:19
+Overall time: 00:00:19
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment.mapping.summary -1 /tmp/3444989.inpipe1 -2 /tmp/3444989.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      949453	       15123	      964576
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 964576 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 519 junctions from 15123 spliced alignments.
+ - Found 949453 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.3s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438391/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:305
+ - R2:312
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 74
+ - R1-: 88
+ - R2+: 71
+ - R2-: 88
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 66
+ - R1-: 77
+ - R2+: 52
+ - R2-: 101
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -0.0864198
+ - R1-: 0.0769231
+ - R2+: -0.106918
+ - R2-: 0.320261
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unstranded - can't determine transcript strand from read strand
+
+
+Portcullis junc completed.
+Total runtime: 1.4s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 482288
+Total reads/read pairs with left primer only in both pools: 22762
+Total reads/read pairs with right primer only in both pools: 23264
+Total reads/read pairs with both primers in both pools: 435822
+Total reads/read pairs with at least one primer in both pools: 481848
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438392
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438392_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438392_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438392_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438392_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:18
+495927 reads; of these:
+  495927 (100.00%) were paired; of these:
+    13625 (2.75%) aligned concordantly 0 times
+    482286 (97.25%) aligned concordantly exactly 1 time
+    16 (0.00%) aligned concordantly >1 times
+    ----
+    13625 pairs aligned concordantly 0 times; of these:
+      2346 (17.22%) aligned discordantly 1 time
+    ----
+    11279 pairs aligned 0 times concordantly or discordantly; of these:
+      22558 mates make up the pairs; of these:
+        16330 (72.39%) aligned 0 times
+        6226 (27.60%) aligned exactly 1 time
+        2 (0.01%) aligned >1 times
+98.35% overall alignment rate
+Time searching: 00:00:18
+Overall time: 00:00:18
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment.mapping.summary -1 /tmp/3445201.inpipe1 -2 /tmp/3445201.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      955967	       15381	      971348
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 971348 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 518 junctions from 15381 spliced alignments.
+ - Found 955967 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.3s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438392/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:2142
+ - R2:2196
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 187
+ - R1-: 110
+ - R2+: 172
+ - R2-: 128
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 577
+ - R1-: 1268
+ - R2+: 595
+ - R2-: 1301
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: 0.259259
+ - R1-: 0.374526
+ - R2+: 0.146667
+ - R2-: 0.372363
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unstranded - can't determine transcript strand from read strand
+
+
+Portcullis junc completed.
+Total runtime: 1.4s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 485673
+Total reads/read pairs with left primer only in both pools: 20545
+Total reads/read pairs with right primer only in both pools: 19277
+Total reads/read pairs with both primers in both pools: 445689
+Total reads/read pairs with at least one primer in both pools: 485511
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438393
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438393_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438393_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438393_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438393_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:16
+422073 reads; of these:
+  422073 (100.00%) were paired; of these:
+    15778 (3.74%) aligned concordantly 0 times
+    406287 (96.26%) aligned concordantly exactly 1 time
+    8 (0.00%) aligned concordantly >1 times
+    ----
+    15778 pairs aligned concordantly 0 times; of these:
+      1662 (10.53%) aligned discordantly 1 time
+    ----
+    14116 pairs aligned 0 times concordantly or discordantly; of these:
+      28232 mates make up the pairs; of these:
+        21698 (76.86%) aligned 0 times
+        6528 (23.12%) aligned exactly 1 time
+        6 (0.02%) aligned >1 times
+97.43% overall alignment rate
+Time searching: 00:00:16
+Overall time: 00:00:16
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment.mapping.summary -1 /tmp/3445446.inpipe1 -2 /tmp/3445446.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      806809	       11301	      818110
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 818110 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 454 junctions from 11301 spliced alignments.
+ - Found 806809 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.1s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438393/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:377
+ - R2:412
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 161
+ - R1-: 123
+ - R2+: 176
+ - R2-: 132
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 42
+ - R1-: 51
+ - R2+: 39
+ - R2-: 65
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: 0.133803
+ - R1-: 0.0967742
+ - R2+: 0.142857
+ - R2-: 0.25
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unstranded - can't determine transcript strand from read strand
+
+
+Portcullis junc completed.
+Total runtime: 1.1s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 409053
+Total reads/read pairs with left primer only in both pools: 18531
+Total reads/read pairs with right primer only in both pools: 18840
+Total reads/read pairs with both primers in both pools: 371432
+Total reads/read pairs with at least one primer in both pools: 408803
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438394
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438394_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438394_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438394_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438394_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:17
+453015 reads; of these:
+  453015 (100.00%) were paired; of these:
+    10790 (2.38%) aligned concordantly 0 times
+    442221 (97.62%) aligned concordantly exactly 1 time
+    4 (0.00%) aligned concordantly >1 times
+    ----
+    10790 pairs aligned concordantly 0 times; of these:
+      1487 (13.78%) aligned discordantly 1 time
+    ----
+    9303 pairs aligned 0 times concordantly or discordantly; of these:
+      18606 mates make up the pairs; of these:
+        12773 (68.65%) aligned 0 times
+        5833 (31.35%) aligned exactly 1 time
+        0 (0.00%) aligned >1 times
+98.59% overall alignment rate
+Time searching: 00:00:17
+Overall time: 00:00:17
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment.mapping.summary -1 /tmp/3445593.inpipe1 -2 /tmp/3445593.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      866970	       22870	      889840
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 889840 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 398 junctions from 22870 spliced alignments.
+ - Found 866970 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.4s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438394/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:384
+ - R2:460
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 136
+ - R1-: 117
+ - R2+: 154
+ - R2-: 147
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 43
+ - R1-: 88
+ - R2+: 52
+ - R2-: 107
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: 0.0750988
+ - R1-: 0.343511
+ - R2+: 0.0232558
+ - R2-: 0.345912
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unstranded - can't determine transcript strand from read strand
+
+
+Portcullis junc completed.
+Total runtime: 1.4s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 444920
+Total reads/read pairs with left primer only in both pools: 6392
+Total reads/read pairs with right primer only in both pools: 6394
+Total reads/read pairs with both primers in both pools: 432332
+Total reads/read pairs with at least one primer in both pools: 445118
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438395
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438395_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438395_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438395_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438395_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:19
+491089 reads; of these:
+  491089 (100.00%) were paired; of these:
+    78128 (15.91%) aligned concordantly 0 times
+    412955 (84.09%) aligned concordantly exactly 1 time
+    6 (0.00%) aligned concordantly >1 times
+    ----
+    78128 pairs aligned concordantly 0 times; of these:
+      1800 (2.30%) aligned discordantly 1 time
+    ----
+    76328 pairs aligned 0 times concordantly or discordantly; of these:
+      152656 mates make up the pairs; of these:
+        145130 (95.07%) aligned 0 times
+        7525 (4.93%) aligned exactly 1 time
+        1 (0.00%) aligned >1 times
+85.22% overall alignment rate
+Time searching: 00:00:19
+Overall time: 00:00:19
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment.mapping.summary -1 /tmp/3445829.inpipe1 -2 /tmp/3445829.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      808226	       23759	      831985
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 831985 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 379 junctions from 23759 spliced alignments.
+ - Found 808226 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.4s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438395/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:3070
+ - R2:3083
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 124
+ - R1-: 143
+ - R2+: 139
+ - R2-: 137
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 2754
+ - R1-: 49
+ - R2+: 2757
+ - R2-: 50
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -0.071161
+ - R1-: -0.965037
+ - R2+: 0.00724638
+ - R2-: -0.964375
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 1.4s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 415992
+Total reads/read pairs with left primer only in both pools: 6490
+Total reads/read pairs with right primer only in both pools: 11258
+Total reads/read pairs with both primers in both pools: 398363
+Total reads/read pairs with at least one primer in both pools: 416111
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438396
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438396_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438396_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438396_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438396_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:19
+508868 reads; of these:
+  508868 (100.00%) were paired; of these:
+    12100 (2.38%) aligned concordantly 0 times
+    496745 (97.62%) aligned concordantly exactly 1 time
+    23 (0.00%) aligned concordantly >1 times
+    ----
+    12100 pairs aligned concordantly 0 times; of these:
+      1996 (16.50%) aligned discordantly 1 time
+    ----
+    10104 pairs aligned 0 times concordantly or discordantly; of these:
+      20208 mates make up the pairs; of these:
+        14528 (71.89%) aligned 0 times
+        5504 (27.24%) aligned exactly 1 time
+        176 (0.87%) aligned >1 times
+98.57% overall alignment rate
+Time searching: 00:00:20
+Overall time: 00:00:20
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment.mapping.summary -1 /tmp/3446412.inpipe1 -2 /tmp/3446412.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      983193	       15864	      999057
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 999057 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 570 junctions from 15864 spliced alignments.
+ - Found 983193 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.4s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438396/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:2280
+ - R2:2436
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 443
+ - R1-: 125
+ - R2+: 456
+ - R2-: 130
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 58
+ - R1-: 1654
+ - R2+: 76
+ - R2-: 1774
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: 0.559859
+ - R1-: 0.932243
+ - R2+: 0.556314
+ - R2-: 0.917838
+
+Determined sequence orientation to be: Paired-End (FF): Forward Forward (-> ->)
+Determined RNAseq strandedness to be: Secondstrand - R1 is on transcript strand
+
+
+Portcullis junc completed.
+Total runtime: 1.4s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 499441
+Total reads/read pairs with left primer only in both pools: 21263
+Total reads/read pairs with right primer only in both pools: 18126
+Total reads/read pairs with both primers in both pools: 460096
+Total reads/read pairs with at least one primer in both pools: 499485
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438397
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438397_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438397_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438397_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438397_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:17
+448233 reads; of these:
+  448233 (100.00%) were paired; of these:
+    15690 (3.50%) aligned concordantly 0 times
+    432540 (96.50%) aligned concordantly exactly 1 time
+    3 (0.00%) aligned concordantly >1 times
+    ----
+    15690 pairs aligned concordantly 0 times; of these:
+      2699 (17.20%) aligned discordantly 1 time
+    ----
+    12991 pairs aligned 0 times concordantly or discordantly; of these:
+      25982 mates make up the pairs; of these:
+        20269 (78.01%) aligned 0 times
+        5126 (19.73%) aligned exactly 1 time
+        587 (2.26%) aligned >1 times
+97.74% overall alignment rate
+Time searching: 00:00:18
+Overall time: 00:00:18
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment.mapping.summary -1 /tmp/3446551.inpipe1 -2 /tmp/3446551.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      859373	       12459	      871832
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 871832 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 485 junctions from 12459 spliced alignments.
+ - Found 859373 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.2s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438397/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:1000
+ - R2:992
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 436
+ - R1-: 146
+ - R2+: 442
+ - R2-: 147
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 37
+ - R1-: 381
+ - R2+: 47
+ - R2-: 356
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: 0.498282
+ - R1-: 0.822967
+ - R2+: 0.500849
+ - R2-: 0.766749
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 1.2s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 435623
+Total reads/read pairs with left primer only in both pools: 18810
+Total reads/read pairs with right primer only in both pools: 18423
+Total reads/read pairs with both primers in both pools: 397991
+Total reads/read pairs with at least one primer in both pools: 435224
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438398
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438398_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438398_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438398_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438398_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:19
+534165 reads; of these:
+  534165 (100.00%) were paired; of these:
+    12337 (2.31%) aligned concordantly 0 times
+    521828 (97.69%) aligned concordantly exactly 1 time
+    0 (0.00%) aligned concordantly >1 times
+    ----
+    12337 pairs aligned concordantly 0 times; of these:
+      1900 (15.40%) aligned discordantly 1 time
+    ----
+    10437 pairs aligned 0 times concordantly or discordantly; of these:
+      20874 mates make up the pairs; of these:
+        15949 (76.41%) aligned 0 times
+        4903 (23.49%) aligned exactly 1 time
+        22 (0.11%) aligned >1 times
+98.51% overall alignment rate
+Time searching: 00:00:20
+Overall time: 00:00:20
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment.mapping.summary -1 /tmp/3446750.inpipe1 -2 /tmp/3446750.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	     1042525	        5939	     1048464
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 1048464 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 86 junctions from 5939 spliced alignments.
+ - Found 1042525 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.2s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438398/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:554
+ - R2:631
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 487
+ - R1-: 26
+ - R2+: 553
+ - R2-: 28
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 24
+ - R1-: 17
+ - R2+: 35
+ - R2-: 15
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: 0.898635
+ - R1-: -0.170732
+ - R2+: 0.903614
+ - R2-: -0.4
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 1.2s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 524221
+Total reads/read pairs with left primer only in both pools: 11771
+Total reads/read pairs with right primer only in both pools: 11890
+Total reads/read pairs with both primers in both pools: 501288
+Total reads/read pairs with at least one primer in both pools: 524949
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+SAMPLE: SRR23438399
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438399_1.fastq.gz:/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438399_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399
+the position of the first A in ployA tail is 29871 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438399_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/PRJNA934289/SRR23438399_2.fastq.gz
+the hisat2-build has done
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:19
+519696 reads; of these:
+  519696 (100.00%) were paired; of these:
+    30234 (5.82%) aligned concordantly 0 times
+    489459 (94.18%) aligned concordantly exactly 1 time
+    3 (0.00%) aligned concordantly >1 times
+    ----
+    30234 pairs aligned concordantly 0 times; of these:
+      4074 (13.47%) aligned discordantly 1 time
+    ----
+    26160 pairs aligned 0 times concordantly or discordantly; of these:
+      52320 mates make up the pairs; of these:
+        42175 (80.61%) aligned 0 times
+        9829 (18.79%) aligned exactly 1 time
+        316 (0.60%) aligned >1 times
+95.94% overall alignment rate
+Time searching: 00:00:19
+Overall time: 00:00:19
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome --known-splicesite-infile /restricted/projectnb/challenge2025/software/LeTRS/references-sars-cov-2/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment.mapping.summary -1 /tmp/3446999.inpipe1 -2 /tmp/3446999.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - NC_045512.2
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+NC_045512.2 	      984100	        4128	      988228
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 988228 alignments.
+ - Alignment query length statistics: min: 251; mean: 251; max: 251;
+ - Found 92 junctions from 4128 spliced alignments.
+ - Found 984100 unspliced alignments.
+ - Calculating junctions stats that require comparisons with other junctions... done.
+ = Wall time taken: 1.1s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/PRJNA934289/SRR23438399/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:397
+ - R2:426
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 357
+ - R1-: 14
+ - R2+: 386
+ - R2-: 10
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 12
+ - R1-: 14
+ - R2+: 15
+ - R2-: 15
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: 0.924528
+ - R1-: 0.0769231
+ - R2+: 0.949495
+ - R2-: 0
+
+Determined sequence orientation to be: Paired-End (FR): Forward Reverse (-> <-)
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 1.1s
+
+looking for the leader-TRS
+Total mapped read/read pairs in both pools: 493956
+Total reads/read pairs with left primer only in both pools: 11744
+Total reads/read pairs with right primer only in both pools: 9934
+Total reads/read pairs with both primers in both pools: 472710
+Total reads/read pairs with at least one primer in both pools: 494388
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+2041
+scc-go3
+My SGE_TASK_ID:  1
+------------------------------------------------------------------------------
+WARNING:
+You do not have a .condarc file in your home directory. This file is used
+to configure the default location for conda environments and packages. By
+default conda will store its environments and download packages in your
+home directory. Home directory quotas are limited to 10GB and this is easily
+reached with the installation of a few conda environments.
+
+Before using conda on the SCC run this script to create a default .condarc
+file that will use your /projectnb directory for storage:
+
+    setup_scc_condarc.sh
+
+The ~/.condarc file can be edited if needed, although the recommended method is
+to use the "conda config" command. For more information, see this page:
+https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+
+For more information on the .condarc file and the SCC please see:
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
+------------------------------------------------------------------------------ 
+DATA: new_data_4_elm/alpha-00148
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz
+the hisat2-build has done
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz: No such file or directory
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz: No such file or directory
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome.fasta" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Existing genome index not found.  Will create later.
+Indexing genome "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.genome.fa" ... done.
+Genome index file created at: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+ - Genome Index - Wall time taken: 0.0s
+
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.sorted.bam.bai" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Provided BAM appears to be sorted already, just creating symlink instead.
+Created symlink from "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.sorted.bam" to "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.mapping.summary -1 /tmp/2896584.inpipe1 -2 /tmp/2896584.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+DATA: new_data_4_elm/alpha-00148
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz
+the hisat2-build has done
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz: No such file or directory
+gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz: No such file or directory
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Prepped genome file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Prepped genome index file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+Prepped BAM file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Prepped BAM index file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Prepped sorted BAM detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.mapping.summary -1 /tmp/2896607.inpipe1 -2 /tmp/2896607.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+DATA: new_data_4_elm/alpha-00148
+SAMPLE: *
+perl /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl -mode 'illumina' -fq /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz:/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz -primer_bed /restricted/projectnb/challenge2025/Data/primers/artic_primers_v3.bed -pool 0 -extractfasta -TRSLindependent -o /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref -ref /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref
+it is running with fa
+thread: 1
+path: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref
+the position of the first A in ployA tail is 29818 on the virus genome.
+junction site at leader adject number: +-10
+junction site at orf adject number: -20
+novel junction covervage cutoff: 5
+non-canonical junction covervage cutoff: 5
+novel junction of genome position of leader end cutoff: 5
+it is illumina mode now
+the "illumina" mode is running with paired end reads
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz
+the hisat2-build has done
+gzip: gzip: /restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_1.fastq.gz: No such file or directory
+/restricted/projectnb/challenge2025/Data/new_data_4_elm/alpha-00148_2.fastq.gz: No such file or directory
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:00:00
+0 reads
+0.00% overall alignment rate
+Time searching: 00:00:00
+Overall time: 00:00:00
+Portcullis V1.1.2
+
+Running portcullis in prepare mode
+----------------------------------
+
+Prepped genome file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.genome.fa"
+Prepped genome index file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.genome.fa.fai"
+Prepped BAM file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.unsorted.alignments.bam"
+Prepped BAM index file detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam.bai"
+Prepped sorted BAM detected: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+
+Portcullis prep completed.
+Total runtime: 0.0s
+
+Portcullis V1.1.2
+
+Running portcullis in junction builder mode
+------------------------------------------
+
+Settings:
+ - BAM Strandedness: UNKNOWN
+ - BAM Read Orientation: UNKNOWN
+ - BAM Indexing mode: BAI
+ - Threads: 1
+ - Separate BAMs: false
+
+BAM details:
+ - File path: "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out/portcullis.sorted.alignments.bam"
+ - # Target sequences: 1
+ - Format version: 1.0
+ - Sort order: coordinate
+ - Program 1: 
+  - ID: hisat2
+  - Name: hisat2
+  - Version: 2.1.0
+  - Command line: "/usr3/graduate/markerte/.conda/envs/LeTRS/bin/hisat2-align-s --wrapper basic-0 -p 1 -q -t -x /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome --known-splicesite-infile /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/References/alpha_LeTRS_ref/genome_splicesites.txt -S /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.sam --summary-file /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment.mapping.summary -1 /tmp/2896630.inpipe1 -2 /tmp/2896630.inpipe2"
+
+Creating 1 threads, each with BAM and genome indicies loaded ... done.
+Finding junctions and calculating basic metrics:
+ - Queueing 1 target sequences for processing in the thread pool
+ - Processing: 
+   - OX014248.1
+ - All threads completed.
+ - Combining results from threads.
+
+Sequence    	   unspliced	     spliced	       total
+OX014248.1  	           0	           0	           0
+
+Sorting and reindexing merged junctions... done.
+
+Final stats:
+ - Processed 0 alignments.
+ - Alignment query length statistics: min: 2147483647; mean: -nan; max: 0;
+ - Found 0 junctions from 0 spliced alignments.
+ - Found 0 unspliced alignments.
+ = Wall time taken: 0.0s
+
+Saving junctions: 
+ - Saving junction table to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.tab ... done.
+ - Saving junction GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.exon.gff3 ... done.
+ - Saving intron GFF file to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.intron.gff3 ... done.
+ - Saving BED file with all junctions to: /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/new_data_4_elm/alpha-00148_alpha-ref/alignment_output/alignment_portcullis_out.junctions.bed ... done.
+ = Wall time taken: 0.0s
+
+Strand Analysis
+---------------
+
+Total Alignments:
+ - R1:0
+ - R2:0
+Alignment counts when splice site suggests +ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Alignment counts when splice site suggests -ve strand:
+ - R1+: 0
+ - R1-: 0
+ - R2+: 0
+ - R2-: 0
+Correlation of read strand to splice site strand (1.0 = complete agreement, -1.0 = complete disagreement):
+ - R1+: -nan
+ - R1-: -nan
+ - R2+: -nan
+ - R2-: -nan
+
+Determined sequence orientation to be: Unknown
+Determined RNAseq strandedness to be: Unknown strand protocol
+
+
+Portcullis junc completed.
+Total runtime: 0.0s
+
+looking for the leader-TRS
+Use of uninitialized value $totalmappedread in print at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 803.
+Use of uninitialized value $totalmappedread in division (/) at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1591.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1598.
+Use of uninitialized value $totalmappedread in concatenation (.) or string at /restricted/projectnb/challenge2025/software/LeTRS/LeTRS.pl line 1605.
+Total mapped read/read pairs in both pools: 
+Total reads/read pairs with left primer only in both pools: -1
+Total reads/read pairs with right primer only in both pools: -1
+Total reads/read pairs with both primers in both pools: 1
+Total reads/read pairs with at least one primer in both pools: -1
+extracting fasta with leader-TRS
+please find the leader-TRSs at results folder
+
+8

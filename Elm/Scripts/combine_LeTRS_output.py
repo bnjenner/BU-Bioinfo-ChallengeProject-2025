@@ -35,7 +35,7 @@ def combine_files(file_list, output_file):
                     elif infile_lines[l].startswith('The'):
                         break
                     else:
-                        file_name = re.search('(?<=\.\/).+(?=\/results)', file_list[f]).group(0).replace(r'/', '_').replace('.', '_')
+                        file_name = re.search(r'(?<=\.\/).+(?=\/results)', file_list[f]).group(0).replace(r'/', '_').replace('.', '_')
                         infile_lines[l] = infile_lines[l].rstrip() + f"\t{file_name}\n"
                         outfile.write(infile_lines[l])
     outfile.close()
@@ -43,14 +43,14 @@ def combine_files(file_list, output_file):
 
 def main():
     # Set working directory
-    os.chdir('/restricted/projectnb/challenge2025/sgRNAtor/Elm/LeTRS_Output/')
+    os.chdir('/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/')
     # File types you want to combine
     patterns = {"cannonical": 'known_junction.tab',\
                 "nc-Leader": 'novel_junction.tab',\
                 "nc-ind": 'TRS_L_independent_junction.tab'}
     for key, pattern in patterns.items():
         files_to_combine = find_file_types(pattern)
-        output_filename = f'/restricted/projectnb/challenge2025/sgRNAtor/Elm/LeTRS_Output/combined/combined_{key}.tab'
+        output_filename = f'/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/LeTRS_Output/combined/combined_{key}.tab'
         combine_files(files_to_combine, output_filename)
 
 if __name__ == "__main__":

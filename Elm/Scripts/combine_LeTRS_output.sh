@@ -10,4 +10,4 @@
 
 module load python3/3.13.8
 
-python3 /restricted/projectnb/challenge2025/sgRNAtor/Elm/Scripts/combine_LeTRS_output.py
+python3 /restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/Scripts/combine_LeTRS_output.py

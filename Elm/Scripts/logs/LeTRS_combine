@@ -46,3 +46,9 @@ Shell options:
 	-abefhkmnptuvxBCHP or -o option
 /restricted/projectnb/challenge2025/sgRNAtor/Elm/Scripts/combine_LeTRS_output.py:38: SyntaxWarning: invalid escape sequence '\.'
   file_name = re.search('(?<=\.\/).+(?=\/results)', file_list[f]).group(0).replace(r'/', '_').replace('.', '_')
+/restricted/projectnb/challenge2025/sgRNAtor/Elm/Scripts/combine_LeTRS_output.py:38: SyntaxWarning: invalid escape sequence '\.'
+  file_name = re.search('(?<=\.\/).+(?=\/results)', file_list[f]).group(0).replace(r'/', '_').replace('.', '_')
+/restricted/projectnb/challenge2025/sgRNAtor/Elm/Scripts/combine_LeTRS_output.py:38: SyntaxWarning: invalid escape sequence '\.'
+  file_name = re.search('(?<=\.\/).+(?=\/results)', file_list[f]).group(0).replace(r'/', '_').replace('.', '_')
+/restricted/projectnb/challenge2025/sgRNAtor/Elm/Scripts/combine_LeTRS_output.py:38: SyntaxWarning: invalid escape sequence '\.'
+  file_name = re.search('(?<=\.\/).+(?=\/results)', file_list[f]).group(0).replace(r'/', '_').replace('.', '_')

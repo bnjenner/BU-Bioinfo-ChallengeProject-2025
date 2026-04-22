@@ -8,6 +8,9 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from sgRNAtor import utils
 
 
+# Replace this with aho corasick tree
+
+
 ##################################################################
 # sgRNAs Class
 class sgRNAsearch:

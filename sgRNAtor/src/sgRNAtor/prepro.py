@@ -41,6 +41,13 @@ class preproHTStream:
 				output_prefix + "_R2.fastq.gz"
 			])
 
+		length_command = [
+		    "hts_LengthFilter",
+		    "-A", self.log_file,
+		    "-N", "length filter",
+		    "--min-length", "15"
+		]
+
 		trim_command = [
 			"hts_AdapterTrimmer",
 			"-A", self.log_file,
@@ -55,22 +62,39 @@ class preproHTStream:
 				stdout=subprocess.PIPE,
 				stderr=subprocess.PIPE
 			)
-			trim_proc = subprocess.Popen(
-				trim_command,
+			length_proc = subprocess.Popen(
+				length_command,
 				stdin=stats_proc.stdout,
 				stdout=subprocess.PIPE,
 				stderr=subprocess.PIPE
 			)
-			stats_proc.stdout.close()  # Allow stats_proc to receive SIGPIPE
+			trim_proc = subprocess.Popen(
+				trim_command,
+				stdin=length_proc.stdout,
+				stdout=subprocess.PIPE,
+				stderr=subprocess.PIPE
+			)
+
+			# Allow stats_proc and length_proc to receive SIGPIPE
+			stats_proc.stdout.close()
+			length_proc.stdout.close()
 
 			# Drain trim first (it's downstream), THEN wait on stats
 			trim_out, trim_stderr = trim_proc.communicate()
-			stats_proc.wait()  # Don't communicate() — stdout already closed
+			length_proc.wait()
+			stats_proc.wait()
+
 			stats_stderr = stats_proc.stderr.read()
+			length_stderr = length_proc.stderr.read()
+
 
 			if stats_proc.returncode != 0:
 				raise RuntimeError(
 				    f"// ERROR: HTStream - hts_Stats Failed:\n{stats_stderr.decode()}"
+				)
+			if length_proc.returncode != 0:
+				raise RuntimeError(
+				    f"// ERROR: HTStream - hts_LengthFilter Failed:\n{length_stderr.decode()}"
 				)
 			if trim_proc.returncode != 0:
 				raise RuntimeError(

@@ -32,7 +32,7 @@ def pull_n_seqs(n, seq_in_lin):
             continue
         record = handle.read().decode('utf-8').lower()
         handle.close()
-        if 'artic v' in record or 'articv' in record:
+        if ('artic v' in record or 'articv' in record) and '<LIBRARY_LAYOUT> <PAIRED /> </LIBRARY_LAYOUT>' in record:
              acc_nums.append(s)
              primers = re.search("artic ?v\\.?[0-9\\.]+", record).group()
              artic_primers.append(primers)
@@ -40,7 +40,30 @@ def pull_n_seqs(n, seq_in_lin):
              break
      return [acc_nums, artic_primers]
 
+def pull_all_meta(seq_in_lin):
+    acc_nums = []
+    artic_primers = []
+    spots = []
+    for s in seq_in_lin:
+        s = s.strip()
+        try:
+            handle = Entrez.efetch(db = "sra", id = s, retmode = "text")
+        except:
+            continue
+        record = handle.read().decode('utf-8').lower()
+        handle.close()
 
+        if ('artic v' in record or 'articv' in record) and '<LIBRARY_LAYOUT> <PAIRED /> </LIBRARY_LAYOUT>' in record:
+            acc_nums.append(s)
+            primers = re.search("artic ?v\\.?[0-9\\.]+", record).group()
+            artic_primers.append(primers)
+            nspots_match = re.search(r'nspots="(\d+)"', record)
+            if nspots_match:
+                total_spots = int(nspots_match.group(1))
+            else:
+                total_spots = 0
+            spots.append(total_spots)
+    return [acc_nums, artic_primers, spots]
 
 def main():
     Entrez.email = "markerte@bu.edu"
@@ -50,18 +73,24 @@ def main():
     ncbi_virus = ncbi_virus[~ncbi_virus['SRA_Accession'].str.contains(',', na=False)]
     lineage_list = ncbi_virus["Pangolin"].unique().tolist()
     lineage_list = list(filter(lambda x: x not in ["BA.2", "BA.1", "B.1"], lineage_list))
-    all_acc_nums = {'SRA_Accession':[], 'Primers': []}
+    #all_acc_nums = {'SRA_Accession':[], 'Primers': []}
+    metadata = {'SRA_Accession':[], 'Primers': [], 'Spots': []}
     for lineage in lineage_list:
         seq_list = list(ncbi_virus[ncbi_virus["Pangolin"] == lineage]["SRA_Accession"])
-        lin_acc_nums = pull_n_seqs(n=15, seq_in_lin=seq_list)
-        all_acc_nums['SRA_Accession'].extend(lin_acc_nums[0])
-        all_acc_nums['Primers'].extend(lin_acc_nums[1])
-    to_keep = pd.DataFrame(all_acc_nums)
+        #lin_acc_nums = pull_n_seqs(n=15, seq_in_lin=seq_list)
+        #all_acc_nums['SRA_Accession'].extend(lin_acc_nums[0])
+        #all_acc_nums['Primers'].extend(lin_acc_nums[1])
+        md = pull_all_meta(seq_list)
+        metadata["SRA_Accession"].extend(md[0])
+        metadata["Primers"].extend(md[1])
+        metadata["Spots"].extend(md[2])
+    #to_keep = pd.DataFrame(all_acc_nums)
+    to_keep = pd.DataFrame(metadata)
     final = pd.merge(to_keep, ncbi_virus, on = "SRA_Accession", how = "left")
-    final["SRA_Accession"] = final["SRA_Accession"].str.split(",")
-    final = final.explode('SRA_Accession').reset_index(drop=True)
-    final.to_csv("ncbi_virus_w_primers.csv", index = False)
-    final["SRA_Accession"].to_csv("ncbi_virus_acc.txt", index = False, header = False)
+    #final["SRA_Accession"] = final["SRA_Accession"].str.split(",")
+    #final = final.explode('SRA_Accession').reset_index(drop=True)
+    final.to_csv("ncbi_virus_meta.csv", index = False)
+    #final["SRA_Accession"].to_csv("ncbi_virus_acc.txt", index = False, header = False)
     # write SRA accessions to list to download them
 
 if __name__ == "__main__":

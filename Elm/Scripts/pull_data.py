@@ -53,7 +53,7 @@ def pull_all_meta(seq_in_lin):
         record = handle.read().decode('utf-8').lower()
         handle.close()
 
-        if ('artic v' in record or 'articv' in record) and '<LIBRARY_LAYOUT> <PAIRED /> </LIBRARY_LAYOUT>' in record:
+        if ('artic v' in record or 'articv' in record) and '<library_layout><paired' in record:
             acc_nums.append(s)
             primers = re.search("artic ?v\\.?[0-9\\.]+", record).group()
             artic_primers.append(primers)
@@ -76,6 +76,7 @@ def main():
     #all_acc_nums = {'SRA_Accession':[], 'Primers': []}
     metadata = {'SRA_Accession':[], 'Primers': [], 'Spots': []}
     for lineage in lineage_list:
+        print(lineage)
         seq_list = list(ncbi_virus[ncbi_virus["Pangolin"] == lineage]["SRA_Accession"])
         #lin_acc_nums = pull_n_seqs(n=15, seq_in_lin=seq_list)
         #all_acc_nums['SRA_Accession'].extend(lin_acc_nums[0])
@@ -89,7 +90,7 @@ def main():
     final = pd.merge(to_keep, ncbi_virus, on = "SRA_Accession", how = "left")
     #final["SRA_Accession"] = final["SRA_Accession"].str.split(",")
     #final = final.explode('SRA_Accession').reset_index(drop=True)
-    final.to_csv("ncbi_virus_meta.csv", index = False)
+    final.to_csv("/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/metadata/ncbi_virus_meta.csv", index = False)
     #final["SRA_Accession"].to_csv("ncbi_virus_acc.txt", index = False, header = False)
     # write SRA accessions to list to download them
 

@@ -68,7 +68,7 @@ def pull_all_meta(seq_in_lin):
 def main():
     Entrez.email = "markerte@bu.edu"
     Entrez.api_key = "cc5ef99a135dbc3960c3219fc70e8b951e08"
-    home_dir = "C:\\Users\\exmar\\Documents\\BU_Docs\\Classes\\Fall_25\\challenge project"
+    home_dir = "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/metadata"
     ncbi_virus = pd.read_csv(f"{home_dir}/ncbi_virus_data_VOCs.csv").sample(frac=1, random_state = 321).reset_index(drop=True)
     ncbi_virus = ncbi_virus[~ncbi_virus['SRA_Accession'].str.contains(',', na=False)]
     lineage_list = ncbi_virus["Pangolin"].unique().tolist()
@@ -90,7 +90,7 @@ def main():
     final = pd.merge(to_keep, ncbi_virus, on = "SRA_Accession", how = "left")
     #final["SRA_Accession"] = final["SRA_Accession"].str.split(",")
     #final = final.explode('SRA_Accession').reset_index(drop=True)
-    final.to_csv("/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/metadata/ncbi_virus_meta.csv", index = False)
+    final.to_csv(f"{home_dir}/ncbi_virus_meta.csv", index = False)
     #final["SRA_Accession"].to_csv("ncbi_virus_acc.txt", index = False, header = False)
     # write SRA accessions to list to download them
 

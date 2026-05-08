@@ -14,3 +14,4 @@ src/sgRNAtor.egg-info/dependency_links.txt
 src/sgRNAtor.egg-info/entry_points.txt
 src/sgRNAtor.egg-info/requires.txt
 src/sgRNAtor.egg-info/top_level.txt
+test/test_bitap.py

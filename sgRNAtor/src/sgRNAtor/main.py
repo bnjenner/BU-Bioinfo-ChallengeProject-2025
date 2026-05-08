@@ -15,7 +15,7 @@ def argparser():
 	parser.add_argument("fastq", help="Path to the input fastq file (R1 or SE)")
 	parser.add_argument("fastq2", help="Path to optional Read 2 fastq file", nargs="?")  # optional positional
 	parser.add_argument("--reference", "-R", type=str, default=None, required=True, help="Path to genome reference fasta file.")
-	parser.add_argument("--leader-fasta", "-L", type=str, default=None, required=True, help="Path to leader sequence multi fasta file.")
+	parser.add_argument("--leader-fasta", "-L", type=str, default=None, required=True, help="Path to leader sequence multi fasta file. All sequences should be no greater than 64 bp long.")
 	parser.add_argument("--tss-bed", "-b", type=str, default=None, required=True, help="Path to sgRNA template switching sites bed file.")
 	parser.add_argument("--threads", "-t", type=int, default=1, help="Number of threads to use (default: 1)")
 	parser.add_argument("--min-match", "-m", type=int, default=10, help="Minimum length of substring to match (default: 10)")

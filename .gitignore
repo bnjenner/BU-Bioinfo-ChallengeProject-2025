@@ -30,3 +30,4 @@
 *.sublime-*
 sgRNAtor/sgRNAtor
 sgRNAtor/build
+sgRNAtor/src/sgRNAtor/__pycache__

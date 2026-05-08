@@ -16,11 +16,21 @@ from sgRNAtor import utils
 class sgRNAsearch:
 
 	def __init__(self, fastq_files, leader, PE=False):
+		
+		# Inputs
 		self.fastq_files = fastq_files
 		self.leader = utils.read_fasta(leader)
+		self.PE = PE
+
+		# Bitap Masks
+		self.pattern_mask = {}
+		self.initialized_mask = {}
+
+		# Library Stats
 		self.matches = 0
 		self.library_size = 0
-		self.PE = PE
+		
+		# Output
 		self.output_files = None
 
 	#################################
@@ -51,29 +61,69 @@ class sgRNAsearch:
 
 
 	#################################
-	# Sequence Search utility
-	def __seq_search(self, lead, read, min_match, max_edit):
+	# Build leader sequence bitmasks
+	def __build_bitmask(self, min_match, max_edit):
 		'''
-		Performs full pattern search and also slides 3' end of leader 
-		over 5' end of read and calcualtes edit distance.
-		Returns dictionary (Match, Position)
+		Builds bitmask of each leader sequence in fasta file. 
 		'''
-		r_end = len(read)
-		l_end = len(lead)
-		for i in range(r_end, min_match-1, -1):
-			if i < l_end:
-				_read = read[:i]
-				_lead = lead[l_end-i:]
-			else:
-				_read = read[i-l_end:i]
-				_lead = lead
-			if _lead == _read:
-					return {"Match": True, "Pos": i}
-			elif max_edit != 0:
-				dist = utils.edit_distance(_lead, _read)
-				if dist <= max_edit:
-					return {"Match": True, "Pos": i}
-		return {"Match": False, "Pos": None}
+		for header, seq in self.leader.items():
+
+			# Enforce leader seq length
+			if len(seq) > 64:
+				raise RuntimeError(f"ERROR: Leader Sequence {header} is longer than 64 nucleotides.")
+
+			# Initialize all possible bases (not just those in anchor)
+			self.pattern_mask[seq] = {c: ~0 for c in 'ACGTN'}
+			for i, c in enumerate(seq):
+				self.pattern_mask[seq][c] &= ~(1 << i)
+
+			# Build initial R state (single int; expanded to list per search call)
+			self.initialized_mask[seq] = ~0
+			for j in range(0, len(seq) - min_match + 1):
+				self.initialized_mask[seq] &= ~(1 << j)
+
+
+	#################################
+	# Bitap partial 5' overlap search
+	def __bitap_partial_overlap(self, read, lead, min_match, max_edit):
+		"""
+		Bitap (Shift-Or) search for `lead` overlapping the 5' end of `read`.
+		Detects overlaps of length [min_match, len(lead)] with up to max_edit
+		substitution mismatches.
+
+		Returns on match: {"Match": True, "overlap_length": int, "mismatches": int,
+		                    "anchor_start": int, "read_position": int}
+		Returns on failure: {"Match": False}
+		"""
+		lead = str(lead)
+		read = str(read)
+		m = len(lead)
+
+		pattern_mask = self.pattern_mask[lead]
+		R = [self.initialized_mask[lead]] * (max_edit + 1)
+
+
+		for i, c in enumerate(read):
+			old_R = R[:]
+			mask = pattern_mask.get(c, ~0)
+
+			R[0] = (old_R[0] | mask) << 1
+			for j in range(1, max_edit + 1):
+				R[j] = ((old_R[j] | mask) << 1) & (old_R[j - 1] << 1)
+
+			for j in range(max_edit + 1):
+				if 0 == (R[j] & (1 << m)):
+					overlap_len = i + 1
+					if overlap_len >= min_match:
+						return {
+							"Match": True,
+							"overlap_length": overlap_len,
+							"mismatches": j,
+							"anchor_start": m - overlap_len,
+							"read_position": i,
+						}
+
+		return {"Match": False}
 
 
 	#################################
@@ -108,10 +158,11 @@ class sgRNAsearch:
 						_qual = _qual[::-1]
 						rev = 1
 
-					result = self.__seq_search(seq, _read, min_match, max_edit)
+					# result = self.__seq_search(seq, _read, min_match, max_edit)
+					result = self.__bitap_partial_overlap(_read, seq, min_match, max_edit)
 
 					if result["Match"]:
-						trim_pos = result["Pos"]
+						trim_pos = result["overlap_length"]
 						_read = _read[trim_pos:]
 						_qual = _qual[trim_pos:]
 						_desc = f"{_record["id"]} LS:i:{rev}"
@@ -160,7 +211,7 @@ class sgRNAsearch:
 		by gzip or single threads. 
 		'''
 
-		print(f"// Trimming FASTQ Files {self.fastq_files}")
+		print(f"// Identifying sgRNA Reads in {self.fastq_files}")
 		
 		# Create GZIP out file handles	
 		out_handles = []
@@ -171,6 +222,10 @@ class sgRNAsearch:
 			
 			self.output_files.append(f"{output_prefix}_sgRNA_R{i}.fastq.gz")
 			out_handles.append(gzip.open(self.output_files[i], "wt"))
+
+
+		# Build Bitmask for Bitap
+		self.__build_bitmask(min_match, max_edit)
 
 
 		next_seq = 0         # Allows for seq iteration

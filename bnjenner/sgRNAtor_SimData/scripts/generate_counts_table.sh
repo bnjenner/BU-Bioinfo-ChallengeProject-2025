@@ -1,7 +1,7 @@
 #!/bin/bash
 sample_file=$1
-prefix="sgRNA_voc"
-baseP="/restricted/projectnb/challenge2025/bnjenner/sgRNAtor/bnjenner/sgRNAtor_Testing"
+prefix="sgRNA_test"
+baseP="/restricted/projectnb/challenge2025/bnjenner/sgRNAtor/bnjenner/sgRNAtor_SimData"
 input="${baseP}/01-sgRNAQuant"
 output="${baseP}/02-sgRNACounts"
 
@@ -11,7 +11,7 @@ mkdir -p ${output}/tmp
 for sample in `cat ${sample_file}`; do \
     echo ${sample}
     cat ${input}/${sample}/${sample}_ORF_counts.txt | \
-	tail -n +2 | cut -f 5 > ${output}/tmp/${sample}.count
+	tail -n +2 | cut -f 4 > ${output}/tmp/${sample}.count
 done
 
 echo ""

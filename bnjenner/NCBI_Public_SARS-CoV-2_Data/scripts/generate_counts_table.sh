@@ -1,7 +1,7 @@
 #!/bin/bash
 sample_file=$1
-prefix="sgRNA_voc"
-baseP="/restricted/projectnb/challenge2025/bnjenner/sgRNAtor/bnjenner/sgRNAtor_Testing"
+prefix="NCBI_Public_SARS-CoV-2_Data"
+baseP="/restricted/projectnb/challenge2025/bnjenner/sgRNAtor/bnjenner/NCBI_Public_SARS-CoV-2_Data"
 input="${baseP}/01-sgRNAQuant"
 output="${baseP}/02-sgRNACounts"
 

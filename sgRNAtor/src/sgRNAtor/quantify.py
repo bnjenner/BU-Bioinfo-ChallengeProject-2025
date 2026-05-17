@@ -72,7 +72,7 @@ class sgRNAquantify:
 					self.reads[f"{read.query_name}"] = {}
 				self.reads[f"{read.query_name}"][pair] = {"Pos": read.reference_start,
 														  "Length": read.query_length,
-														  "Leader": read.has_tag("LS")}
+														  "Leader": read.has_tag("ls")}
 
 		# Reduce fragments to their TSS sites
 		for fragment, reads in self.reads.items():	

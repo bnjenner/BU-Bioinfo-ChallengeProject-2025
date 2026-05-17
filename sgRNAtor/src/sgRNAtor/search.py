@@ -165,7 +165,7 @@ class sgRNAsearch:
 						trim_pos = result["overlap_length"]
 						_read = _read[trim_pos:]
 						_qual = _qual[trim_pos:]
-						_desc = f"{_record["id"]} LS:i:{rev}"
+						_desc = f"{_record["id"]} ls:i:{rev}"
 						results[strand]["sgRNA_found"] = True
 
 					# Undo Revcomp if PE and Forward & R2 or Reverse & R1
@@ -303,7 +303,7 @@ class sgRNAsearch:
 		# Close all opened GZIP output files
 		for i in range(len(out_handles)):
 			out_handles[i].close
-			print(f"// Output written to {self.output_files[i]}")
+		print(f"// Output written to {self.output_files}")
 
 
 		print(f"// sgRNAs found: {self.matches}")

@@ -185,7 +185,7 @@ class sgRNAsearch:
 				if results[strand]["sgRNA_found"]:
 					return results[strand]
 
-		return {"sgRNA_found": False, "new_records":	 []}
+		return {"sgRNA_found": False, "new_records": []}
 
 
 	#################################
@@ -220,7 +220,7 @@ class sgRNAsearch:
 			if self.output_files is None:
 				self.output_files = []
 			
-			self.output_files.append(f"{output_prefix}_sgRNA_R{i}.fastq.gz")
+			self.output_files.append(f"{output_prefix}_sgRNA_R{i+1}.fastq.gz")
 			out_handles.append(gzip.open(self.output_files[i], "wt"))
 
 

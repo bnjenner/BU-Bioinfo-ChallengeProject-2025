@@ -12,13 +12,13 @@ start=`date +%s`
 echo $HOSTNAME
 echo "My SGE_TASK_ID: " $SGE_TASK_ID
 
-proj="PRJNA726840"
+proj="ncbi-virus_size-filtered"
 s=`sed "${SGE_TASK_ID}q;d" sample_PRJNA1193019.txt`
 echo "SAMPLE: ${sample}"
 
 # Set / Create Directories
 export baseP=/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm
-export cwd=${baseP}/scripts
+export cwd=${baseP}/Scripts
 export seqP=/restricted/projectnb/challenge2025/Data/${proj}
 export outP=${baseP}/01-HTStream_prepro/${proj}
 export qcP=${baseP}/02-MultiQC
@@ -33,12 +33,12 @@ module load fastqc/0.12.1
 module load miniconda/24.5.0
 # HTStream Preprocessing
 conda activate /restricted/projectnb/challenge2025/software/conda_envs/HTStream_v1.4.1
-for sample in ${seqP}/*_1.fastq.gz
+for sample in ${seqP}/*_1.fastq
 do
 s=${sample##*/}
-s=${s%_1.fastq.gz}
+s=${s%_1.fastq}
 call="hts_Stats -L ${outP}/${s}.json -N 'initial stats' \
-          -1 ${seqP}/${s}_1.fastq.gz -2 ${seqP}/${s}_2.fastq.gz | \
+          -1 ${seqP}/${s}_1.fastq -2 ${seqP}/${s}_2.fastq | \
       hts_SeqScreener -r -A ${outP}/${s}.json -N 'screen phix' | \
       hts_SeqScreener -A ${outP}/${s}.json -N 'count the number of rRNA reads' \
           -r -s ${rrna} | \
@@ -54,7 +54,7 @@ eval $call
 
 
 # Additional QC with fastqc
-call="fastqc ${outP}/${s}_*fastq.gz \
+call="fastqc ${outP}/${s}_*fastq \
        --outdir ${outP} \
        --dir ${outP}"
 echo $call

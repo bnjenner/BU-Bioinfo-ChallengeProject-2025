@@ -9,7 +9,7 @@
 start=`date +%s`
 echo $HOSTNAME
 
-pulled_data="ncbi_virus_acc"
+pulled_data="ncbi-virus_size-filtered"
 outpath="/restricted/projectnb/challenge2025/Data/${pulled_data}"
 
 mkdir -p ${outpath}
@@ -22,7 +22,7 @@ module load sratoolkit/3.0.10
 # Code modified from asadprodhan on github
 while IFS= read -r accession; do
     prefetch $accession && fasterq-dump $accession --split-files
-done < "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/Scripts/ncbi_virus_acc.txt"
+done < "/restricted/projectnb/challenge2025/markerte/sgRNAtor/Elm/metadata/size_filtered_seqs.txt"
 
 # Download SRA Data
 #prefetch ${sra_id}

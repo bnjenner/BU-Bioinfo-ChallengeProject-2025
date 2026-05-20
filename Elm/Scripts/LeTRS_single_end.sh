@@ -38,7 +38,7 @@ export outP=${baseP}/LeTRS_Output/${data}
 
 
 # Running LeTRS on each data and primer combination
-for sample in ${data_path}/*.fastq
+for sample in ${data_path}/final_COV_TAT*.fastq
 do
 s=${sample##*/}
 s=${s%.fastq}

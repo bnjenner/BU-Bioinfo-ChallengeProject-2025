@@ -72,26 +72,25 @@ def main():
     ncbi_virus = pd.read_csv(f"{home_dir}/ncbi_virus_data_VOCs.csv").sample(frac=1, random_state = 321).reset_index(drop=True)
     ncbi_virus = ncbi_virus[~ncbi_virus['SRA_Accession'].str.contains(',', na=False)]
     lineage_list = ncbi_virus["Pangolin"].unique().tolist()
-    lineage_list = list(filter(lambda x: x not in ["BA.2", "BA.1", "B.1"], lineage_list))
-    #all_acc_nums = {'SRA_Accession':[], 'Primers': []}
-    metadata = {'SRA_Accession':[], 'Primers': [], 'Spots': []}
+    lineage_list = list(filter(lambda x: x not in ["BA.2", "B.1.1.529", "B.1"], lineage_list))
+    all_acc_nums = {'SRA_Accession':[], 'Primers': []}
+    #metadata = {'SRA_Accession':[], 'Primers': [], 'Spots': []}
     for lineage in lineage_list:
-        print(lineage)
         seq_list = list(ncbi_virus[ncbi_virus["Pangolin"] == lineage]["SRA_Accession"])
-        #lin_acc_nums = pull_n_seqs(n=15, seq_in_lin=seq_list)
-        #all_acc_nums['SRA_Accession'].extend(lin_acc_nums[0])
-        #all_acc_nums['Primers'].extend(lin_acc_nums[1])
-        md = pull_all_meta(seq_list)
-        metadata["SRA_Accession"].extend(md[0])
-        metadata["Primers"].extend(md[1])
-        metadata["Spots"].extend(md[2])
-    #to_keep = pd.DataFrame(all_acc_nums)
-    to_keep = pd.DataFrame(metadata)
+        lin_acc_nums = pull_n_seqs(n=15, seq_in_lin=seq_list)
+        all_acc_nums['SRA_Accession'].extend(lin_acc_nums[0])
+        all_acc_nums['Primers'].extend(lin_acc_nums[1])
+        #md = pull_all_meta(seq_list)
+        #metadata["SRA_Accession"].extend(md[0])
+        #metadata["Primers"].extend(md[1])
+        #metadata["Spots"].extend(md[2])
+    to_keep = pd.DataFrame(all_acc_nums)
+    #to_keep = pd.DataFrame(metadata)
     final = pd.merge(to_keep, ncbi_virus, on = "SRA_Accession", how = "left")
     #final["SRA_Accession"] = final["SRA_Accession"].str.split(",")
     #final = final.explode('SRA_Accession').reset_index(drop=True)
     final.to_csv(f"{home_dir}/ncbi_virus_meta.csv", index = False)
-    #final["SRA_Accession"].to_csv("ncbi_virus_acc.txt", index = False, header = False)
+    final["SRA_Accession"].to_csv("ncbi_virus_acc.txt", index = False, header = False)
     # write SRA accessions to list to download them
 
 if __name__ == "__main__":

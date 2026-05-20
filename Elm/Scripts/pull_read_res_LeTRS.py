@@ -128,7 +128,7 @@ def parse_run_results(run_dir, fasta_extension=".fasta"):
     run_results = {}
 
     for fasta_file in sorted(results_dir.glob(f"*{fasta_extension}")):
-        subgenome_name = fasta_file.split("-")[-1].replace(fasta_extension, "")
+        subgenome_name = str(fasta_file).split("-")[-1].replace(fasta_extension, "")
         read_ids = parse_fasta_read_ids(fasta_file)
         run_results[subgenome_name] = read_ids
 

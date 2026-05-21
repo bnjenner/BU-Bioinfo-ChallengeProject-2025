@@ -74,6 +74,7 @@ def main():
 	fastq_files = [args.fastq, args.fastq2]
 	orfs_tsv = f"{args.output_prefix}_ORF_counts.txt"
 	sgrnas_tsv = f"{args.output_prefix}_sgRNA_counts.txt"
+	assignment_tsv = f"{args.output_prefix}_read_assignments.txt"
 	summary_tsv = f"{args.output_prefix}_summary.txt"
 	
 	# Specify PE
@@ -137,6 +138,8 @@ def main():
 	summary.write_ORF_counts(output_file = orfs_tsv)
 	print("// Writing sgRNA Counts")
 	summary.write_sgRNA_counts(output_file = sgrnas_tsv)
+	print("// Writing Read Assignments")
+	summary.write_read_assignments(output_file = assignment_tsv)
 	print("// Writing Pipeline Summary")
 	summary.write_summary(output_file = summary_tsv)
 	print(f"// sgRNAtor Pipeline Complete.")

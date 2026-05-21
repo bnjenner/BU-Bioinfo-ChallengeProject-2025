@@ -55,3 +55,15 @@ class sgRNAstats:
 				fo.write(line)
 		print(f"// Output written to {output_file}")
 
+
+	#################################
+	# Output ORF TSV
+	def write_read_assignments(self, output_file):
+		with open(output_file, "w") as fo:
+			fo.write("ORF\tReads\n")
+			for pos, orf in self.tss_dict.items():
+				line = (f"{orf["ORF"]}\t" +
+						f"{",".join(orf["Reads"])}\n")
+				fo.write(line)
+		print(f"// Output written to {output_file}")
+

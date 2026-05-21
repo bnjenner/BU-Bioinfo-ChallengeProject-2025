@@ -32,7 +32,8 @@ class sgRNAquantify:
 				
 				self.tss_dict[pos] = {"ORF": orf,
 									  "Window": (pos-window, pos+window+1),
-									  "Counts": 0}
+									  "Counts": 0,
+									  "Reads": []}
 
 
 	#################################
@@ -46,8 +47,11 @@ class sgRNAquantify:
 		# Assign sgRNAs to ORFs
 		for pos, counts in self.sgRNA_counts.items():
 			for orf, info in self.tss_dict.items():
+
+				# Assign Counts and Read IDs
 				if utils.overlap(pos, info["Window"]):
 					self.tss_dict[orf]["Counts"] += counts["Counts"]
+					self.tss_dict[orf]["Reads"].extend(counts["Reads"])
 					self.sgRNA_counts[pos]["Assigned"] = orf
 					break
 
@@ -92,6 +96,7 @@ class sgRNAquantify:
 
 			if template_switch != 0:
 				if template_switch not in self.sgRNA_counts:
-					self.sgRNA_counts[template_switch] = {"Counts": 0, "Assigned": None}
+					self.sgRNA_counts[template_switch] = {"Counts": 0, "Assigned": None, "Reads": []}
 				self.sgRNA_counts[template_switch]["Counts"] += 1
+				self.sgRNA_counts[template_switch]["Reads"].append(fragment)
 

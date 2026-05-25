@@ -18,7 +18,7 @@ def argparser():
 	parser.add_argument("--leader-fasta", "-L", type=str, default=None, required=True, help="Path to leader sequence multi fasta file. All sequences should be no greater than 64 bp long.")
 	parser.add_argument("--tss-bed", "-b", type=str, default=None, required=True, help="Path to sgRNA template switching sites bed file.")
 	parser.add_argument("--threads", "-t", type=int, default=1, help="Number of threads to use (default: 1)")
-	parser.add_argument("--min-match", "-m", type=int, default=10, help="Minimum length of substring to match (default: 10)")
+	parser.add_argument("--min-match", "-m", type=int, default=12, help="Minimum length of substring to match (default: 12)")
 	parser.add_argument("--max-edit", "-e", type=int, default=2, help="Maximum edit distance for a leader sequence match (default: 2)")
 	parser.add_argument("--tss-window", "-w", type=int, default=10, help="Window size for template switching sites (+/- specified number). (default: 10)")
 	parser.add_argument("--output-prefix", "-o", type=str, default="sgRNAtor_result", help="Prefix for output files.")
@@ -128,19 +128,18 @@ def main():
 	quant.assign_TSS_to_orfs(tss_bed = args.tss_bed, window = args.tss_window)
 
 	# Add Stats
-	summary.aligned_fragments = quant.aligned_fragments 
+	summary.aligned_fragments = quant.stat_counts["aligned_fragments"]
+	summary.canonical         = quant.stat_counts["canonical"]
+	summary.noncanonical      = quant.stat_counts["noncanonical"]
 	summary.tss_dict          = quant.tss_dict
 	summary.sgRNA_counts      = quant.sgRNA_counts
+	summary.unassigned        = quant.unassigned
 
 
 	# Write output Files
-	print("// Writing ORF Counts")
 	summary.write_ORF_counts(output_file = orfs_tsv)
-	print("// Writing sgRNA Counts")
 	summary.write_sgRNA_counts(output_file = sgrnas_tsv)
-	print("// Writing Read Assignments")
 	summary.write_read_assignments(output_file = assignment_tsv)
-	print("// Writing Pipeline Summary")
 	summary.write_summary(output_file = summary_tsv)
 	print(f"// sgRNAtor Pipeline Complete.")
 

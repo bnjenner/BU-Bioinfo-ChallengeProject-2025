@@ -9,11 +9,15 @@ class sgRNAquantify:
 
 	def __init__(self, bam):
 		self.bam = bam
-		self.aligned_fragments = 0
-		self.gRNA_counts = 0
 		self.reads = {}
 		self.sgRNA_counts = {}
 		self.tss_dict = {}
+		self.unassigned = []
+		self.stat_counts = {
+			"aligned_fragments": 0,
+			"canonical": 0,
+			"noncanonical": 0
+		}
 
 
 	#################################
@@ -46,6 +50,7 @@ class sgRNAquantify:
 
 		# Assign sgRNAs to ORFs
 		for pos, counts in self.sgRNA_counts.items():
+			_assigned = False
 			for orf, info in self.tss_dict.items():
 
 				# Assign Counts and Read IDs
@@ -53,7 +58,13 @@ class sgRNAquantify:
 					self.tss_dict[orf]["Counts"] += counts["Counts"]
 					self.tss_dict[orf]["Reads"].extend(counts["Reads"])
 					self.sgRNA_counts[pos]["Assigned"] = orf
+					self.stat_counts["canonical"] += counts["Counts"]
+					_assigned = True
 					break
+
+			if not _assigned:
+				self.unassigned.extend(counts["Reads"])
+				self.stat_counts["noncanonical"] += counts["Counts"]
 
 
 	#################################
@@ -82,7 +93,7 @@ class sgRNAquantify:
 		for fragment, reads in self.reads.items():	
 
 			# Add to stats
-			self.aligned_fragments += 1
+			self.stat_counts["aligned_fragments"] += 1
 
 			template_switch = 0			
 			for r, attr in reads.items():

@@ -37,7 +37,7 @@ class sgRNAsearch:
 	# Iterate through fastq files
 	def __iterate_reads(self, fastq_files):
 		'''
-		Arbitrary handle for SE or 1682652 / 4PE reads and handles file closing after iterations
+		Arbitrary handle for SE or PE reads and handles file closing after iterations
 		'''
 		with ExitStack() as stack:
 			handles = [

@@ -8,7 +8,75 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from sgRNAtor import utils
 
 
-# Replace this with aho corasick tree
+##################################################################
+# Myers (1999) bit-vector approximate search.
+# Finds the 5'-most end position in `text` where the FULL `pattern` aligns with
+# Levenshtein distance <= max_edit. Free gaps before/after the pattern in the
+# text (fitting alignment) and full indel support -- unlike the substitution-only
+# bitap. Single O(len(text)) pass while pattern length <= machine word (leaders
+# are <= 64 bp). Returns (end_pos, distance) or None.
+def _myers_search(pattern, text, max_edit):
+	m = len(pattern)
+	if m == 0:
+		return None
+	Peq = {}
+	for i, c in enumerate(pattern):
+		Peq[c] = Peq.get(c, 0) | (1 << i)
+	mask = (1 << m) - 1
+	high = 1 << (m - 1)
+	Pv = mask
+	Mv = 0
+	score = m
+	for j in range(len(text)):
+		Eq = Peq.get(text[j], 0)
+		Xv = Eq | Mv
+		Xh = (((Eq & Pv) + Pv) ^ Pv) | Eq
+		Ph = Mv | (~(Xh | Pv) & mask)
+		Mh = Pv & Xh
+		if Ph & high:
+			score += 1
+		elif Mh & high:
+			score -= 1
+		Ph = (Ph << 1) & mask
+		Mh = (Mh << 1) & mask
+		Pv = (Mh | (~(Xv | Ph) & mask)) & mask
+		Mv = Ph & Xv
+		if score <= max_edit:
+			return (j, score)
+	return None
+
+
+##################################################################
+# Partial 5' overlap: a SUFFIX of `leader` (retaining >= min_match bases) aligned
+# to a PREFIX of `text` (anchored at text position 0), Levenshtein <= max_edit,
+# with a free text 3' end and a free leader 5' prefix (down to min_match retained
+# bases). This is the read-starts-inside-the-leader case that a plain infix search
+# cannot represent. Returns (end_pos, distance) for the 5'-most end, or None.
+def _suffix_prefix_overlap(leader, text, min_match, max_edit):
+	m = len(leader)
+	if m == 0 or min_match > m:
+		return None
+	free = m - min_match                       # leader-prefix positions skippable for free
+	n = min(len(text), m + max_edit)
+	# prev holds column j=0: D[i][0] = max(0, i - free)
+	prev = [max(0, i - free) for i in range(m + 1)]
+	for j in range(1, n + 1):
+		cur = [0] * (m + 1)
+		cur[0] = j                             # D[0][j] = j (text anchored at start)
+		cj = text[j - 1]
+		for i in range(1, m + 1):
+			v = prev[i - 1] + (0 if leader[i - 1] == cj else 1)
+			d = prev[i] + 1
+			if d < v:
+				v = d
+			ins = cur[i - 1] + 1
+			if ins < v:
+				v = ins
+			cur[i] = v
+		prev = cur
+		if prev[m] <= max_edit:
+			return (j - 1, prev[m])
+	return None
 
 
 ##################################################################
@@ -128,6 +196,46 @@ class sgRNAsearch:
 
 
 	#################################
+	# Myers bit-vector leader search (indel-aware, with partial 5' overlap)
+	def __myers_leader_search(self, read, lead, min_match, max_edit):
+		"""
+		Indel-aware leader search. Detects both:
+		  - the FULL leader anywhere in the read (free 5' genomic context), and
+		  - a partial 5' overlap: a leader 3' suffix (>= min_match) at the read
+		    start, for reads/fragments that begin inside the leader.
+
+		Prefers the 5'-most end position; ties go to the full-leader hit. Returns
+		the same contract as __bitap_partial_overlap: overlap_length is the number
+		of 5' bases to trim (through the end of the leader), leaving the body.
+		"""
+		read = str(read)
+		lead = str(lead)
+		m = len(lead)
+
+		full = _myers_search(lead, read, max_edit)                       # full leader, free 5' context
+		part = _suffix_prefix_overlap(lead, read, min_match, max_edit)   # partial 3' suffix at read start
+
+		cands = []
+		if full is not None:
+			cands.append((full[0], 0, full[1]))     # (end, prefer=0 (full), dist)
+		if part is not None:
+			cands.append((part[0], 1, part[1]))     # (end, prefer=1 (partial), dist)
+		if not cands:
+			return {"Match": False}
+
+		cands.sort(key=lambda x: (x[0], x[1]))
+		end, _prefer, dist = cands[0]
+		overlap_length = end + 1
+		return {
+			"Match": True,
+			"overlap_length": overlap_length,
+			"mismatches": dist,
+			"anchor_start": m - overlap_length,
+			"read_position": end,
+		}
+
+
+	#################################
 	# Find sgRNA auxillary function
 	def __find_sgRNAs(self, records, min_match=8, max_edit=0, PE=None):
 
@@ -159,8 +267,8 @@ class sgRNAsearch:
 						_qual = _qual[::-1]
 						rev = 1
 
-					# result = self.__seq_search(seq, _read, min_match, max_edit)
-					result = self.__bitap_partial_overlap(_read, seq, min_match, max_edit)
+					# result = self.__bitap_partial_overlap(_read, seq, min_match, max_edit)
+					result = self.__myers_leader_search(_read, seq, min_match, max_edit)
 
 					if result["Match"]:
 						trim_pos = result["overlap_length"]

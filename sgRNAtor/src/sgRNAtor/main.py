@@ -21,6 +21,7 @@ def argparser():
 	parser.add_argument("--min-match", "-m", type=int, default=12, help="Minimum length of substring to match (default: 12)")
 	parser.add_argument("--max-edit", "-e", type=int, default=2, help="Maximum edit distance for a leader sequence match (default: 2)")
 	parser.add_argument("--tss-window", "-w", type=int, default=10, help="Window size for template switching sites (+/- specified number). (default: 10)")
+	parser.add_argument("--gtf", "-g", type=str, default=None, help="Path to GTF annotation file for genomic read assignment (default: bundled SARS-CoV-2 GTF).")
 	parser.add_argument("--output-prefix", "-o", type=str, default="sgRNAtor_result", help="Prefix for output files.")
 	args = parser.parse_args()
 
@@ -50,6 +51,12 @@ def argparser():
 		args.tss_bed = os.path.join(curr_path, "../data/sgRNA_template_switch_sites.bed")
 	elif not os.path.isfile(args.tss_bed):
 		raise RuntimeError(f"// ERROR: Fasta ({args.tss_bed}) does not exist")
+
+	# GTF Annotation
+	if args.gtf is None:
+		args.gtf = os.path.join(curr_path, "../data/GCF_009858895.2_ASM985889v3_genomic.gtf")
+	elif not os.path.isfile(args.gtf):
+		raise RuntimeError(f"// ERROR: GTF ({args.gtf}) does not exist")
 
 	# Check Parameters
 	if args.min_match < 0:
@@ -113,12 +120,22 @@ def main():
 	summary.trs_found    = sgRNAs.matches
 
 
-	# Align Trimmed Sequences
-	print("// Beginning BWA Alignment")
+	# Align sgRNA (leader-trimmed) sequences
+	print("// Beginning BWA Alignment (sgRNA reads)")
 	bwa = align.alignBWA(args.reference)
-	bwa.align(input_fastq = sgRNAs.output_files, 
+	bwa.align(input_fastq = sgRNAs.output_files,
 			  output_prefix = args.output_prefix,
 			  threads = args.threads)
+
+	# Align non-leader reads and assign to ORFs
+	print("// Beginning BWA Alignment (non-leader reads)")
+	bwa_genomic = align.alignBWA(args.reference)
+	bwa_genomic.align(input_fastq = sgRNAs.noleader_output_files,
+					  output_prefix = args.output_prefix,
+					  threads = args.threads,
+					  name = "genomic")
+	print("// Assigning Non-Leader Reads to ORFs")
+	bwa_genomic.assign_reads(gtf_file = args.gtf)
 
 
 	# Identify sgRNA Positions and ORFs

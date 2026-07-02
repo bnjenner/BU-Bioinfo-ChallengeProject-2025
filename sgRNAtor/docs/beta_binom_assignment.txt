@@ -1,0 +1,4 @@
+Theta = (a + k - 1) / (a + b + n - 2)
+	a and b are beta hyper params. 
+
+For multinomial, 

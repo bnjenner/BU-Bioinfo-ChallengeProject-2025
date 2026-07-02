@@ -29,9 +29,10 @@ class sgRNAsearch:
 		# Library Stats
 		self.matches = 0
 		self.library_size = 0
-		
+
 		# Output
 		self.output_files = None
+		self.noleader_output_files = None
 
 	#################################
 	# Iterate through fastq files
@@ -151,9 +152,9 @@ class sgRNAsearch:
 					_qual = _record["qual"]
 					_desc = _record["id"]
 
-					# Revcomp if PE and Forward & R2 or Reverse & R1
+					# Revcomp for Forward & R2 or Reverse & R1 (SE: revcomp R1 on the Reverse pass)
 					rev = 0
-					if PE and (((i+1)%2 == 0 and strand == "Forward") or ((i+1)%2 == 1 and strand == "Reverse")):
+					if ((i+1)%2 == 0 and strand == "Forward") or ((i+1)%2 == 1 and strand == "Reverse"):
 						_read = utils.revcomp(_read)
 						_qual = _qual[::-1]
 						rev = 1
@@ -168,8 +169,8 @@ class sgRNAsearch:
 						_desc = f"{_record["id"]} ls:i:{rev}"
 						results[strand]["sgRNA_found"] = True
 
-					# Undo Revcomp if PE and Forward & R2 or Reverse & R1
-					if PE and (((i+1)%2 == 0 and strand == "Forward") or ((i+1)%2 == 1 and strand == "Reverse")):
+					# Undo Revcomp for Forward & R2 or Reverse & R1 (restore original orientation)
+					if ((i+1)%2 == 0 and strand == "Forward") or ((i+1)%2 == 1 and strand == "Reverse"):
 						_read = utils.revcomp(_read)
 						_qual = _qual[::-1]
 
@@ -185,7 +186,16 @@ class sgRNAsearch:
 				if results[strand]["sgRNA_found"]:
 					return results[strand]
 
-		return {"sgRNA_found": False, "new_records": []}
+		original_records = [
+			SeqRecord(
+				Seq(str(r["seq"])),
+				id=r["id"],
+				description=r["id"],
+				letter_annotations={"phred_quality": list(r["qual"])}
+			)
+			for r in records
+		]
+		return {"sgRNA_found": False, "new_records": original_records}
 
 
 	#################################
@@ -213,15 +223,21 @@ class sgRNAsearch:
 
 		print(f"// Identifying sgRNA Reads in {self.fastq_files}")
 		
-		# Create GZIP out file handles	
+		# Create GZIP out file handles
 		out_handles = []
+		noleader_handles = []
 		for i in range(len(self.fastq_files)):
-			
+
 			if self.output_files is None:
 				self.output_files = []
-			
+			if self.noleader_output_files is None:
+				self.noleader_output_files = []
+
 			self.output_files.append(f"{output_prefix}_sgRNA_R{i+1}.fastq.gz")
 			out_handles.append(gzip.open(self.output_files[i], "wt"))
+
+			self.noleader_output_files.append(f"{output_prefix}_no_leader_R{i+1}.fastq.gz")
+			noleader_handles.append(gzip.open(self.noleader_output_files[i], "wt"))
 
 
 		# Build Bitmask for Bitap
@@ -270,6 +286,9 @@ class sgRNAsearch:
 							for i, rec in enumerate(result_dict["new_records"]):
 								SeqIO.write(rec, out_handles[i], "fastq")
 							self.matches += 1
+						else:
+							for i, rec in enumerate(result_dict["new_records"]):
+								SeqIO.write(rec, noleader_handles[i], "fastq")
 						next_seq += 1
 
 			# Submit remaining records
@@ -298,12 +317,18 @@ class sgRNAsearch:
 						for i, rec in enumerate(result_dict["new_records"]):
 							SeqIO.write(rec, out_handles[i], "fastq")
 						self.matches += 1
+					else:
+						for i, rec in enumerate(result_dict["new_records"]):
+							SeqIO.write(rec, noleader_handles[i], "fastq")
 					next_seq += 1
 
 		# Close all opened GZIP output files
 		for i in range(len(out_handles)):
-			out_handles[i].close
+			out_handles[i].close()
+		for i in range(len(noleader_handles)):
+			noleader_handles[i].close()
 		print(f"// Output written to {self.output_files}")
+		print(f"// No-leader reads written to {self.noleader_output_files}")
 
 
 		print(f"// sgRNAs found: {self.matches}")

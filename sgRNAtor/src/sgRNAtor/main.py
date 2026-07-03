@@ -33,30 +33,33 @@ def argparser():
 
 	# Check Reference Files
 	curr_path = os.path.dirname(os.path.abspath(__file__))
+	# Bundled data lives at the package root (sgRNAtor/data), two levels up from
+	# this file (sgRNAtor/src/sgRNAtor/main.py).
+	data_dir = os.path.join(curr_path, "..", "..", "data")
+
+	def _resolve_default(path, default_name, kind):
+		# User supplied a path: it must exist. Otherwise fall back to the bundled
+		# default and verify the bundled resource is actually present.
+		if path is not None:
+			if not os.path.isfile(path):
+				raise RuntimeError(f"// ERROR: {kind} ({path}) does not exist")
+			return path
+		default_path = os.path.join(data_dir, default_name)
+		if not os.path.isfile(default_path):
+			raise RuntimeError(f"// ERROR: bundled {kind} ({default_path}) not found")
+		return default_path
 
 	# Reference Genome
-	if args.reference is None:
-		args.reference = os.path.join(curr_path, "../data/nCoV-2019.reference.fasta")
-	elif not os.path.isfile(args.reference):
-		raise RuntimeError(f"// ERROR: Fasta ({args.reference}) does not exist")
+	args.reference = _resolve_default(args.reference, "nCoV-2019.reference.fasta", "Fasta")
 
 	# Leader Sequence
-	if args.leader_fasta is None:
-		args.leader_fasta = os.path.join(curr_path, "../data/leader_seq.fasta")
-	elif not os.path.isfile(args.leader_fasta):
-		raise RuntimeError(f"// ERROR: Fasta ({args.leader_fasta}) does not exist")
+	args.leader_fasta = _resolve_default(args.leader_fasta, "leader_seq.fasta", "Fasta")
 
 	# TSS BedFile
-	if args.tss_bed is None:
-		args.tss_bed = os.path.join(curr_path, "../data/sgRNA_template_switch_sites.bed")
-	elif not os.path.isfile(args.tss_bed):
-		raise RuntimeError(f"// ERROR: Fasta ({args.tss_bed}) does not exist")
+	args.tss_bed = _resolve_default(args.tss_bed, "sgRNA_template_switch_sites.bed", "Bed")
 
 	# GTF Annotation
-	if args.gtf is None:
-		args.gtf = os.path.join(curr_path, "../data/GCF_009858895.2_ASM985889v3_genomic.gtf")
-	elif not os.path.isfile(args.gtf):
-		raise RuntimeError(f"// ERROR: GTF ({args.gtf}) does not exist")
+	args.gtf = _resolve_default(args.gtf, "GCF_009858895.2_ASM985889v3_genomic.gtf", "GTF")
 
 	# Check Parameters
 	if args.min_match < 0:

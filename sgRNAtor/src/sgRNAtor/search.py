@@ -100,7 +100,6 @@ class sgRNAsearch:
 
 		# Output
 		self.output_files = None
-		self.noleader_output_files = None
 
 	#################################
 	# Iterate through fastq files
@@ -333,19 +332,13 @@ class sgRNAsearch:
 		
 		# Create GZIP out file handles
 		out_handles = []
-		noleader_handles = []
 		for i in range(len(self.fastq_files)):
 
 			if self.output_files is None:
 				self.output_files = []
-			if self.noleader_output_files is None:
-				self.noleader_output_files = []
 
 			self.output_files.append(f"{output_prefix}_sgRNA_R{i+1}.fastq.gz")
 			out_handles.append(gzip.open(self.output_files[i], "wt"))
-
-			self.noleader_output_files.append(f"{output_prefix}_no_leader_R{i+1}.fastq.gz")
-			noleader_handles.append(gzip.open(self.noleader_output_files[i], "wt"))
 
 
 		# Build Bitmask for Bitap
@@ -394,9 +387,6 @@ class sgRNAsearch:
 							for i, rec in enumerate(result_dict["new_records"]):
 								SeqIO.write(rec, out_handles[i], "fastq")
 							self.matches += 1
-						else:
-							for i, rec in enumerate(result_dict["new_records"]):
-								SeqIO.write(rec, noleader_handles[i], "fastq")
 						next_seq += 1
 
 			# Submit remaining records
@@ -425,18 +415,12 @@ class sgRNAsearch:
 						for i, rec in enumerate(result_dict["new_records"]):
 							SeqIO.write(rec, out_handles[i], "fastq")
 						self.matches += 1
-					else:
-						for i, rec in enumerate(result_dict["new_records"]):
-							SeqIO.write(rec, noleader_handles[i], "fastq")
 					next_seq += 1
 
 		# Close all opened GZIP output files
 		for i in range(len(out_handles)):
 			out_handles[i].close()
-		for i in range(len(noleader_handles)):
-			noleader_handles[i].close()
 		print(f"// Output written to {self.output_files}")
-		print(f"// No-leader reads written to {self.noleader_output_files}")
 
 
 		print(f"// sgRNAs found: {self.matches}")

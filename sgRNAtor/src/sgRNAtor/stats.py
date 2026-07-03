@@ -16,13 +16,11 @@ class sgRNAstats:
 		self.aligned_fragments = 0
 		self.canonical = 0
 		self.noncanonical = 0
-		self.genomic_aligned = 0
 
 		# Reads and Assignments
 		self.tss_dict = {}
 		self.sgRNA_counts = {}
 		self.unassigned = []
-		self.gene_counts = {}
 
 	#################################
 	# Output Summary TSV

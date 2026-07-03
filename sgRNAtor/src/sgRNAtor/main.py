@@ -14,14 +14,13 @@ def argparser():
 	parser = argparse.ArgumentParser(description="Identification and Quantification pipeline for sgRNA. Performs leader sequence matching and trimming, alignment with BWA, and generates sgRNA counts tables.")
 	parser.add_argument("fastq", help="Path to the input fastq file (R1 or SE)")
 	parser.add_argument("fastq2", help="Path to optional Read 2 fastq file", nargs="?")  # optional positional
-	parser.add_argument("--reference", "-R", type=str, default=None, required=True, help="Path to genome reference fasta file.")
-	parser.add_argument("--leader-fasta", "-L", type=str, default=None, required=True, help="Path to leader sequence multi fasta file. All sequences should be no greater than 64 bp long.")
-	parser.add_argument("--tss-bed", "-b", type=str, default=None, required=True, help="Path to sgRNA template switching sites bed file.")
+	parser.add_argument("--reference", "-R", type=str, required=True, help="Path to genome reference fasta file.")
+	parser.add_argument("--leader-fasta", "-L", type=str, required=True, help="Path to leader sequence multi fasta file. All sequences should be no greater than 64 bp long.")
+	parser.add_argument("--tss-bed", "-b", type=str, required=True, help="Path to sgRNA template switching sites bed file.")
 	parser.add_argument("--threads", "-t", type=int, default=1, help="Number of threads to use (default: 1)")
 	parser.add_argument("--min-match", "-m", type=int, default=12, help="Minimum length of substring to match (default: 12)")
 	parser.add_argument("--max-edit", "-e", type=int, default=2, help="Maximum edit distance for a leader sequence match (default: 2)")
 	parser.add_argument("--tss-window", "-w", type=int, default=10, help="Window size for template switching sites (+/- specified number). (default: 10)")
-	parser.add_argument("--gtf", "-g", type=str, default=None, help="Path to GTF annotation file for genomic read assignment (default: bundled SARS-CoV-2 GTF).")
 	parser.add_argument("--output-prefix", "-o", type=str, default="sgRNAtor_result", help="Prefix for output files.")
 	args = parser.parse_args()
 
@@ -32,34 +31,12 @@ def argparser():
 		raise RuntimeError(f"// ERROR: Fastq Read 2 ({args.fastq2}) does not exist")
 
 	# Check Reference Files
-	curr_path = os.path.dirname(os.path.abspath(__file__))
-	# Bundled data lives at the package root (sgRNAtor/data), two levels up from
-	# this file (sgRNAtor/src/sgRNAtor/main.py).
-	data_dir = os.path.join(curr_path, "..", "..", "data")
-
-	def _resolve_default(path, default_name, kind):
-		# User supplied a path: it must exist. Otherwise fall back to the bundled
-		# default and verify the bundled resource is actually present.
-		if path is not None:
-			if not os.path.isfile(path):
-				raise RuntimeError(f"// ERROR: {kind} ({path}) does not exist")
-			return path
-		default_path = os.path.join(data_dir, default_name)
-		if not os.path.isfile(default_path):
-			raise RuntimeError(f"// ERROR: bundled {kind} ({default_path}) not found")
-		return default_path
-
-	# Reference Genome
-	args.reference = _resolve_default(args.reference, "nCoV-2019.reference.fasta", "Fasta")
-
-	# Leader Sequence
-	args.leader_fasta = _resolve_default(args.leader_fasta, "leader_seq.fasta", "Fasta")
-
-	# TSS BedFile
-	args.tss_bed = _resolve_default(args.tss_bed, "sgRNA_template_switch_sites.bed", "Bed")
-
-	# GTF Annotation
-	args.gtf = _resolve_default(args.gtf, "GCF_009858895.2_ASM985889v3_genomic.gtf", "GTF")
+	if not os.path.isfile(args.reference):
+		raise RuntimeError(f"// ERROR: Fasta ({args.reference}) does not exist")
+	if not os.path.isfile(args.leader_fasta):
+		raise RuntimeError(f"// ERROR: Fasta ({args.leader_fasta}) does not exist")
+	if not os.path.isfile(args.tss_bed):
+		raise RuntimeError(f"// ERROR: Bed ({args.tss_bed}) does not exist")
 
 	# Check Parameters
 	if args.min_match < 0:
@@ -129,16 +106,6 @@ def main():
 	bwa.align(input_fastq = sgRNAs.output_files,
 			  output_prefix = args.output_prefix,
 			  threads = args.threads)
-
-	# Align non-leader reads and assign to ORFs
-	print("// Beginning BWA Alignment (non-leader reads)")
-	bwa_genomic = align.alignBWA(args.reference)
-	bwa_genomic.align(input_fastq = sgRNAs.noleader_output_files,
-					  output_prefix = args.output_prefix,
-					  threads = args.threads,
-					  name = "genomic")
-	print("// Assigning Non-Leader Reads to ORFs")
-	bwa_genomic.assign_reads(gtf_file = args.gtf)
 
 
 	# Identify sgRNA Positions and ORFs

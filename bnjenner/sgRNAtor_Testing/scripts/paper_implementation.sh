@@ -2,35 +2,39 @@
 #$ -l h_rt=24:00:00
 #$ -P challenge2025
 #$ -N sgRNAID
-#$ -t 1-1
-#$ -o logs/sgRNAID
-#$ -e logs/sgRNAID
+#$ -t 1-11
+#$ -o logs/paper
+#$ -e logs/paper
 #$ -m bea
 
 start=`date +%s`
 echo $HOSTNAME
 echo "My SGE_TASK_ID: " $SGE_TASK_ID
 
-threads=${NSLOTS}
+threads=${NSLOTS:-1}
 echo "THREADS: ${threads}"
 
 sample=`sed "${SGE_TASK_ID}q;d" samples_PRJNA726840.txt`
 echo "SAMPLE: ${sample}"
 
 # Set / Create Directories
-export baseP=/restricted/projectnb/challenge2025/sgRNAtor/bnjenner # can also be set to "../"
+export baseP=/restricted/projectnb/challenge2025/bnjenner/sgRNAtor/bnjenner/sgRNAtor_Testing # Path to project dir
 export cwd=${baseP}/scripts
 export seqP=${baseP}/00-RawData
-export outP=${baseP}/01-sgRNAQuant/${sample}
+export outP=${baseP}/01-Paper_sgRNAquant/${sample}
 export refP=${cwd}/References
+export sgRNAtorP=/restricted/projectnb/challenge2025/bnjenner/sgRNAtor/sgRNAtor # Path to sgRNAtor software
 
 [[ -d ${outP} ]] || mkdir -p ${outP}
 
-conda activate /restricted/projectnb/challenge2025/sgRNAtor/sgRNAtor
+# Activate conda env
+module load miniconda/24.5.0
+conda activate /restricted/projectnb/challenge2025/bnjenner/sgRNAtor/sgRNAtor/build
 
 # Reference Sequences
 reference="${refP}/nCoV-2019.reference.fasta"
 leader="${refP}/leader_seq.fasta"
+trs_bed="${refP}/sgRNA_template_switch_sites.bed"
 leader_len=$(echo -n $(sed "2q;d" ${leader}) | wc -c)
 
 # Input and Output Files
@@ -40,17 +44,22 @@ trimmed_R1="${outP}/${sample}_trimmed_R1.fastq.gz"
 trimmed_R2="${outP}/${sample}_trimmed_R2.fastq.gz"
 untrimmed_R1="${outP}/${sample}_unmatched_R1.fastq.gz"
 untrimmed_R2="${outP}/${sample}_unmatched_R2.fastq.gz"
+outsam="${outP}/${sample}_sgRNA_aligned.sam"
 outbam="${outP}/${sample}_sgRNA_aligned.bam"
-
+outcsv="${outP}/${sample}_sgRNA_ORFs.csv"
 
 # Identify sgRNA leader sequence
 #	Assumes all leader sequences are the same length
-call="bbduk.sh \
+echo "// Trimming sgRNA Leader Sequences"
+call="bbduk.sh -Xmx8g \
         in1=${R1} in2=${R2} \
         outm=${trimmed_R1} outm2=${trimmed_R2} \
 	out=${untrimmed_R1} out2=${untrimmed_R2} \
-        ref=${leader} k=${leader_len} \
-        hdist=0 mincovfraction=1 ordered=t \
+        ref=${leader} \
+	k=${leader_len} \
+        maskmiddle=f \
+        ktrim=l \
+	ordered=t \
         threads=${threads}"
 echo $call
 eval $call
@@ -62,12 +71,40 @@ if [[ ! -f "$trimmed_R1" || ! -f "$trimmed_R2" ]]; then
 fi
 
 # Align sgRNA sequences
-call="bbmap.sh ref=targets.fasta \
+echo "// Aligned sgRNA Reads"
+call="bbmap.sh -Xmx8g \
+	ref=${reference} \
+	maxindel=100 \
+	32bit=t \
+	mappedonly=t \
+	strandedcov=t \
+	strictmaxindel=t \
 	in1=${trimmed_R1} in2=${trimmed_R2} \
-	threads=${threads} out=${outbam}"
+	threads=${threads} out=${outsam}"
+echo $call
+eval $call
+
+# Convert to BAM file
+samtools view -hb ${outsam} -o ${outbam}
+#rm ${outsam}
+
+# Check if Alignment was Successful
+if [[ ! -f "${outbam}" ]]; then
+    echo "Error: ${outbam} not found." >&2
+    exit 1
+fi
+
+
+# Assign sgRNAs to ORFs
+echo "// Assigning sgRNAs to ORFs"
+call="python3 ${sgRNAtorP}/scripts/ProcessBams.py \
+			--bed ${trs_bed} --window 10 \
+			--output ${outcsv} \
+			${outbam}"
 echo $call
 eval $call
 
 end=`date +%s`
 runtime=$((end-start))
 echo $runtime
+

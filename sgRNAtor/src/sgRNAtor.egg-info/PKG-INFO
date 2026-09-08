@@ -1,9 +1,45 @@
 Metadata-Version: 2.4
 Name: sgRNAtor
 Version: 0.0.1
-Summary: Implements an sgRNA quantification pipeline
+Summary: Identification and quantification pipeline for sgRNA
 Author: B. N. Jenner
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
 Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: biopython>=1.85
+Requires-Dist: editdistance>=0.8.1
+Requires-Dist: numpy>=2.0
+Requires-Dist: pysam>=0.22
 Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary
+
+# sgRNAtor
+
+## Installation
+1. Install conda.
+
+2. Create conda environment.
+```
+mkdir -p ./build
+conda env create -f environment.yml --prefix $(pwd)/build
+```
+
+3. Activate your created conda environment
+
+4. Install sgRNAtor by running this command in sgRNAtor directory containing setup.py.
+```
+pip install .
+```
+
+5. Test
+```
+sgRNAtor --help
+```
+

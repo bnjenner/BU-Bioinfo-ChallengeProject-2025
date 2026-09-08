@@ -1,9 +1,5 @@
 import os
 import subprocess
-from Bio import SeqIO
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
-from sgRNAtor import utils
 
 #################################################
 # sgRNAs Class
@@ -11,7 +7,7 @@ class alignBWA:
 
 	def __init__(self, reference):
 		self.reference = reference
-
+		self.output_file = None
 
 	#################################
 	# Check Reference Index Exists
@@ -22,19 +18,22 @@ class alignBWA:
 
 	#################################
 	# Align Sequences
-	def align(self, input_fastq, output_bam, threads=1):
-		
+	def align(self, input_fastq, output_prefix, threads=1, name="sgRNA"):
+
+		# Set Output File
+		self.output_file = f"{output_prefix}_aligned_{name}.bam"
+
 		# Check Reference Index
 		if not self.__index_exists():
 			raise RuntimeError(f"// ERROR: Index for {self.reference} does not exist.")
 
 		# BWA MEM command
-		bwa_command = ["bwa", "mem", "-t", str(threads), self.reference, input_fastq[0]]
+		bwa_command = ["bwa", "mem", "-C", "-t", str(threads), self.reference, input_fastq[0]]
 		if len(input_fastq) == 2:
 			bwa_command.append(input_fastq[1])
 
 		# Open BAM file for writing
-		with open(output_bam, "wb") as bam_out:
+		with open(self.output_file, "wb") as bam_out:
 			try:
 				# Start BWA process
 				bwa_proc = subprocess.Popen(
@@ -66,3 +65,5 @@ class alignBWA:
 
 			except Exception as e:
 				raise RuntimeError(f"Alignment failed: {str(e)}")
+
+		print(f"// Output written to {self.output_file}")

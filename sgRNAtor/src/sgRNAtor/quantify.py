@@ -11,7 +11,13 @@ class sgRNAquantify:
 		self.bam = bam
 		self.reads = {}
 		self.sgRNA_counts = {}
-		self.tss_dict = None
+		self.tss_dict = {}
+		self.unassigned = []
+		self.stat_counts = {
+			"aligned_fragments": 0,
+			"canonical": 0,
+			"noncanonical": 0
+		}
 
 
 	#################################
@@ -30,32 +36,49 @@ class sgRNAquantify:
 				
 				self.tss_dict[pos] = {"ORF": orf,
 									  "Window": (pos-window, pos+window+1),
-									  "Counts": 0}
+									  "Counts": 0,
+									  "Reads": []}
 
 
 	#################################
 	# Find template switching sites
-	def assign_TSS_to_orfs(self, tss_bed=None, window=None):
+	def assign_TSS_to_orfs(self, tss_bed=None, window=10):
 
 		# TSS not read yet but specified bed and window
-		if self.tss_dict is None and tss_bed is not None and window is not None:
+		if not self.tss_dict and tss_bed is not None and window is not None:
 			self.read_TSS_bed(tss_bed, window)
 
 		# Assign sgRNAs to ORFs
-		for pos, count in self.sgRNA_counts.items():
+		for pos, counts in self.sgRNA_counts.items():
+			_assigned = False
 			for orf, info in self.tss_dict.items():
+
+				# Assign Counts and Read IDs
 				if utils.overlap(pos, info["Window"]):
-					self.tss_dict[orf]["Counts"] += count
+					self.tss_dict[orf]["Counts"] += counts["Counts"]
+					self.tss_dict[orf]["Reads"].extend(counts["Reads"])
+					self.sgRNA_counts[pos]["Assigned"] = orf
+					self.stat_counts["canonical"] += counts["Counts"]
+					_assigned = True
 					break
+
+			if not _assigned:
+				self.unassigned.extend(counts["Reads"])
+				self.stat_counts["noncanonical"] += counts["Counts"]
 
 
 	#################################
 	# Find template switching sites
-	def find_template_switches(self, read_length, threads=1):
+	def find_template_switches(self, threads=1, has_tag=False):
+		'''
+		Parses aligned reads and identifies which read was trimmed and also where the 
+		junction site occured. This identifies all junction sites and generates counts
+		for them. This will be used later for sgRNA ORF assignment.
+		'''
 		
 		# Read in Bam file
 		for read in pysam.AlignmentFile(self.bam, "rb"):
-			if not read.is_unmapped:
+			if not read.is_unmapped and not read.is_supplementary:
 
 				# Determine R1 or R2
 				pair = "R1" if not read.is_read2 else "R2"
@@ -63,29 +86,28 @@ class sgRNAquantify:
 				if read.query_name not in self.reads:
 					self.reads[f"{read.query_name}"] = {}
 				self.reads[f"{read.query_name}"][pair] = {"Pos": read.reference_start,
-														  "Length": read.query_length}
+														  "Length": read.query_length,
+														  "Leader": read.has_tag("ls")}
 
 		# Reduce fragments to their TSS sites
-		for fragment, reads in self.reads.items():
-			
-			# Determine if R1 or R2 was trimmed to get TSS site
-			template_switch = None
-			if "R1" in reads and reads["R1"]["Length"] != read_length:
-				template_switch = int(reads["R1"]["Pos"])
-			elif "R2" in reads and reads["R2"]["Length"] != read_length:
-				template_switch = int(reads["R2"]["Pos"])
+		for fragment, reads in self.reads.items():	
 
-			if template_switch is not None:
+			# Add to stats
+			self.stat_counts["aligned_fragments"] += 1
+
+			template_switch = 0			
+			for r, attr in reads.items():
+
+				# 1-based conversion 
+				tss = int(attr["Pos"] + 1)
+
+				# Grab 3' most TSS site
+				if attr["Leader"] and tss > template_switch:
+					template_switch = tss
+
+			if template_switch != 0:
 				if template_switch not in self.sgRNA_counts:
-					self.sgRNA_counts[template_switch] = 0
-				self.sgRNA_counts[template_switch] += 1
-
-	#################################
-	# Output sgRNAs TSV
-	def write_counts(self, output_file):
-		with open(output_file, "w") as fo:
-			fo.write("ORF\tStart\tStop\tCounts\n")
-			for pos, orf in self.tss_dict.items():
-				fo.write(f"{orf["ORF"]}\t{orf["Window"][0]}\t{orf["Window"][1]}\t{orf["Counts"]}\n")
-
+					self.sgRNA_counts[template_switch] = {"Counts": 0, "Assigned": None, "Reads": []}
+				self.sgRNA_counts[template_switch]["Counts"] += 1
+				self.sgRNA_counts[template_switch]["Reads"].append(fragment)
 

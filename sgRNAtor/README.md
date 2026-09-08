@@ -1,4 +1,4 @@
-# sgRNAtor
+# BU-Bioinfo-ChallengeProject-2025
 
 ## Installation
 1. Install conda.

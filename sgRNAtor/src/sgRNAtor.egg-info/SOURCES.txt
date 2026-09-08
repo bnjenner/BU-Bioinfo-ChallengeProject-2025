@@ -15,3 +15,4 @@ src/sgRNAtor.egg-info/entry_points.txt
 src/sgRNAtor.egg-info/requires.txt
 src/sgRNAtor.egg-info/top_level.txt
 test/test_bitap.py
+test/test_myers.py
